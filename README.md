@@ -1,5 +1,5 @@
 # SH22 Main
-This is to create conflict
+- Team Project SH22 Course 2023-24
 
 
 ## Getting started
