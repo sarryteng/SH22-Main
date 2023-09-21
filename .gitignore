@@ -4,9 +4,3 @@
 # Compiled Documents
 *.pdf
 *.ps
-
-# Intelli J
-.idea/
-
-# DS Store
-.DS_Store
