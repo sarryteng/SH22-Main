@@ -4,3 +4,6 @@
 # Compiled Documents
 *.pdf
 *.ps
+
+# idea
+.idea/
