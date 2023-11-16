@@ -1,5 +1,13 @@
 # Description
 
+<!-- 
+**As a:** who is using this feature
+
+**I want to:** description of feature
+
+**So that:** goals
+ -->
+
 **As a:**
 
 **I want to:**
@@ -8,33 +16,41 @@
 
 ---
 
-*short description of the feature*
+<!-- short description of the feature in a paragraph or so -->
 
 # Technical Requirements
 
-* *put technical requirements here*
+<!-- put technical requirements in bullet points 
+*
+*
+*
+-->
+
 
 # Acceptance Criteria
 
+<!-- can use this format
 1. **Given:** *initial conditions*
    * **When:** *trigger condition*
-   * **Then:** *expected results*
-   
+   * **Then:** *expected results* 
 
-   ---
-
-* *put descriptive acceptance criteria here*
+or put them in bullet points
+*
+*
+* -->
 
 # Mockups/Designs
 
-*Links to mockups or design materials if any*
+<!-- *Links to mockups or design materials if any* -->
 
 # Roles and permissions
 
-*this feature is available for whom*
+<!-- *this feature is available for whom* -->
 
 # Definition of done
 
-* [ ] **Requirement 1**: *description*
+<!-- use checklist
+
+* [ ] **Requirement 1**: *description* -->
 
 /label ~Features
