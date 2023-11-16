@@ -16,8 +16,6 @@
 
 # Acceptance Criteria
 
-**Acceptance criteria is the behaviour that a user expects when they interact with the application.**
-
 1. **Given:** *initial conditions*
    * **When:** *trigger condition*
    * **Then:** *expected results*
@@ -36,7 +34,5 @@
 *this feature is available for whom*
 
 # Definition of done
-
-**Definition of done is used to know when a ticket is done from the team perspective, can include what is required to complete the issue, along with testing, documentation etc.**
 
 * [ ] **Requirement 1**: *description*
