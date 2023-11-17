@@ -7,10 +7,10 @@ function QRcode () {
 
     return (
       <div>
-         <div className="QRcode">
+         <div className="Center">
       <img src={qr.src} style={{ width: '300px' }} alt="QR Code" />
     </div>
-    <div className="QRcode">
+    <div className="Center">
       <img src={car.src} style={{ width: '300px' }} alt="QR Code" />
     </div>
       </div>
