@@ -34,10 +34,20 @@ font-weight: 400;
 line-height: normal;
 }
 
+.QuoteText{
+    color: #FFF;
+    text-align: center;
+    font-family: Poppins;
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
 .grid-container {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* Two columns with equal width */
-    gap: 10px; /* Adjust the gap as needed */
+    gap: 50px; /* Adjust the gap as needed */
 }
 
 .grid-item {

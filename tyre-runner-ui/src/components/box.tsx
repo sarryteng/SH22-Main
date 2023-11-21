@@ -7,11 +7,12 @@ function BlackBox () {
     return (
       <div className="Box">
         <div className="Center">
+            <br></br>
+            <br></br>
             <div class="grid-container">
                 <div class="grid-item">
                     <div className="TextInBox">
-
-                    NO. Plate: 
+                    No. Plate: 
                     </div>
                 </div>
                 <div class="grid-item">
@@ -33,6 +34,8 @@ function BlackBox () {
                     </div>
                 </div> */}
             </div>
+            <br></br>
+            <br></br>
                 <img src={qr.src} style={{ width: '471.575px'}} alt="QR Code" />
             <div className="TextInBox">
                 Scan Here<br></br>
