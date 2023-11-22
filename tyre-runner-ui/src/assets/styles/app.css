@@ -4,8 +4,15 @@
 }
 
 .QRcode {
-    padding-top: 100px;
-    padding-left: 145px;
+    width: "5000px";
+    display:flex;
+    border: 20px solid white;
+    flex-direction:column;
+    align-items: center;
+    position: relative;
+    background-color: #FFF;
+    /* padding-top: 100px;
+    padding-left: 145px; */
 }
 
 .Center{
@@ -15,8 +22,20 @@
     position: relative;
 }
 
+.push {
+    margin-left: "auto";
+  }
+
+.Left{
+    display:flex;
+    flex-direction:column;
+    align-items: Left;
+    position: relative;
+}
+
+
 .Box{
-    width: 530px;
+    width: 500px;
     height: 750px;
     flex-shrink: 0;
     border-radius: 30px;
@@ -25,13 +44,27 @@
 }
 .TextInBox{
     color: #FFF;
+    font-family: "Suez One";
+    font-size: 30px;
+    tab-size: 1; 
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+}
 
-text-align: center;
-font-family: "Suez One";
-font-size: 30px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+.TextCenter {
+    text-align: center; 
+}
+
+.TextLeft {
+    float:left;
+    /* tab-size: 2;
+    text-align: left;  */
+}
+
+.TextRight {
+    /* text-align: right;  */
+    float:right;
 }
 
 .QuoteText{
@@ -42,6 +75,18 @@ line-height: normal;
     font-style: normal;
     font-weight: 700;
     line-height: normal;
+}
+
+
+.LabelText {
+    display: flex;
+    align-items: center;
+    margin-left: 7%;
+    /* margin-right: 100%; */
+}
+
+.Label {
+    margin-right: 50%;
 }
 
 .grid-container {

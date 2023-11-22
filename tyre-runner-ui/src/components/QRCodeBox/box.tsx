@@ -1,48 +1,42 @@
 import "../../assets/styles/app.css";
+import { useState } from 'react';
 import qr from '../../assets/Images/qrcode.png'
 import "@fontsource/poppins";
 import "@fontsource/suez-one";
-
-// import car from '../../public/Car.svg'
+import QRCode from 'react-qr-code';
 
 function BlackBox () {
+   
+    let url: string = "https://www.google.com/";
+    let [plate, setPlate] = useState("1234");
 
     return (
       <div className="Box">
         <div style={{height:"45px"}}/>
-        <div className="Center">
-            <div className="grid-container">
-                <div className="grid-item">
-                    <div className="TextInBox">
-                    No. Plate: 
-                    </div>
-                </div>
-                <div className="grid-item">
-                    <div className="TextInBox">
-
-                    1234 
-                    </div>
-                </div>
-                {/* <div class="grid-item">
-                    <div className="TextInBox">
-
-                    Car Model: 
-                    </div>
-                </div>
-                <div class="grid-item">
-                    <div className="TextInBox">
-
-                    Honda Civic
-                    </div>
-                </div> */}
+       
+            {/* <div className="grid-item"> */}
+            <div className="TextBox">
+                <span className="TextInBox Label"> No.Plate:  </span>
+                <span className="TextInBox"> {plate} </span>
             </div>
+            
+            <div className="Center">
+           
+           {/* QRcode */} 
+            <div style={{height:"30px"}} />
+                <QRCode
+                        size={256}
+                        style={{ height: "auto", width: "80%", border: "20px solid white", backgroundColor: "white", borderRadius: "10px"}} 
+                        value= {url}
+                    />
             <div style={{height:"40px"}}/>
-                <img src={qr.src} style={{ width: '471.575px'}} alt="QR Code" />
-                <div style={{height:"20px"}}/>
-            <div className="TextInBox">
+            
+
+            <div className="TextInBox TextCenter">
                 Scan Here<br></br>
                 Check Your Pressure
             </div>
+            
         </div>
         
       </div>
