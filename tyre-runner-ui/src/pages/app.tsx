@@ -1,7 +1,7 @@
-import QRcode from "./test.tsx";
-import BlackBox from "./box.tsx";
-import "../styles/app.css";
-import logo from '../../public/tyrerunner_logo.png'
+// import QRcode from "./QRCodeBox/test.tsx";
+import BlackBox from "../components/QRCodeBox/box.tsx";
+import "../assets/styles/app.css";
+import logo from '../assets/Images/tyrerunner_logo.png'
 
 function App() {
   return (
@@ -15,7 +15,6 @@ function App() {
       <br></br>
       <BlackBox/>
     </div>
-    
   );
 }
 

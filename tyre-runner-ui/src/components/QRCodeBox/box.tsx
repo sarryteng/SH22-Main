@@ -1,5 +1,8 @@
-import "../styles/app.css";
-import qr from '../../public/qrcode.png'
+import "../../assets/styles/app.css";
+import qr from '../../assets/Images/qrcode.png'
+import "@fontsource/poppins";
+import "@fontsource/suez-one";
+
 // import car from '../../public/Car.svg'
 
 function BlackBox () {

@@ -1,4 +1,4 @@
-import "../styles/app.css";
+import "../../assets/styles/app.css";
 import qr from '../../public/qrcode.png'
 import car from '../../public/Car.svg'
 
