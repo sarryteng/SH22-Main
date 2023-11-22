@@ -14,7 +14,6 @@ function BlackBox () {
       <div className="Box">
         <div style={{height:"45px"}}/>
        
-            {/* <div className="grid-item"> */}
             <div className="TextBox">
                 <span className="TextInBox Label"> No.Plate:  </span>
                 <span className="TextInBox"> {plate} </span>
@@ -30,7 +29,6 @@ function BlackBox () {
                         value= {url}
                     />
             <div style={{height:"40px"}}/>
-            
 
             <div className="TextInBox TextCenter">
                 Scan Here<br></br>
@@ -41,7 +39,6 @@ function BlackBox () {
         
       </div>
    
-    
 
   )
 }
