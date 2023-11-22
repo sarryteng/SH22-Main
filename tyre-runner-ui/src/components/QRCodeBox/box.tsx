@@ -9,16 +9,15 @@ function BlackBox () {
 
     return (
       <div className="Box">
+        <div style={{height:"45px"}}/>
         <div className="Center">
-            <br></br>
-            <br></br>
-            <div class="grid-container">
-                <div class="grid-item">
+            <div className="grid-container">
+                <div className="grid-item">
                     <div className="TextInBox">
                     No. Plate: 
                     </div>
                 </div>
-                <div class="grid-item">
+                <div className="grid-item">
                     <div className="TextInBox">
 
                     1234 
@@ -37,9 +36,9 @@ function BlackBox () {
                     </div>
                 </div> */}
             </div>
-            <br></br>
-            <br></br>
+            <div style={{height:"40px"}}/>
                 <img src={qr.src} style={{ width: '471.575px'}} alt="QR Code" />
+                <div style={{height:"20px"}}/>
             <div className="TextInBox">
                 Scan Here<br></br>
                 Check Your Pressure
