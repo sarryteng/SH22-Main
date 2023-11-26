@@ -16,9 +16,11 @@ def send_request(url, data):
 def send_url(reg_plate, sensor_readings):
 
     base_url = 'http://localhost:8000/url-data'
-    url = f'{base_url}?licenceplate={reg_plate}&sensorreadings={sensor_readings}'
-
-    status_code = send_request(url, data=url)
+    car_data = {
+        'licenceplate': reg_plate,
+        'sensorreadings': sensor_readings,
+    }
+    status_code = send_request(base_url, data=car_data)
     return status_code
 
 registration_plate = '23812LA'
