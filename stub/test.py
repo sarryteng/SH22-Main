@@ -28,14 +28,17 @@ def getData():
     if not data_list:
         return jsonify({"message": "No data available"})
     
-    # gets the latest data -> -1 because (used append so) latest data is at end of list 
-    latest_data = data_list[-1]  
+    # gets the latest data 
+    latest_data = data_list[0]  
     
     registration_plate = latest_data.get('licenceplate', '')
     sensor_readings = latest_data.get('sensorreadings', '')
     
     # generate url
     urlGenerated = f'http://localhost:8000/url-data?licenceplate={registration_plate}&sensorreadings={sensor_readings}'
+    
+    # clear data_list
+    data_list.clear()
     
     return jsonify({"url": urlGenerated})
 
