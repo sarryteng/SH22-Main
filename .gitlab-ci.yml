@@ -1,0 +1,18 @@
+astro_deploy:
+  stage: deploy
+  image: docker:latest
+  services:
+    - docker:dind
+  
+  variables:
+      ASTRO_API_TOKEN: ${ASTRO_API_TOKEN}
+      # DEPLOYMENT_ID: ${DEPLOYMENT_ID}
+
+  before_script:
+    - apk add --update curl && rm -rf /var/cache/apk/*
+    - apk add bash
+  script:
+    - (curl -sSL install.astronomer.io | bash -s)
+    # - astro deploy -f $DEPLOYMENT_ID
+  only:
+    - main
