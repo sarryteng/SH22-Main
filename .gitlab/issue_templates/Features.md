@@ -55,3 +55,4 @@ or put them in bullet points
 
 /label ~Features
 /label ~Backlog
+/label ~Type::Story
