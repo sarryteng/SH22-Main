@@ -1,14 +1,33 @@
 import "../../assets/styles/app.css";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { getCarData } from "../../services/dataHandlers";
 import qr from '../../assets/Images/qrcode.png'
 import "@fontsource/poppins";
 import "@fontsource/suez-one";
 import QRCode from 'react-qr-code';
 
+
 function BlackBox () {
-   
+    
     let url: string = "https://www.google.com/";
-    let [plate, setPlate] = useState("1234");
+    let [plate, setPlate] = useState(data);
+
+    // useEffect(() => {
+    //    const fetchData = async () => {
+    //         try {
+    //             const data = await getCarData();
+    //             setPlate(data.licensePlate);
+    //         } catch (error) {
+    //             console.error('Error fetching data:', error);
+    //         }
+    //     };
+
+    //     fetchData();
+
+    // }, []);
+    
+    
+   
 
     return (
       <div className="Box">
