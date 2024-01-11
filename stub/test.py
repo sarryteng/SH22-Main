@@ -35,7 +35,7 @@ def getData():
     sensor_readings = latest_data.get('sensorreadings', '')
     
     # generate url
-    urlGenerated = f'http://localhost:8000/url-data?licenceplate={registration_plate}&sensorreadings={sensor_readings}'
+    urlGenerated = f'http://tyrerunner.com/url-data?licenceplate={registration_plate}&sensorreadings={sensor_readings}'
     
     
     # clear data_list

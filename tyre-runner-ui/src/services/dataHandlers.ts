@@ -14,12 +14,6 @@ export async function getCarData() {
             const data = await response.json();
 
             return data.url;
-            // console.log('License Plate:', data.licensePlate);
-            // console.log('Top Left Sensor:', data.sensorTopLeft);
-            // console.log('Top Right Sensor:', data.sensorTopRight);
-            // console.log('Bottom Left Sensor:', data.sensorBottomLeft);
-            // console.log('Bottom Right Sensor:', data.sensorBottomRight);
-  
             
     } catch (error) {
         console.error('Error fetching data:', error);
