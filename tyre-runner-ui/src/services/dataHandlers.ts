@@ -1,14 +1,19 @@
 export async function getCarData() {
     try {
-            const response = await fetch('http://localhost:8000/get-data');
+            const response = await fetch('http://localhost:8000/get-data', {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+            });
 
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
             
-            const url = await response.json();
-            
-            console.log('URL:', url);
+            const data = await response.json();
+
+            return data.url;
             // console.log('License Plate:', data.licensePlate);
             // console.log('Top Left Sensor:', data.sensorTopLeft);
             // console.log('Top Right Sensor:', data.sensorTopRight);

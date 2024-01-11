@@ -8,31 +8,37 @@ import QRCode from 'react-qr-code';
 
 
 function BlackBox () {
-    
-    let url: string = "https://www.google.com/";
-    let [plate, setPlate] = useState(data);
 
-    // useEffect(() => {
-    //    const fetchData = async () => {
-    //         try {
-    //             const data = await getCarData();
-    //             setPlate(data.licensePlate);
-    //         } catch (error) {
-    //             console.error('Error fetching data:', error);
-    //         }
-    //     };
+    const [plate, setPlate] = useState<string | null >(null);
 
-    //     fetchData();
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const url = new URL(await getCarData());
+            
+            const urlParams = new URLSearchParams(url.search);
 
-    // }, []);
+            const licensePlateParam = urlParams.get('licenceplate');
+            const sensorReadingsParam = urlParams.get('sensorreadings');
+            
+            console.log('Data fetched:', licensePlateParam, sensorReadingsParam);
+            setPlate(licensePlateParam);
+            
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
+        };
     
+        fetchData();
+      }, []);
+
     
-   
+      let url = "https://www.tyre-runner.com/pressure/";
 
     return (
       <div className="Box">
         <div style={{height:"45px"}}/>
-       
+        
             <div className="TextBox">
                 <span className="TextInBox Label"> No.Plate:  </span>
                 <span className="TextInBox"> {plate} </span>

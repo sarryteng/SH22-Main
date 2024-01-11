@@ -39,7 +39,8 @@ def getData():
     
     
     # clear data_list
-    data_list.clear()
+
+    # data_list.clear()
     
     return jsonify({"url": urlGenerated})
 
