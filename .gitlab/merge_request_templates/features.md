@@ -1,5 +1,5 @@
 # Related Tickets
-<!-- * Link issue numbers using #00 -->'
+<!-- * Link issue numbers using #00 -->
 
 # New Features
 <!-- * use a list, what is new? -->
