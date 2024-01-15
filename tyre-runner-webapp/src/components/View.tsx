@@ -34,7 +34,7 @@ const View =()=> {
         
             getQueryParams();
           }, []);
-          const showtireLT = (event: React.MouseEvent<HTMLButtonElement>) => {
+          const showtyreLT = (event: React.MouseEvent<HTMLButtonElement>) => {
             setName('Top-Left');
             setCurrentPressure('10');
             setRecommendedPressure('10');
@@ -43,11 +43,10 @@ const View =()=> {
               top: buttonRect.top + buttonRect.height-100,
               left: buttonRect.left + buttonRect.width-170,
             };
-            console.log(buttonPosition);
             setButtonPosition(buttonPosition);
             toggleModal();
           }
-          const showtireRT = (event: React.MouseEvent<HTMLButtonElement>) => {
+          const showtyreRT = (event: React.MouseEvent<HTMLButtonElement>) => {
             setName('Top-Right');
             setCurrentPressure('20');
             setRecommendedPressure('20');
@@ -56,11 +55,10 @@ const View =()=> {
               top: buttonRect.top + buttonRect.height-100,
               left: buttonRect.left + buttonRect.width+140,
             };
-            console.log(buttonPosition);
             setButtonPosition(buttonPosition);
             toggleModal();
           }
-          const showtireLB = (event: React.MouseEvent<HTMLButtonElement>) => {
+          const showtyreLB = (event: React.MouseEvent<HTMLButtonElement>) => {
             setName('Buttom-Left');
             setCurrentPressure('30');
             setRecommendedPressure('30');
@@ -69,11 +67,10 @@ const View =()=> {
               top: buttonRect.top + buttonRect.height-100,
               left: buttonRect.left + buttonRect.width-170,
             };
-            console.log(buttonPosition);
             setButtonPosition(buttonPosition);
             toggleModal();
           }
-          const showtireRB = (event: React.MouseEvent<HTMLButtonElement>) => {
+          const showtyreRB = (event: React.MouseEvent<HTMLButtonElement>) => {
             setName('Buttom-Right');
             setCurrentPressure('40');
             setRecommendedPressure('40');
@@ -82,7 +79,6 @@ const View =()=> {
               top: buttonRect.top + buttonRect.height-100,
               left: buttonRect.left + buttonRect.width+140,
             };
-            console.log(buttonPosition);
             setButtonPosition(buttonPosition);
             toggleModal();
           }
@@ -93,18 +89,18 @@ const View =()=> {
     return (
         <div className="View">
                 <div className='Center'>
-                <div className='text'>Click the tire for pressure details.</div>
+                <div className='text'>Click the tyre for pressure details.</div>
                 <img src={car.src} style={{ width: '40%', marginTop:"50px"}}alt="car" />
-                <button style={{opacity:"0", position:"absolute", top:"40%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtireLT}>
+                <button style={{opacity:"0", position:"absolute", top:"40%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtyreLT}>
                 top-left
                 </button>
-                <button style={{opacity:"0", position:"absolute", top:"40%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtireRT}>
+                <button style={{opacity:"0", position:"absolute", top:"40%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtyreRT}>
                     top-right
                 </button>
-                <button style={{opacity:"0", position:"absolute", top:"81%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtireLB}>
+                <button style={{opacity:"0", position:"absolute", top:"81%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtyreLB}>
                     buttom-left
                 </button>
-                <button style={{opacity:"0", position:"absolute", top:"81%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtireRB}>
+                <button style={{opacity:"0", position:"absolute", top:"81%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtyreRB}>
                     buttom-right
                 </button>
                 {modal && (
