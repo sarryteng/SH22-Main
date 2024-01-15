@@ -117,7 +117,7 @@ const View =()=> {
                 )}
                 </div>
                 <CarDetail/>
-                <button onClick={handleBack} style={{position:"absolute", top:"91%", left:"80%", transform:"translate(-50%,-50%)", width:"10%", height:"18%", borderRadius:"30px",filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"}}>
+                <button onClick={handleBack} style={{position:"absolute", top:"90%", left:"80%", transform:"translate(-50%,-50%)", width:"10%", height:"20%", borderRadius:"30px",filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"}}>
                 <img src={backArrow.src} style={{ width: '80%'}}alt="back" />
                 </button>
         </div>
