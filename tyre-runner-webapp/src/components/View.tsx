@@ -86,13 +86,6 @@ const View =()=> {
             setButtonPosition(buttonPosition);
             toggleModal();
           }
-          const showtireAll = () => {
-            // showtireLT();
-            // showtireRT();
-            // showtireLB();
-            // showtireRB();
-            console.log("All")  
-          }
           const handleBack = () => {
     
             window.location.href = `/`;
@@ -100,7 +93,7 @@ const View =()=> {
     return (
         <div className="View">
                 <div className='Center'>
-                <div className='text'>Click the tire for pressure details or the car’s body to view all.</div>
+                <div className='text'>Click the tire for pressure details.</div>
                 <img src={car.src} style={{ width: '40%', marginTop:"50px"}}alt="car" />
                 <button style={{opacity:"0", position:"absolute", top:"40%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtireLT}>
                 top-left
@@ -113,9 +106,6 @@ const View =()=> {
                 </button>
                 <button style={{opacity:"0", position:"absolute", top:"81%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtireRB}>
                     buttom-right
-                </button>
-                <button style={{opacity:"0", position:"absolute", top:"60%", left:"50%", transform:"translate(-50%,-50%)", width:"32%", height:"65%"}}onClick={showtireAll}>
-                    All
                 </button>
                 {modal && (
                      <div className="modal" onClick={toggleModal}>
