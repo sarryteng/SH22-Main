@@ -14,7 +14,6 @@ import CRFooter from "../components/CRFooter";
 
 
 function App2() {
-
   return (
     <div className="Center">
         <Header />

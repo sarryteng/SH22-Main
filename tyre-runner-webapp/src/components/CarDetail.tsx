@@ -20,20 +20,19 @@ const CarDetail =()=> {
     
         getQueryParams();
       }, []);
-      console.log(size,load);
     return (
         <div className="CarDetail">  
-        <div className="CarDetailHead">
-          <div className="DetailText">
-            <p style={{paddingTop:"20px", paddingBottom:"10px"}}>Car Details:</p>
-          </div>
-          </div> 
+          <div className="CarDetailHead">
+            <div className="DetailText">
+              <p style={{paddingTop:"20px", paddingBottom:"10px"}}>Car Details:</p>
+            </div>
+            </div> 
               <div className="DetailText">
-              <p>Model: {ModelNo}</p>
+                <p>Model: {ModelNo}</p>
                 <p>Pate Number: {PlateNo}</p>
                 <p>Size: {size}</p>
                 <p>Load: {load}</p>
-                </div> 
+              </div> 
                 <br/>
         </div>
     )

@@ -12,9 +12,6 @@ import CRFooter from "../components/CRFooter";
 
 
 function App() {
-  useEffect(() => {
-    console.log(window.location.pathname);
-  }, []);
   return (
     <div className="Center">
         <Header />

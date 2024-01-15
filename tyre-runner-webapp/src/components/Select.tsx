@@ -26,7 +26,7 @@ function Select () {
         <div className="Select">
             <div className='Center'>
                 <div className='text'>Select your preference</div>
-                <img src={car.src} style={{ width: '500px'}}alt="car" />
+                <img src={car.src} style={{ width: '40%', marginTop:"50px"}}alt="car" />
                 <SizeDropDown onSelect={handleSelect}/>
                 <LoadRadio selectedValue={selectedValue} handleChange={handleChange}/>
                 <a className="button" onClick={handleSelectClick}>Select</a>
