@@ -1,7 +1,6 @@
 import "../assets/styles/app.css"
 import { useState, useEffect } from 'react';
-import car from '../assets/Images/car.svg'
-import tire from '../assets/Images/tire.svg'
+import React from 'react';
 
 
 const CarDetail =()=> {
