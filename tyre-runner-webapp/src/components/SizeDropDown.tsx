@@ -1,7 +1,7 @@
 import "../assets/styles/app.css"
 import { useState } from 'react';
 
-function SizeDropDown ({ onSelect }) {
+function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void }) {
     const tyreSize: { value: string; label: string }[] = [
         { value: "10", label: "10" },
         { value: "20", label: "20" }
@@ -13,6 +13,7 @@ function SizeDropDown ({ onSelect }) {
         setValue(selectedValue);
         onSelect(selectedValue);
     };
+    console.log(value);
 
     return (
         <div className="dropdown">

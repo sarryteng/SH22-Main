@@ -2,6 +2,7 @@ import "../assets/styles/app.css"
 import { useState, useEffect } from 'react';
 import car from '../assets/Images/car.svg'
 import tire from '../assets/Images/tire.svg'
+import CarDetail from "./CarDetail";
 
 
 const View =()=> {
@@ -44,6 +45,12 @@ const View =()=> {
             console.log("Size:"+size);
             console.log("Load:"+load);
           }
+          const showtireAll = () => {
+            showtireLT();
+            showtireRT();
+            showtireLB();
+            showtireRB();
+          }
     return (
         <div className="View">
                 {/* <h1>view</h1>
@@ -51,21 +58,24 @@ const View =()=> {
                 <p>Load: {load}</p> */}
                 <div className='Center'>
                 <div className='text'>Click the tire for pressure details or the car’s body to view all.</div>
-                <img src={car.src} style={{ width: '50%'}}alt="car" />
-                <button style={{opacity:"0", position:"absolute", top:"35%", left:"27%", transform:"translate(-50%,-50%)", width:"5%", height:"10%"}}onClick={showtireLT}>
+                <img src={car.src} style={{ width: '40%', marginTop:"50px"}}alt="car" />
+                <button style={{opacity:"0.5", position:"absolute", top:"40%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtireLT}>
                 top-left
-            </button>
-            <button style={{opacity:"0", position:"absolute", top:"35%", left:"73%", transform:"translate(-50%,-50%)", width:"5%", height:"10%"}}onClick={showtireRT}>
-                top-right
-            </button>
-            <button style={{opacity:"0", position:"absolute", top:"80%", left:"27%", transform:"translate(-50%,-50%)", width:"5%", height:"10%"}}onClick={showtireLB}>
-                buttom-left
-            </button>
-            <button style={{opacity:"0", position:"absolute", top:"80%", left:"73%", transform:"translate(-50%,-50%)", width:"5%", height:"10%"}}onClick={showtireRB}>
-                buttom-right
-            </button>
-                
+                </button>
+                <button style={{opacity:"0.5", position:"absolute", top:"40%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtireRT}>
+                    top-right
+                </button>
+                <button style={{opacity:"0.5", position:"absolute", top:"81%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtireLB}>
+                    buttom-left
+                </button>
+                <button style={{opacity:"0.5", position:"absolute", top:"81%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtireRB}>
+                    buttom-right
+                </button>
+                <button style={{opacity:"0.5", position:"absolute", top:"60%", left:"50%", transform:"translate(-50%,-50%)", width:"32%", height:"65%"}}onClick={showtireAll}>
+                    All
+                </button>
                 </div>
+                <CarDetail/>
         </div>
     )
 }
