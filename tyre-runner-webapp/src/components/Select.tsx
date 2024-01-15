@@ -3,6 +3,8 @@ import "../assets/styles/app.css"
 import { useState } from 'react';
 import LoadRadio from './LoadRadio';
 import SizeDropDown from './SizeDropDown';
+import "@fontsource/poppins";
+
 
 function Select () {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
