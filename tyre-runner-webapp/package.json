@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/check": "^0.4.1",
     "@astrojs/react": "^3.0.9",
+    "@emotion/react": "^11.11.3",
     "@fontsource/poppins": "^5.0.8",
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",
