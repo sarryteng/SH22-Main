@@ -13,9 +13,13 @@ const CarDetail =()=> {
           const queryParams = new URLSearchParams(window.location.search);
           const sizeParam = queryParams.get('size')||'';
           const loadParam = queryParams.get('load')||'';
-          
+          const ModelNoParam = queryParams.get('mno')||'';
+          const PlateNoParam = queryParams.get('pno')||'';
+
           setSize(sizeParam);
           setLoad(loadParam);
+          setModelNo(ModelNoParam);
+          setPlateNo(PlateNoParam);
         };
     
         getQueryParams();

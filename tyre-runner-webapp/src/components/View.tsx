@@ -16,6 +16,14 @@ const View =()=> {
         const [currentPressure, setCurrentPressure] = useState<string>('');
         const [recommendedPressure, setRecommendedPressure] = useState<string>('');
         const [buttonPosition, setButtonPosition] = useState({ top: 0, left: 0 });
+        const [clt, setclt] = useState<string>('');
+        const [crt, setcrt] = useState<string>('');
+        const [clb, setclb] = useState<string>('');
+        const [crb, setcrb] = useState<string>('');
+        const [rlt, setrlt] = useState<string>('');
+        const [rrt, setrrt] = useState<string>('');
+        const [rlb, setrlb] = useState<string>('');
+        const [rrb, setrrb] = useState<string>('');
 
 
         const toggleModal = () => {
@@ -27,17 +35,33 @@ const View =()=> {
               const queryParams = new URLSearchParams(window.location.search);
               const sizeParam = queryParams.get('size')||'';
               const loadParam = queryParams.get('load')||'';
+              const cltParam = queryParams.get('clt')||'';
+              const crtParam = queryParams.get('crt')||'';
+              const clbParam = queryParams.get('clb')||'';
+              const crbParam = queryParams.get('crb')||'';
+              const rltParam = queryParams.get('rlt')||'';
+              const rrtParam = queryParams.get('rrt')||'';
+              const rlbParam = queryParams.get('rlb')||'';
+              const rrbParam = queryParams.get('rrb')||'';
               
               setSize(sizeParam);
               setLoad(loadParam);
+              setclt(cltParam);
+              setcrt(crtParam);
+              setclb(clbParam);
+              setcrb(crbParam);
+              setrlt(rltParam);
+              setrrt(rrtParam);
+              setrlb(rlbParam);
+              setrrb(rrbParam);
             };
         
             getQueryParams();
           }, []);
           const showtyreLT = (event: React.MouseEvent<HTMLButtonElement>) => {
             setName('Top-Left');
-            setCurrentPressure('10');
-            setRecommendedPressure('10');
+            setCurrentPressure(clt);
+            setRecommendedPressure(rlt);
             const buttonRect = event.currentTarget.getBoundingClientRect();
             const buttonPosition = {
               top: buttonRect.top + buttonRect.height-100,
@@ -48,8 +72,8 @@ const View =()=> {
           }
           const showtyreRT = (event: React.MouseEvent<HTMLButtonElement>) => {
             setName('Top-Right');
-            setCurrentPressure('20');
-            setRecommendedPressure('20');
+            setCurrentPressure(crt);
+            setRecommendedPressure(rrt);
             const buttonRect = event.currentTarget.getBoundingClientRect();
             const buttonPosition = {
               top: buttonRect.top + buttonRect.height-100,
@@ -60,8 +84,8 @@ const View =()=> {
           }
           const showtyreLB = (event: React.MouseEvent<HTMLButtonElement>) => {
             setName('Buttom-Left');
-            setCurrentPressure('30');
-            setRecommendedPressure('30');
+            setCurrentPressure(clb);
+            setRecommendedPressure(rlb);
             const buttonRect = event.currentTarget.getBoundingClientRect();
             const buttonPosition = {
               top: buttonRect.top + buttonRect.height-100,
@@ -72,8 +96,8 @@ const View =()=> {
           }
           const showtyreRB = (event: React.MouseEvent<HTMLButtonElement>) => {
             setName('Buttom-Right');
-            setCurrentPressure('40');
-            setRecommendedPressure('40');
+            setCurrentPressure(crb);
+            setRecommendedPressure(rrb);
             const buttonRect = event.currentTarget.getBoundingClientRect();
             const buttonPosition = {
               top: buttonRect.top + buttonRect.height-100,
