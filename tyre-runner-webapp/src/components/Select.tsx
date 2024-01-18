@@ -5,18 +5,22 @@ import LoadRadio from './LoadRadio';
 import SizeDropDown from './SizeDropDown';
 import "@fontsource/poppins";
 
-//http://localhost:4321/url-data?licenseplate=AO12XZP&sensorreadings=30,32,28,31
-//Use PSI units
-//a common tire size format is expressed as something like "215/65R16," where:
-    // 215 = width
-    // 65 = ratio
-    // R16 = rim.
+//Run: http://localhost:4321/url-data?licenseplate=AO12XZP&sensorreadings=30,32,28,31
+
+//API: http://127.0.0.1:6767/tyre-data/{platenumber}
+//Example: http://127.0.0.1:6767/tyre-data/AO12XZP
 
 //{"dataSource":"N/A","dateTimeSaved":"2023-11-11T20:34:19.907","make":"AUDI","model":"A6 ALLROAD TDI QUATTRO A",
 //"tyreOptionsWithPressure":[
     //{"loadIndex":"100","pressure":{"bar":2.3,"laden":{},"psi":33},"ratio":55,"rim":18,"speedIndex":"Y","tyreType":"FRONT","width":235},
     //{"loadIndex":"100","pressure":{"bar":2.1,"laden":{},"psi":30},"ratio":55,"rim":18,"speedIndex":"Y","tyreType":"REAR","width":235}],
 //"vrm":"AO12XZP"}
+
+//Use PSI units
+//a common tire size format is expressed as something like "235/55R18," where:
+    // 235 = width
+    // 55 = ratio
+    // R18 = rim
 
 function Select () {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
