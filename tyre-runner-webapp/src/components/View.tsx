@@ -20,10 +20,9 @@ const View =()=> {
         const [crt, setcrt] = useState<string>('');
         const [clb, setclb] = useState<string>('');
         const [crb, setcrb] = useState<string>('');
-        const [rlt, setrlt] = useState<string>('');
-        const [rrt, setrrt] = useState<string>('');
-        const [rlb, setrlb] = useState<string>('');
-        const [rrb, setrrb] = useState<string>('');
+        const [rf, setrf] = useState<string>('');
+        const [rr, setrr] = useState<string>('');
+        const [pno, setpno] = useState<string>('');
 
 
         const toggleModal = () => {
@@ -39,10 +38,9 @@ const View =()=> {
               const crtParam = queryParams.get('crt')||'';
               const clbParam = queryParams.get('clb')||'';
               const crbParam = queryParams.get('crb')||'';
-              const rltParam = queryParams.get('rlt')||'';
-              const rrtParam = queryParams.get('rrt')||'';
-              const rlbParam = queryParams.get('rlb')||'';
-              const rrbParam = queryParams.get('rrb')||'';
+              const rfParam = queryParams.get('rf')||'';
+              const rrParam = queryParams.get('rr')||'';
+              const pnoParam = queryParams.get('pno')||'';
               
               setSize(sizeParam);
               setLoad(loadParam);
@@ -50,10 +48,9 @@ const View =()=> {
               setcrt(crtParam);
               setclb(clbParam);
               setcrb(crbParam);
-              setrlt(rltParam);
-              setrrt(rrtParam);
-              setrlb(rlbParam);
-              setrrb(rrbParam);
+              setrf(rfParam);
+              setrr(rrParam);
+              setpno(pnoParam);
             };
         
             getQueryParams();
@@ -61,7 +58,7 @@ const View =()=> {
           const showtyreLT = (event: React.MouseEvent<HTMLButtonElement>) => {
             setName('Top-Left');
             setCurrentPressure(clt);
-            setRecommendedPressure(rlt);
+            setRecommendedPressure(rf);
             const buttonRect = event.currentTarget.getBoundingClientRect();
             const buttonPosition = {
               top: buttonRect.top + buttonRect.height-100,
@@ -73,7 +70,7 @@ const View =()=> {
           const showtyreRT = (event: React.MouseEvent<HTMLButtonElement>) => {
             setName('Top-Right');
             setCurrentPressure(crt);
-            setRecommendedPressure(rrt);
+            setRecommendedPressure(rf);
             const buttonRect = event.currentTarget.getBoundingClientRect();
             const buttonPosition = {
               top: buttonRect.top + buttonRect.height-100,
@@ -85,7 +82,7 @@ const View =()=> {
           const showtyreLB = (event: React.MouseEvent<HTMLButtonElement>) => {
             setName('Buttom-Left');
             setCurrentPressure(clb);
-            setRecommendedPressure(rlb);
+            setRecommendedPressure(rr);
             const buttonRect = event.currentTarget.getBoundingClientRect();
             const buttonPosition = {
               top: buttonRect.top + buttonRect.height-100,
@@ -97,7 +94,7 @@ const View =()=> {
           const showtyreRB = (event: React.MouseEvent<HTMLButtonElement>) => {
             setName('Buttom-Right');
             setCurrentPressure(crb);
-            setRecommendedPressure(rrb);
+            setRecommendedPressure(rr);
             const buttonRect = event.currentTarget.getBoundingClientRect();
             const buttonPosition = {
               top: buttonRect.top + buttonRect.height-100,
@@ -108,8 +105,9 @@ const View =()=> {
           }
           const handleBack = () => {
     
-            window.location.href = `/`;
-        };
+            // window.location.href = `/`;
+            window.location.href = `/url-data?licenseplate=${pno}&sensorreadings=${clt},${crt},${clb},${crb}`;
+          };
     return (
         <div className="View">
                 <div className='Center'>
