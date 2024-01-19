@@ -23,6 +23,10 @@ const View =()=> {
         const [rf, setrf] = useState<string>('');
         const [rr, setrr] = useState<string>('');
         const [pno, setpno] = useState<string>('');
+        const [textlt, setTextlt] = useState('');
+        const [textrt, setTextrt] = useState('');
+        const [textlb, setTextlb] = useState('');
+        const [textrb, setTextrb] = useState('');
 
 
         const toggleModal = () => {
@@ -51,10 +55,46 @@ const View =()=> {
               setrf(rfParam);
               setrr(rrParam);
               setpno(pnoParam);
+              
             };
-        
             getQueryParams();
-          }, []);
+
+              async function yourFunction() {
+                if (clt > rf) {
+                  setTextlt('Higher than recommended');
+                } else if (clt < rf) {
+                  setTextlt('Lower than recommended');
+                } else {
+                  setTextlt('');
+                }
+              
+                if (crt > rf) {
+                  setTextrt('Higher than recommended');
+                } else if (crt < rf) {
+                  setTextrt('Lower than recommended');
+                } else {
+                  setTextrt('');
+                }
+              
+                if (clb > rr) {
+                  setTextlb('Higher than recommended');
+                } else if (clb < rr) {
+                  setTextlb('Lower than recommended');
+                } else {
+                  setTextlb('');
+                }
+              
+                if (crb > rr) {
+                  setTextrb('Higher than recommended');
+                } else if (crb < rr) {
+                  setTextrb('Lower than recommended');
+                } else {
+                  setTextrb('');
+                }
+              }
+              
+              yourFunction();
+          }, [clt, crt, clb, crb, rf, rr]);
           const showtyreLT = (event: React.MouseEvent<HTMLButtonElement>) => {
             setName('Top-Left');
             setCurrentPressure(clt);
@@ -112,7 +152,19 @@ const View =()=> {
         <div className="View">
                 <div className='Center'>
                 <div className='text'>Click the tyre for pressure details.</div>
-                <img src={car.src} style={{ width: '40%', marginTop:"50px"}}alt="car" />     
+                <img src={car.src} style={{ width: '40%', marginTop:"50px"}}alt="car" />
+                <div className="OptimalWarn" style={{position:"absolute", top:"30%", left:"20%", transform:"translate(-50%,-50%)"}}>
+                    {textlt}
+                </div>
+                <div className="OptimalWarn" style={{position:"absolute", top:"30%", left:"80%", transform:"translate(-50%,-50%)"}}>
+                    {textrt}
+                </div>
+                <div className="OptimalWarn" style={{position:"absolute", top:"70%", left:"20%", transform:"translate(-50%,-50%)"}}>
+                    {textlb}
+                </div>
+                <div className="OptimalWarn" style={{position:"absolute", top:"70%", left:"80%", transform:"translate(-50%,-50%)"}}>
+                    {textrb}
+                </div>
                 <button style={{opacity:"0", position:"absolute", top:"40%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtyreLT}>
                 top-left
                 </button>
