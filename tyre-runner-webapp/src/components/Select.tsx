@@ -6,6 +6,8 @@ import SizeDropDown from './SizeDropDown';
 import "@fontsource/poppins";
 
 
+
+
 function Select () {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
     const [selectedSizeValue, setSelectedSizeValue] = useState<string | undefined>(undefined);
@@ -50,6 +52,8 @@ function Select () {
         }
         window.location.href = `/view?size=${selectedSizeValue}&load=${selectedValue}&mno=${mno}&pno=${pno}&clt=${clt}&crt=${crt}&clb=${clb}&crb=${crb}&rlt=${rlt}&rrt=${rrt}&rlb=${rlb}&rrb=${rrb}`;
     };
+    const sizeFromParent = 30;
+
     return (
         <div className="Select">
             <div className='Center'>

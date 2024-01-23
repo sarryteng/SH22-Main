@@ -7,15 +7,25 @@ import { useEffect } from 'react';
 import Header from "../components/Header";
 import Select from "../components/Select";
 import CRFooter from "../components/CRFooter";
+import React, { useState } from 'react';
+import Dialog from "../components/DialogueBox";
 
 
+const pressure = 'pressure';//the data to test dialogueBox
+const plate = 'ABC';//the data to test dialogueBox
 
 
 function App() {
+  
+
+
+ 
   return (
     <div className="Center">
         <Header />
+        <Dialog   tyrePressure={pressure} plate={plate} />//test the dialogueBox at here
         <Select />
+        
         <div className="endpage">
           <CRFooter />
         </div>

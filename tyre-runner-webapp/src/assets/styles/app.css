@@ -232,3 +232,35 @@ body{
     flex-direction:Row;
     position: relative;
  }
+
+ .dialogContainer {
+    
+    width: 500px;
+    height: 200px;
+    z-index:3;
+  }
+
+  .dialogContainer .buttonContainer {
+    display: flex;
+    justify-Content: space-between;
+    height: 100px;
+    
+  }
+  .dialogContainer .buttonContainer .Dialogbutton {
+    margin:20px;
+    width: 40%;
+    background-color: #E53121;
+    color: white;
+    font-size: 20px;
+  }
+  .dialogContainer .buttonContainer .Dialogbutton:hover {
+    background-color:#b7271a;
+  }
+  .dialogContainer label {
+    font-size:x-large;
+    
+  }
+  .dialogInput {
+    height: 50px;
+    font-size: large;
+  }
