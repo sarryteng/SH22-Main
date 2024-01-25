@@ -5,6 +5,8 @@ import backArrow from '../assets/images/backArrow.svg'
 import CarDetail from "./CarDetail";
 import React from 'react';
 import "../assets/styles/modal.css";
+import wheel from '../assets/images/wheel.svg'
+import carNowheel from '../assets/images/carNowheel.svg'
 
 
 
@@ -27,11 +29,20 @@ const View =()=> {
         const [textrt, setTextrt] = useState('');
         const [textlb, setTextlb] = useState('');
         const [textrb, setTextrb] = useState('');
-
+        const [isclickedlt, setIsClickedlt] = useState(false);
+        const [isclickedrt, setIsClickedrt] = useState(false);
+        const [isclickedlb, setIsClickedlb] = useState(false);
+        const [isclickedrb, setIsClickedrb] = useState(false);
 
         const toggleModal = () => {
-          
           setModal(!modal);
+        }
+        const newtoggleModal = () => {
+          setIsClickedlb(false);
+          setIsClickedrb(false);
+          setIsClickedlt(false);
+          setIsClickedrt(false);
+          toggleModal();
         }
         useEffect(() => {
             const getQueryParams = () => {
@@ -96,6 +107,7 @@ const View =()=> {
               yourFunction();
           }, [clt, crt, clb, crb, rf, rr]);
           const showtyreLT = (event: React.MouseEvent<HTMLButtonElement>) => {
+            setIsClickedlt((prevIsClicked) => !prevIsClicked);
             setName('Top-Left');
             setCurrentPressure(clt);
             setRecommendedPressure(rf);
@@ -108,6 +120,7 @@ const View =()=> {
             toggleModal();
           }
           const showtyreRT = (event: React.MouseEvent<HTMLButtonElement>) => {
+            setIsClickedrt((prevIsClicked) => !prevIsClicked);
             setName('Top-Right');
             setCurrentPressure(crt);
             setRecommendedPressure(rf);
@@ -120,6 +133,7 @@ const View =()=> {
             toggleModal();
           }
           const showtyreLB = (event: React.MouseEvent<HTMLButtonElement>) => {
+            setIsClickedlb((prevIsClicked) => !prevIsClicked);
             setName('Buttom-Left');
             setCurrentPressure(clb);
             setRecommendedPressure(rr);
@@ -132,6 +146,7 @@ const View =()=> {
             toggleModal();
           }
           const showtyreRB = (event: React.MouseEvent<HTMLButtonElement>) => {
+            setIsClickedrb((prevIsClicked) => !prevIsClicked);
             setName('Buttom-Right');
             setCurrentPressure(crb);
             setRecommendedPressure(rr);
@@ -152,7 +167,12 @@ const View =()=> {
         <div className="View">
                 <div className='Center'>
                 <div className='text'>Click the tyre for pressure details.</div>
-                <img src={car.src} style={{ width: '40%', marginTop:"50px"}}alt="car" />
+                <img src={carNowheel.src} style={{ width: '40%', marginTop:"50px", zIndex:"2"}}alt="car" />
+                <img src={wheel.src} className={isclickedlt ? 'clicked':''} style={{position:"absolute", top:"41%", left:"31.7%", transform:"translate(-50%,-50%)", width:"2.8%", height:"10%"}}alt="wheellt"></img>
+                <img src={wheel.src} className={isclickedrt ? 'clicked':''} style={{position:"absolute", top:"41%", left:"68.2%", transform:"translate(-50%,-50%)", width:"2.8%", height:"10%"}}alt="wheelrt"></img>
+                <img src={wheel.src} className={isclickedlb ? 'clicked':''} style={{position:"absolute", top:"82%", left:"31.7%", transform:"translate(-50%,-50%)", width:"2.8%", height:"10%"}}alt="wheellb"></img>
+                <img src={wheel.src} className={isclickedrb ? 'clicked':''} style={{position:"absolute", top:"82%", left:"68.2%", transform:"translate(-50%,-50%)", width:"2.8%", height:"10%"}}alt="wheelrb"></img>
+
                 <div className="OptimalWarn" style={{position:"absolute", top:"30%", left:"20%", transform:"translate(-50%,-50%)"}}>
                     {textlt}
                 </div>
@@ -165,20 +185,20 @@ const View =()=> {
                 <div className="OptimalWarn" style={{position:"absolute", top:"70%", left:"80%", transform:"translate(-50%,-50%)"}}>
                     {textrb}
                 </div>
-                <button style={{opacity:"0", position:"absolute", top:"40%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtyreLT}>
+                <button style={{opacity:"0", position:"absolute", top:"40%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%", zIndex:"3"}}onClick={showtyreLT}>
                 top-left
                 </button>
-                <button style={{opacity:"0", position:"absolute", top:"40%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtyreRT}>
+                <button style={{opacity:"0", position:"absolute", top:"40%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%", zIndex:"3"}}onClick={showtyreRT}>
                     top-right
                 </button>
-                <button style={{opacity:"0", position:"absolute", top:"81%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtyreLB}>
+                <button style={{opacity:"0", position:"absolute", top:"81%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%", zIndex:"3"}}onClick={showtyreLB}>
                     buttom-left
                 </button>
-                <button style={{opacity:"0", position:"absolute", top:"81%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtyreRB}>
+                <button style={{opacity:"0", position:"absolute", top:"81%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%", zIndex:"3"}}onClick={showtyreRB}>
                     buttom-right
                 </button>
                 {modal && (
-                     <div className="modal" onClick={toggleModal}>
+                     <div className="modal" style={{zIndex:"4"}} onClick={newtoggleModal}>
                          <div className="modalContent" style={{top: buttonPosition.top, left: buttonPosition.left}}>
                              <p>Tyre-Pressure: {name}</p>
                              <p>Currently: {currentPressure}</p> 
