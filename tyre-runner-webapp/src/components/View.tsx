@@ -185,16 +185,16 @@ const View =()=> {
                 <div className="OptimalWarn" style={{position:"absolute", top:"70%", left:"80%", transform:"translate(-50%,-50%)"}}>
                     {textrb}
                 </div>
-                <button style={{opacity:"0", position:"absolute", top:"40%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%", zIndex:"3"}}onClick={showtyreLT}>
+                <button style={{opacity:"0", position:"absolute", top:"41%", left:"31.7%", transform:"translate(-50%,-50%)", width:"2.8%", height:"10%", zIndex:"3"}}onClick={showtyreLT}>
                 top-left
                 </button>
-                <button style={{opacity:"0", position:"absolute", top:"40%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%", zIndex:"3"}}onClick={showtyreRT}>
+                <button style={{opacity:"0", position:"absolute", top:"41%", left:"68.2%", transform:"translate(-50%,-50%)", width:"2.8%", height:"10%", zIndex:"3"}}onClick={showtyreRT}>
                     top-right
                 </button>
-                <button style={{opacity:"0", position:"absolute", top:"81%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%", zIndex:"3"}}onClick={showtyreLB}>
+                <button style={{opacity:"0", position:"absolute", top:"82%", left:"31.7%", transform:"translate(-50%,-50%)", width:"2.8%", height:"10%", zIndex:"3"}}onClick={showtyreLB}>
                     buttom-left
                 </button>
-                <button style={{opacity:"0", position:"absolute", top:"81%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%", zIndex:"3"}}onClick={showtyreRB}>
+                <button style={{opacity:"0", position:"absolute", top:"82%", left:"68.2%", transform:"translate(-50%,-50%)", width:"2.8%", height:"10%", zIndex:"3"}}onClick={showtyreRB}>
                     buttom-right
                 </button>
                 {modal && (
