@@ -5,7 +5,6 @@ API_PORTAL: str = "https://qa-tyrerunner-api.azure-api.net/vrm/v1/VRM/TyreDataBy
 PARAM_NAME: str = "VehicleNumberPlate"
 
 # request header
-REQ_HDR: dict[str, str] = {'Ocp-Apim-Subscription-Key': 'f5b270f2f4ae43089d422938b9208119'}
 REQUEST_TIMEOUT = 5  # time in seconds until the request stops
 
 TEST_PLATE = "AO12XZP"
@@ -18,16 +17,17 @@ class APIRequestFailed(Exception):
         self.response = response
 
 
-def get_tyre_data(vehicle_num: str) -> dict:
+def get_tyre_data(vehicle_num: str, api_key='', api_portal=API_PORTAL, param_name=PARAM_NAME, timeout=REQUEST_TIMEOUT) -> dict:
     if not isinstance(vehicle_num, str):
         raise TypeError(f"vehicle_num must be a python str, received [{type(vehicle_num)}]")
     re.sub(r"\s+", "", vehicle_num)  # trim all whitespaces
 
+    req_hdr: dict[str, str] = {'Ocp-Apim-Subscription-Key': api_key}
     # API Call
     try:
-        get: requests.Response = requests.get(f"{API_PORTAL}?{PARAM_NAME}={vehicle_num}",
-                                              headers=REQ_HDR,
-                                              timeout=REQUEST_TIMEOUT)
+        get: requests.Response = requests.get(f"{api_portal}?{param_name}={vehicle_num}",
+                                              headers=req_hdr,
+                                              timeout=timeout)
 
     except Exception as e:
         print("Error in API call.")
