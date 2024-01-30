@@ -236,19 +236,25 @@ body{
  .dialogContainer {
     
     width: 500px;
-    height: 200px;
+    min-height: 200px;
     z-index:3;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  
+    
   }
 
   .dialogContainer .buttonContainer {
     display: flex;
     justify-Content: space-between;
     height: 100px;
-    
+    width: 80%;
+    margin: 0 auto;
   }
   .dialogContainer .buttonContainer .Dialogbutton {
     margin:20px;
-    width: 40%;
+    width: 35%;
     background-color: #E53121;
     color: white;
     font-size: 20px;
@@ -263,4 +269,8 @@ body{
   .dialogInput {
     height: 50px;
     font-size: large;
+  }
+  .labelRow {
+    margin:0 auto;
+    width:80%;
   }

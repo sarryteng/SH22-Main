@@ -11,19 +11,29 @@ import React, { useState } from 'react';
 import Dialog from "../components/DialogueBox";
 
 
-const pressure = 'pressure';//the data to test dialogueBox
-const plate = 'ABC';//the data to test dialogueBox
+
 
 
 function App() {
   
+  const [isDialogOpen, setDialogOpen] = useState(false); // show dialog or not 
+  const handleButtonClick = () => {
+    setDialogOpen(true);
+    console.log("showed")
+  };
 
-
+ 
  
   return (
     <div className="Center">
         <Header />
-        <Dialog   tyrePressure={pressure} plate={plate} />//test the dialogueBox at here
+        <div>
+        {isDialogOpen && <Dialog isOpen={isDialogOpen} />}
+          <button onClick={handleButtonClick} style={{width:'150px',height:'50px',backgroundColor:'red',color:'white',fontSize:'large'}}>show pressure</button>
+
+          
+        </div>
+        
         <Select />
         
         <div className="endpage">
