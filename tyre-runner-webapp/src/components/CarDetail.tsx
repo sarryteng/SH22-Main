@@ -1,6 +1,5 @@
 import "../assets/styles/app.css"
 import { useState, useEffect } from 'react';
-import React from 'react';
 
 
 const CarDetail =()=> {

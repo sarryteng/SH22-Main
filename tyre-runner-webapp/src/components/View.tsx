@@ -1,6 +1,5 @@
 import "../assets/styles/app.css"
 import { useState, useEffect } from 'react';
-import car from '../assets/images/Car.svg'
 import backArrow from '../assets/images/backArrow.svg'
 import CarDetail from "./CarDetail";
 import React from 'react';
@@ -11,8 +10,6 @@ import carNowheel from '../assets/images/carNowheel.svg'
 
 
 const View =()=> {
-        const [size, setSize] = useState<string>('');
-        const [load, setLoad] = useState<string>('');
         const [modal, setModal] = useState<boolean>(false);
         const [name, setName] = useState<string>('');
         const [currentPressure, setCurrentPressure] = useState<string>('');
@@ -47,8 +44,6 @@ const View =()=> {
         useEffect(() => {
             const getQueryParams = () => {
               const queryParams = new URLSearchParams(window.location.search);
-              const sizeParam = queryParams.get('size')||'';
-              const loadParam = queryParams.get('load')||'';
               const cltParam = queryParams.get('clt')||'';
               const crtParam = queryParams.get('crt')||'';
               const clbParam = queryParams.get('clb')||'';
@@ -57,8 +52,6 @@ const View =()=> {
               const rrParam = queryParams.get('rr')||'';
               const pnoParam = queryParams.get('pno')||'';
               
-              setSize(sizeParam);
-              setLoad(loadParam);
               setclt(cltParam);
               setcrt(crtParam);
               setclb(clbParam);
@@ -168,34 +161,34 @@ const View =()=> {
                 <div className='Center'>
                 <div className='text'>Click the tyre for pressure details.</div>
                 <img src={carNowheel.src} style={{ width: '40%', marginTop:"50px", zIndex:"2"}}alt="car" />
-                <img src={wheel.src} className={isclickedlt ? 'clicked':''} style={{position:"absolute", top:"41%", left:"31.7%", transform:"translate(-50%,-50%)", width:"2.8%", height:"10%"}}alt="wheellt"></img>
-                <img src={wheel.src} className={isclickedrt ? 'clicked':''} style={{position:"absolute", top:"41%", left:"68.2%", transform:"translate(-50%,-50%)", width:"2.8%", height:"10%"}}alt="wheelrt"></img>
-                <img src={wheel.src} className={isclickedlb ? 'clicked':''} style={{position:"absolute", top:"82%", left:"31.7%", transform:"translate(-50%,-50%)", width:"2.8%", height:"10%"}}alt="wheellb"></img>
-                <img src={wheel.src} className={isclickedrb ? 'clicked':''} style={{position:"absolute", top:"82%", left:"68.2%", transform:"translate(-50%,-50%)", width:"2.8%", height:"10%"}}alt="wheelrb"></img>
+                <img src={wheel.src} className={isclickedlt ? 'clicked':'unclick'} style={{top:"41%", left:"31.7%"}}alt="wheellt"></img>
+                <img src={wheel.src} className={isclickedrt ? 'clicked':'unclick'} style={{top:"41%", left:"68.2%"}}alt="wheelrt"></img>
+                <img src={wheel.src} className={isclickedlb ? 'clicked':'unclick'} style={{top:"82%", left:"31.7%"}}alt="wheellb"></img>
+                <img src={wheel.src} className={isclickedrb ? 'clicked':'unclick'} style={{top:"82%", left:"68.2%"}}alt="wheelrb"></img>
 
-                <div className="OptimalWarn" style={{position:"absolute", top:"30%", left:"20%", transform:"translate(-50%,-50%)"}}>
+                <div className="OptimalWarn" style={{top:"30%", left:"20%"}}>
                     {textlt}
                 </div>
-                <div className="OptimalWarn" style={{position:"absolute", top:"30%", left:"80%", transform:"translate(-50%,-50%)"}}>
+                <div className="OptimalWarn" style={{top:"30%", left:"80%"}}>
                     {textrt}
                 </div>
-                <div className="OptimalWarn" style={{position:"absolute", top:"70%", left:"20%", transform:"translate(-50%,-50%)"}}>
+                <div className="OptimalWarn" style={{top:"70%", left:"20%"}}>
                     {textlb}
                 </div>
-                <div className="OptimalWarn" style={{position:"absolute", top:"70%", left:"80%", transform:"translate(-50%,-50%)"}}>
+                <div className="OptimalWarn" style={{top:"70%", left:"80%"}}>
                     {textrb}
                 </div>
-                <button style={{opacity:"0", position:"absolute", top:"41%", left:"31.7%", transform:"translate(-50%,-50%)", width:"2.8%", height:"10%", zIndex:"3"}}onClick={showtyreLT}>
-                top-left
+                <button className="WheelButton" style={{top:"41%", left:"31.7%"}}onClick={showtyreLT}>
+                tl
                 </button>
-                <button style={{opacity:"0", position:"absolute", top:"41%", left:"68.2%", transform:"translate(-50%,-50%)", width:"2.8%", height:"10%", zIndex:"3"}}onClick={showtyreRT}>
-                    top-right
+                <button className="WheelButton" style={{top:"41%", left:"68.2%"}}onClick={showtyreRT}>
+                    tr
                 </button>
-                <button style={{opacity:"0", position:"absolute", top:"82%", left:"31.7%", transform:"translate(-50%,-50%)", width:"2.8%", height:"10%", zIndex:"3"}}onClick={showtyreLB}>
-                    buttom-left
+                <button className="WheelButton" style={{top:"82%", left:"31.7%"}}onClick={showtyreLB}>
+                    bl
                 </button>
-                <button style={{opacity:"0", position:"absolute", top:"82%", left:"68.2%", transform:"translate(-50%,-50%)", width:"2.8%", height:"10%", zIndex:"3"}}onClick={showtyreRB}>
-                    buttom-right
+                <button className="WheelButton" style={{top:"82%", left:"68.2%"}}onClick={showtyreRB}>
+                    br
                 </button>
                 {modal && (
                      <div className="modal" style={{zIndex:"4"}} onClick={newtoggleModal}>
@@ -211,7 +204,7 @@ const View =()=> {
                 )}
                 </div>
                 <CarDetail/>
-                <button onClick={handleBack} style={{position:"absolute", top:"90%", left:"80%", transform:"translate(-50%,-50%)", width:"10%", height:"20%", borderRadius:"30px",filter: "drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25))"}}>
+                <button onClick={handleBack} className="BackButton">
                 <img src={backArrow.src} style={{ width: '80%'}}alt="back" />
                 </button>
         </div>
