@@ -53,7 +53,19 @@ function Select () {
           setcrb(readArray[3]);
         };
         getQueryParams();
-          }, []);
+        
+        async function fetchdata() {
+            try {
+                const response = await fetch(`http://127.0.0.1:6767/tyre-data/${pno}`);
+                const result = await response.json();
+                setmno(result.make+' '+result.model);
+                console.log(result.make);
+            } catch (error) {
+                console.error('Error occurred:', error);
+            }
+        }
+        fetchdata();
+          }, [pno]);
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedValue(event.target.value);
     };
@@ -63,7 +75,6 @@ function Select () {
         handletest();
     };
     const handletest = () => {
-        setmno('Honda Civic');
         setrf('20');
         setrr('21');
     }

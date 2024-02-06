@@ -30,6 +30,10 @@ const View =()=> {
         const [isclickedrt, setIsClickedrt] = useState(false);
         const [isclickedlb, setIsClickedlb] = useState(false);
         const [isclickedrb, setIsClickedrb] = useState(false);
+        const[isshownlt, setIsShownlt] = useState(true);
+        const[isshownrt, setIsShownrt] = useState(true);
+        const[isshownlb, setIsShownlb] = useState(true);
+        const[isshownrb, setIsShownrb] = useState(true);
 
         const toggleModal = () => {
           setModal(!modal);
@@ -39,6 +43,10 @@ const View =()=> {
           setIsClickedrb(false);
           setIsClickedlt(false);
           setIsClickedrt(false);
+          setIsShownlb(true);
+          setIsShownrt(true);
+          setIsShownlt(true);
+          setIsShownrb(true);
           toggleModal();
         }
         useEffect(() => {
@@ -110,6 +118,7 @@ const View =()=> {
               left: buttonRect.left + buttonRect.width-170,
             };
             setButtonPosition(buttonPosition);
+            setIsShownlt(false);
             toggleModal();
           }
           const showtyreRT = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -123,6 +132,7 @@ const View =()=> {
               left: buttonRect.left + buttonRect.width+140,
             };
             setButtonPosition(buttonPosition);
+            setIsShownrt(false);
             toggleModal();
           }
           const showtyreLB = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -136,6 +146,7 @@ const View =()=> {
               left: buttonRect.left + buttonRect.width-170,
             };
             setButtonPosition(buttonPosition);
+            setIsShownlb(false);
             toggleModal();
           }
           const showtyreRB = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -149,6 +160,7 @@ const View =()=> {
               left: buttonRect.left + buttonRect.width+140,
             };
             setButtonPosition(buttonPosition);
+            setIsShownrb(false);
             toggleModal();
           }
           const handleBack = () => {
@@ -166,16 +178,16 @@ const View =()=> {
                 <img src={wheel.src} className={isclickedlb ? 'clicked':'unclick'} style={{top:"82%", left:"31.7%"}}alt="wheellb"></img>
                 <img src={wheel.src} className={isclickedrb ? 'clicked':'unclick'} style={{top:"82%", left:"68.2%"}}alt="wheelrb"></img>
 
-                <div className="OptimalWarn" style={{top:"30%", left:"20%"}}>
+                <div className={isshownlt ? 'OptimalWarn' : 'HideWarn'} style={{top:"30%", left:"20%"}}>
                     {textlt}
                 </div>
-                <div className="OptimalWarn" style={{top:"30%", left:"80%"}}>
+                <div className={isshownrt ? 'OptimalWarn' : 'HideWarn'} style={{top:"30%", left:"80%"}}>
                     {textrt}
                 </div>
-                <div className="OptimalWarn" style={{top:"70%", left:"20%"}}>
+                <div className={isshownlb ? 'OptimalWarn' : 'HideWarn'} style={{top:"70%", left:"20%"}}>
                     {textlb}
                 </div>
-                <div className="OptimalWarn" style={{top:"70%", left:"80%"}}>
+                <div className={isshownrb ? 'OptimalWarn' : 'HideWarn'} style={{top:"70%", left:"80%"}}>
                     {textrb}
                 </div>
                 <button className="WheelButton" style={{top:"41%", left:"31.7%"}}onClick={showtyreLT}>
