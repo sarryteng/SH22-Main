@@ -1,11 +1,12 @@
 ---
 import '../assets/styles/index.css';
-import App from './app';
+import Layout from '../layouts/Layout.astro';
+import Select from '../components/Select';
 ---
 
-
-<html lang="en">
-	<body style={{alignContent: "center", background: '#ffffff'}}>
-		<App client:load/>
-	</body>
-</html>
+<Layout>
+	<div class="Center">
+        <Select client:load/>
+        <div style={{height:"300px"}}></div>
+    </div>
+</Layout>
