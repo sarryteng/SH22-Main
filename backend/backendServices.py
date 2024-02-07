@@ -6,19 +6,21 @@ import configparser
 import os
 
 
-PORT = 6767
+PORT = 8080
 
 
 @app.route("/tyre-data/<string:plate>", methods=["GET"])
 def get_tyre_data(plate: str):
     try:
-        return getTyreData.get_tyre_data(plate, API_KEY, API_PORTAL, PARAM_NAME)
-    except getTyreData.APIRequestFailed as apiEx:
-        return jsonify({"error": str(apiEx),
-                        "code": apiEx.err_code,
-                        "response": apiEx.response.json()}), 500
+        return_json = getTyreData.get_tyre_data(plate, API_KEY, API_PORTAL, PARAM_NAME)
+        return return_json, return_json["status_code"]
     except Exception as e:
-        return jsonify({"error": str(e)}), 400
+        return {"success": False,
+                "status_code": 500,
+                "message": "An error is encountered while trying to call Tyrerunner API.",
+                "data": {
+                    "error": str(e)
+                }}, 500
 
 
 if __name__ == "__main__":
