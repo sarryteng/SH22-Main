@@ -1,4 +1,4 @@
-import car from '../assets/Images/car.svg'
+import car from '../assets/images/Car.svg'
 import "../assets/styles/app.css"
 import { useState, useEffect } from 'react';
 import LoadRadio from './LoadRadio';
@@ -9,7 +9,7 @@ import Dialog from "../components/DialogueBox";
 
 
 
-//Run: http://localhost:4321/url-data?licenseplate=AO12XZP&sensorreadings=30,32,28,31
+//Run: http://localhost:8080/url-data?licenseplate=AO12XZP&sensorreadings=30,32,28,31
 
 //API: http://127.0.0.1:6767/tyre-data/{platenumber}
 //Example: http://127.0.0.1:6767/tyre-data/AO12XZP
@@ -53,7 +53,19 @@ function Select () {
           setcrb(readArray[3]);
         };
         getQueryParams();
-          }, []);
+        
+        async function fetchdata() {
+            try {
+                const response = await fetch(`http://127.0.0.1:6767/tyre-data/${pno}`);
+                const result = await response.json();
+                setmno(result.data.make+' '+result.data.model);
+                console.log(result.data.make+' '+result.data.model);
+            } catch (error) {
+                console.error('Error occurred:', error);
+            }
+        }
+        fetchdata();
+          }, [pno]);
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedValue(event.target.value);
     };
@@ -63,7 +75,6 @@ function Select () {
         handletest();
     };
     const handletest = () => {
-        setmno('Honda Civic');
         setrf('20');
         setrr('21');
     }

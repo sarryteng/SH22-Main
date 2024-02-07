@@ -1,4 +1,4 @@
-import logo from '../assets/Images/logo_transparent.png'
+import logo from '../assets/images/logo_transparent.png'
 import "../assets/styles/app.css";
 
 function Header () {

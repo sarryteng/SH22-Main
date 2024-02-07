@@ -6,7 +6,7 @@ import configparser
 import os
 
 
-PORT = 8080
+PORT = 6767
 
 
 from flask_cors import CORS
@@ -14,7 +14,7 @@ from flask_cors import CORS
 app = Flask(__name__)
 
 # Enable CORS, can change the port to the real port, make it temporarly for test
-CORS(app, resources={r"/*": {"origins": "http://localhost:4321"}})
+CORS(app, resources={r"/*": {"origins": "http://localhost:8080"}})
 
 
 

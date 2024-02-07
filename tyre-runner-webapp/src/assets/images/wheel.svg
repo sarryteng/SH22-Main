@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Created with Vectornator (http://vectornator.io/) -->
+<svg height="100%" stroke-miterlimit="10" style="fill-rule:nonzero;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;" version="1.1" viewBox="93.1533 229.421 35.1477 131.931" width="100%" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:vectornator="http://vectornator.io" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs/>
+<clipPath id="ArtboardFrame">
+<rect height="131.931" width="35.1477" x="93.1533" y="229.421"/>
+</clipPath>
+<g clip-path="url(#ArtboardFrame)" id="Layer" vectornator:layerName="Layer">
+<path d="M94.6533 240.921C94.6533 235.398 99.1305 230.921 104.653 230.921L116.801 230.921C122.324 230.921 126.801 235.398 126.801 240.921L126.801 349.852C126.801 355.374 122.324 359.852 116.801 359.852L104.653 359.852C99.1305 359.852 94.6533 355.374 94.6533 349.852L94.6533 240.921Z" fill="#cdcdcd" fill-rule="nonzero" opacity="1" stroke="#e53121" stroke-linecap="butt" stroke-linejoin="round" stroke-width="3" vectornator:layerName="Rectangle 1"/>
+</g>
+</svg>

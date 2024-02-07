@@ -1,5 +1,4 @@
 import "../assets/styles/app.css"
-import { useState } from 'react';
 
 function LoadRadio ({ selectedValue, handleChange }: { selectedValue: string | null, handleChange: (event: React.ChangeEvent<HTMLInputElement>) => void }) {
     console.log(selectedValue);
