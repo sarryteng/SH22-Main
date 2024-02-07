@@ -1,4 +1,4 @@
-import car from '../assets/Images/car.svg'
+import car from '../assets/images/Car.svg'
 import "../assets/styles/app.css"
 import { useState, useEffect } from 'react';
 import LoadRadio from './LoadRadio';
