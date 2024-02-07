@@ -109,7 +109,7 @@ const View =()=> {
           }, [clt, crt, clb, crb, rf, rr]);
           const showtyreLT = (event: React.MouseEvent<HTMLButtonElement>) => {
             setIsClickedlt((prevIsClicked) => !prevIsClicked);
-            setName('Top-Left');
+            setName('Front-Left');
             setCurrentPressure(clt);
             setRecommendedPressure(rf);
             const buttonRect = event.currentTarget.getBoundingClientRect();
@@ -123,7 +123,7 @@ const View =()=> {
           }
           const showtyreRT = (event: React.MouseEvent<HTMLButtonElement>) => {
             setIsClickedrt((prevIsClicked) => !prevIsClicked);
-            setName('Top-Right');
+            setName('Front-Right');
             setCurrentPressure(crt);
             setRecommendedPressure(rf);
             const buttonRect = event.currentTarget.getBoundingClientRect();
@@ -137,7 +137,7 @@ const View =()=> {
           }
           const showtyreLB = (event: React.MouseEvent<HTMLButtonElement>) => {
             setIsClickedlb((prevIsClicked) => !prevIsClicked);
-            setName('Buttom-Left');
+            setName('Rear-Left');
             setCurrentPressure(clb);
             setRecommendedPressure(rr);
             const buttonRect = event.currentTarget.getBoundingClientRect();
@@ -151,7 +151,7 @@ const View =()=> {
           }
           const showtyreRB = (event: React.MouseEvent<HTMLButtonElement>) => {
             setIsClickedrb((prevIsClicked) => !prevIsClicked);
-            setName('Buttom-Right');
+            setName('Rear-Right');
             setCurrentPressure(crb);
             setRecommendedPressure(rr);
             const buttonRect = event.currentTarget.getBoundingClientRect();
