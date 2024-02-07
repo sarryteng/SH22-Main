@@ -24,7 +24,7 @@ function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void
     const fetchData = async () => {
       try {
         console.log('start requesting....'); 
-        const response = await fetch('http://127.0.0.1:6767/tyre-data/AO12XZP');
+        const response = await fetch('http://127.0.0.1:8081/tyre-data/AO12XZP');
         const result = await response.json();
 
         const tyreOptionsWithPressure = result.tyreOptionsWithPressure;
