@@ -112,7 +112,7 @@ const View =()=> {
         <div className="View">
                 <div className='Center'>
                 <div className='text'>Click the tyre for pressure details.</div>
-                <img src={car.src} style={{ width: '40%', marginTop:"50px"}}alt="car" />
+                <img src={car.src} style={{ width: '40%', marginTop:"50px"}}alt="car" />     
                 <button style={{opacity:"0", position:"absolute", top:"40%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}}onClick={showtyreLT}>
                 top-left
                 </button>

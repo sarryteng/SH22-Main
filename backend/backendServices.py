@@ -9,6 +9,15 @@ import os
 PORT = 8080
 
 
+from flask_cors import CORS
+
+app = Flask(__name__)
+
+# Enable CORS, can change the port to the real port, make it temporarly for test
+CORS(app, resources={r"/*": {"origins": "http://localhost:4321"}})
+
+
+
 @app.route("/tyre-data/<string:plate>", methods=["GET"])
 def get_tyre_data(plate: str):
     try:
