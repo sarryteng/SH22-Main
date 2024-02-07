@@ -6,6 +6,7 @@ app = Flask(__name__)
 
 PORT = 6767
 
+
 from flask_cors import CORS
 
 app = Flask(__name__)

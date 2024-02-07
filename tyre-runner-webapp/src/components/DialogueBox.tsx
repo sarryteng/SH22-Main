@@ -34,10 +34,10 @@ function Dialog(props: DialogProps) {
 
   const dialogs = [
    
-    { tyrename: "tyre left-top", tyrecontent: tyre1, position: { top: '10%', left: '10%' } ,ref:inputRefTyre1},
-    { tyrename: "tyre right-top", tyrecontent: tyre2, position: { top: '10%', left: '75%' } ,ref:inputRefTyre2},
-    { tyrename: "tyre right-top", tyrecontent: tyre3, position: { top: '60%', left: '10%' } ,ref:inputRefTyre3},
-    { tyrename: "tyre right-bottom", tyrecontent: tyre4, position: { top: '60%', left: '75%' } ,ref:inputRefTyre4},
+    { tyrename: "tyre left-front", tyrecontent: tyre1, position: { top: '10%', left: '3%' } ,ref:inputRefTyre1},
+    { tyrename: "tyre right-front", tyrecontent: tyre2, position: { top: '10%', left: '62%' } ,ref:inputRefTyre2},
+    { tyrename: "tyre left-rear", tyrecontent: tyre3, position: { top: '40%', left: '3%' } ,ref:inputRefTyre3},
+    { tyrename: "tyre right-rear", tyrecontent: tyre4, position: { top: '40%', left: '62%' } ,ref:inputRefTyre4},
   ];
 
 
@@ -49,22 +49,22 @@ function Dialog(props: DialogProps) {
     const fetchGeneratedUrl = async () => {
 
       try {
-        const response = await fetch('http://localhost:8000/get-data');
-        const data = await response.json();
-        setGeneratedUrl(data.url);
-        console.log("fetched url:" + data.url)
-        const sensorData = await getSensorReadings(data.url);
-        const plateData = await getPlateReadings(data.url);
+        // const response = await fetch('http://localhost:8000/get-data');
+        // const data = await response.json();
+        // setGeneratedUrl(data.url);
+        // console.log("fetched url:" + data.url)
+        // const sensorData = await getSensorReadings(data.url);
+        // const plateData = await getPlateReadings(data.url);
 
-        setSensorReadings(sensorData || '');
-        setPlateReadings(plateData || '');
-        console.log("the plateReadings is ", plateReadings);
-        console.log("the sensorReadings is ", sensorData);
-        const readingsArray = sensorData?.split(',') || [];
-        setTyre1(readingsArray[0] || '');
-        setTyre2(readingsArray[1] || '');
-        setTyre3(readingsArray[2] || '');
-        setTyre4(readingsArray[3] || '');
+        // setSensorReadings(sensorData || '');
+        // setPlateReadings(plateData || '');
+        // console.log("the plateReadings is ", plateReadings);
+        // console.log("the sensorReadings is ", sensorData);
+        // const readingsArray = sensorData?.split(',') || [];
+        // setTyre1(readingsArray[0] || '');
+        // setTyre2(readingsArray[1] || '');
+        // setTyre3(readingsArray[2] || '');
+        // setTyre4(readingsArray[3] || '');
 
 
 
@@ -151,7 +151,7 @@ function Dialog(props: DialogProps) {
   return (
     <div>
       {dialogs.map((dialog, i) => (
-        <div key={i} style={{ display: tyreIndex === i + 1 ? 'block' : 'none', position: 'absolute', ...dialog.position, width: '450px',height:"300px",backgroundColor:"white" }} className='dialogContainer'>
+        <div key={i} style={{ display: tyreIndex === i + 1 ? 'block' : 'none', position: 'absolute', ...dialog.position, width: '350px',height:"300px",backgroundColor:"white" }} className='dialogContainer'>
           
           <form style={{display: "flex", flexDirection: "column", justifyContent: "center"  }}>
           
