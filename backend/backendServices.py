@@ -6,7 +6,7 @@ import configparser
 import os
 
 
-PORT = 8081
+PORT = 6767
 
 
 from flask_cors import CORS

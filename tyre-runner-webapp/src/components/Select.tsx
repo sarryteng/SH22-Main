@@ -56,10 +56,10 @@ function Select () {
         
         async function fetchdata() {
             try {
-                const response = await fetch(`http://127.0.0.1:8081/tyre-data/${pno}`);
+                const response = await fetch(`http://127.0.0.1:6767/tyre-data/${pno}`);
                 const result = await response.json();
-                setmno(result.make+' '+result.model);
-                console.log(result.make);
+                setmno(result.data.make+' '+result.data.model);
+                console.log(result.data.make+' '+result.data.model);
             } catch (error) {
                 console.error('Error occurred:', error);
             }

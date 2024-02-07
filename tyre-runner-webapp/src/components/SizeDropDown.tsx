@@ -19,14 +19,23 @@ const tyreSize: { id:number; rim: string; ratio: string; width:string }[] = [
 function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void }) {
     const [data, setData] = useState(null);
     const [sizeArray, setSizeArray] = useState<string[]>([]);
+    const [pno, setpno] = useState<string>('');
+
     
   useEffect(() => {
+    const getQueryParams = () => {
+      const queryParams = new URLSearchParams(window.location.search);
+      const pnoParam = queryParams.get('licenseplate')||'';
+      
+      setpno(pnoParam);
+    };
+    getQueryParams();
     const fetchData = async () => {
       try {
         console.log('start requesting....'); 
-        const response = await fetch('http://127.0.0.1:8081/tyre-data/AO12XZP');
+        const response = await fetch(`http://127.0.0.1:6767/tyre-data/${pno}`);
         const result = await response.json();
-
+        console.log(result.data);
         const tyreOptionsWithPressure = result.tyreOptionsWithPressure;
 
   
@@ -48,7 +57,7 @@ function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void
     };
             
     fetchData();
-  }, []); 
+  }, [pno]); 
 
 
 
