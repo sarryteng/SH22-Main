@@ -241,26 +241,34 @@ body{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    border-radius: 10px; 
+    overflow: hidden;
+    margin-top:150px;
+    border: 1px solid #ccc;
+
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   
     
   }
 
-  .dialogContainer .buttonContainer {
+  .buttonContainer {
     display: flex;
     justify-Content: space-between;
     height: 100px;
     width: 80%;
     margin: 0 auto;
   }
-  .dialogContainer .buttonContainer .Dialogbutton {
+  .buttonContainer .Dialogbutton {
     margin:20px;
     width: 35%;
     background-color: #E53121;
     color: white;
     font-size: 20px;
+    border-radius: 10px; 
   }
   .dialogContainer .buttonContainer .Dialogbutton:hover {
     background-color:#b7271a;
+    border-radius: 10px; 
   }
   .dialogContainer label {
     font-size:x-large;
@@ -273,4 +281,25 @@ body{
   .labelRow {
     margin:0 auto;
     width:80%;
+  }
+  #showPressure{
+    width:180px;
+    height:60px;
+    background-color:red;
+    color:white;
+    font-size:22px; 
+    border-radius: 10px;
+    font-weight:bold;
+    margin-left: 1400px;
+     margin-right: 10px;
+     margin-top:80px;
+     border: 1px solid #ccc;
+    
+  }
+  #showPressure:hover {
+    background-color: #ff3333;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); 
+  }
+  .dialogInput {
+    width: 50px;
   }

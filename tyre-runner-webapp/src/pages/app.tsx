@@ -14,25 +14,22 @@ import Dialog from "../components/DialogueBox";
 
 
 
+
 function App() {
   
   const [isDialogOpen, setDialogOpen] = useState(false); // show dialog or not 
-  const handleButtonClick = () => {
-    setDialogOpen(true);
-    console.log("showed")
-  };
+  
+ 
 
  
  
   return (
     <div className="Center">
         <Header />
-        <div>
-        {isDialogOpen && <Dialog isOpen={isDialogOpen} />}
-          <button onClick={handleButtonClick} style={{width:'150px',height:'50px',backgroundColor:'red',color:'white',fontSize:'large'}}>show pressure</button>
-
+       
+    
           
-        </div>
+        
         
         <Select />
         

@@ -4,6 +4,8 @@ import { useState } from 'react';
 import LoadRadio from './LoadRadio';
 import SizeDropDown from './SizeDropDown';
 import "@fontsource/poppins";
+import Dialog from "../components/DialogueBox";
+
 
 
 
@@ -53,12 +55,40 @@ function Select () {
         window.location.href = `/view?size=${selectedSizeValue}&load=${selectedValue}&mno=${mno}&pno=${pno}&clt=${clt}&crt=${crt}&clb=${clb}&crb=${crb}&rlt=${rlt}&rrt=${rrt}&rlb=${rlb}&rrb=${rrb}`;
     };
     const sizeFromParent = 30;
+    const [isDialogOpen, setDialogOpen] = useState(false); // show dialog or not 
+    const [tyreIndex,setTyreIndex]=useState(0)
+    function tyreClick(tyreIndex:number){
+                setDialogOpen(!isDialogOpen)
+                setTyreIndex(tyreIndex)
+            console.log("clicked tyre",tyreIndex)
+    }
 
     return (
         <div className="Select">
             <div className='Center'>
                 <div className='text'>Select your preference</div>
+                
+                <div style={{display:"flex",justifyContent:"center"}}>
+               
                 <img src={car.src} style={{ width: '40%', marginTop:"50px"}}alt="car" />
+               
+                </div>
+                <button style={{opacity:"0", position:"absolute", top:"30%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%",backgroundColor:"red"}} onClick={() => tyreClick(1)}>
+                top-left
+                </button>
+                <button style={{opacity:"0", position:"absolute", top:"30%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}} onClick={() => tyreClick(2)}>
+                    top-right
+                </button>
+                <button style={{opacity:"0", position:"absolute", top:"69%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}} onClick={() => tyreClick(3)}>
+                    buttom-left
+                </button>
+                <button style={{opacity:"0", position:"absolute", top:"69%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}} onClick={() => tyreClick(4)}>
+                    buttom-right
+                </button>
+                {isDialogOpen && <Dialog isOpen={isDialogOpen} setIsOpen={setDialogOpen} tyreIndex={tyreIndex} setTyreIndex={setTyreIndex}/>}
+                
+
+                    
                 <SizeDropDown onSelect={handleSelect}/>
                 <LoadRadio selectedValue={selectedValue} handleChange={handleChange}/>
                 <a className="button" onClick={handleSelectClick}>Select</a>

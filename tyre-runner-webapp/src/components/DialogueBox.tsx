@@ -1,182 +1,188 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { getSensorReadings,getPlateReadings} from '../services/getPressurePlate'; 
+import { getSensorReadings, getPlateReadings } from '../services/getPressurePlate';
 
 
 interface DialogProps {
   isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  tyreIndex: number;
+  setTyreIndex:React.Dispatch<React.SetStateAction<number>>;
+
+
+
 }
 
-
-const dialogStyle: React.CSSProperties = {
-  
-  backgroundColor:'brown'
-};
-
-
-
-const Dialog: React.FC<DialogProps> = ({ isOpen }) => {
-// const Dialog: React.FC = () => {
-    // const [isOpen, setIsOpen] = useState(true);
-    const inputRefTyre1 = useRef<HTMLInputElement | null>(null);
+function Dialog(props: DialogProps) {
+  // const Dialog: React.FC<DialogProps> = ({ isOpen }) => {
+  const tyreIndex = props.tyreIndex; //get the index of tyre which need to show pressure detail
+  const isOpen = props.isOpen;
+  const setIsOpen = props.setIsOpen;
+  const setTyreIndex=props.setTyreIndex;
+  setIsOpen(props.isOpen)
+  const inputRefTyre1 = useRef<HTMLInputElement | null>(null);
   const inputRefTyre2 = useRef<HTMLInputElement | null>(null);
   const inputRefTyre3 = useRef<HTMLInputElement | null>(null);
   const inputRefTyre4 = useRef<HTMLInputElement | null>(null);
-    const [generatedUrl, setGeneratedUrl] = useState('');
-    const [sensorReadings, setSensorReadings] = useState('');
-    const [plateReadings, setPlateReadings] = useState('');
+  const [generatedUrl, setGeneratedUrl] = useState('');
+  const [sensorReadings, setSensorReadings] = useState('');
+  const [plateReadings, setPlateReadings] = useState('');
 
-    const [tyre1, setTyre1] = useState('');
-    const [tyre2, setTyre2] = useState('');
-    const [tyre3, setTyre3] = useState('');
-    const [tyre4, setTyre4] = useState('');
-    
+  const [tyre1, setTyre1] = useState('');
+  const [tyre2, setTyre2] = useState('');
+  const [tyre3, setTyre3] = useState('');
+  const [tyre4, setTyre4] = useState('');
+
+  const dialogs = [
+   
+    { tyrename: "tyre left-top", tyrecontent: tyre1, position: { top: '10%', left: '10%' } ,ref:inputRefTyre1},
+    { tyrename: "tyre right-top", tyrecontent: tyre2, position: { top: '10%', left: '75%' } ,ref:inputRefTyre2},
+    { tyrename: "tyre right-top", tyrecontent: tyre3, position: { top: '60%', left: '10%' } ,ref:inputRefTyre3},
+    { tyrename: "tyre right-bottom", tyrecontent: tyre4, position: { top: '60%', left: '75%' } ,ref:inputRefTyre4},
+  ];
 
 
-    useEffect(() => {
-      const fetchGeneratedUrl = async () => {
-        try {
-          const response = await fetch('http://localhost:8000/get-data');
-          const data = await response.json();
-          setGeneratedUrl(data.url);
-          console.log("fetched url:"+data.url)
-          const sensorData = await getSensorReadings(data.url);
-          const plateData = await getPlateReadings(data.url);
 
-          setSensorReadings(sensorData || '');  
-          setPlateReadings(plateData || ''); 
-        console.log("the plateReadings is ",plateReadings); 
-        console.log("the sensorReadings is ",sensorData); 
+
+  useEffect(() => {
+    console.log("tyre index", tyreIndex)
+
+    const fetchGeneratedUrl = async () => {
+
+      try {
+        const response = await fetch('http://localhost:8000/get-data');
+        const data = await response.json();
+        setGeneratedUrl(data.url);
+        console.log("fetched url:" + data.url)
+        const sensorData = await getSensorReadings(data.url);
+        const plateData = await getPlateReadings(data.url);
+
+        setSensorReadings(sensorData || '');
+        setPlateReadings(plateData || '');
+        console.log("the plateReadings is ", plateReadings);
+        console.log("the sensorReadings is ", sensorData);
         const readingsArray = sensorData?.split(',') || [];
         setTyre1(readingsArray[0] || '');
         setTyre2(readingsArray[1] || '');
         setTyre3(readingsArray[2] || '');
         setTyre4(readingsArray[3] || '');
-      
-        
-        
 
-        } catch (error) {
-          console.error('Error fetching generated URL:', error);
-        }
-      };
-  
-      fetchGeneratedUrl();
-    }, []);
 
-    function Close(){
-      isOpen=false;
-  }
-  
 
-    const handleButtonClick = (value: string) => {
-      if (value === 'cancel') {
-        console.log('cancel button clicked');
-     
-  
-        // Modify the value of the specific inputRef based on the condition
-        if (inputRefTyre1.current) {
-          inputRefTyre1.current.value = tyre1;
-          console.log('no Change value for Tyre1:', inputRefTyre1.current.value);
-        }else {
-         
-          const isInputRefTyre1Exist = !!inputRefTyre1.current; 
-        }
-  
-        if (inputRefTyre2.current) {
-          inputRefTyre2.current.value = tyre2;
-          console.log('no Change value for Tyre2:', inputRefTyre2.current.value);
-        }
-        if (inputRefTyre3.current) {
-          inputRefTyre3.current.value = tyre3;
-          console.log('no Change value for Tyre3:', inputRefTyre3.current.value);
-        }
-  
-        if (inputRefTyre4.current) {
-          inputRefTyre4.current.value = tyre4;
-          console.log('no Change value for Tyre4:', inputRefTyre4.current.value);
-        }
-  
-        
-      }  else if (value === 'confirm') {
-        console.log('Changed values:');
-        
-       
-        if (inputRefTyre1.current) {
-          console.log('Tyre1:', inputRefTyre1.current.value);
-         
-        }
-  
-        if (inputRefTyre2.current) {
-          console.log('Tyre2:', inputRefTyre2.current.value);
-        }
-        if (inputRefTyre3.current) {
-          console.log('Tyre3:', inputRefTyre3.current.value);
-        }
-        if (inputRefTyre4.current) {
-          console.log('Tyre4:', inputRefTyre4.current.value);
-         
-        }
-          
-        console.log('Confirm button clicked');
-          const dialog = document.querySelector('dialog');
-          
-         
-        //  const dialog= document.getElementById("myDialog");
-          
-        if (dialog) {
-          // To show the dialog
-          dialog.style.display = 'block';
-        
-          // To hide the dialog
-          dialog.style.display = 'none';
-        }
-        }
-      };
-      
-      const inputStyle={
-        height:'50px',
-        width:'20%',
-        margin:'20px'
+
+      } catch (error) {
+        console.error('Error fetching generated URL:', error);
       }
+    };
+
+
+    fetchGeneratedUrl();
+
+
+  }, []);
+
+
+
+  const handleButtonClick = (value: string) => {
+    if (value === 'cancel') {
+      console.log('cancel button clicked');
       
-    
+      DialogClose();
 
-    return (
-        <dialog open={isOpen} id='myDialog' className="dialogContainer" style={{ display: isOpen ? 'block' : 'none' }} >
-      <form method="dialog"  >
-    <div className="labelRow" >
-      <label >
-        Tyre1:
-        <input type="text" defaultValue={tyre1}  ref={inputRefTyre1}  className="dialogInput" style={inputStyle}  disabled={!inputRefTyre1.current}/>
-      </label>
 
-      <label>
-        Tyre2:
-        <input type="text" defaultValue={tyre2} ref={inputRefTyre2} className="dialogInput" style={inputStyle} disabled={!inputRefTyre2.current} />
-      </label>
-    </div>
+      // Modify the value of the specific inputRef based on the condition
+      if (inputRefTyre1.current) {
+        inputRefTyre1.current.value = tyre1;
+        console.log('no Change value for Tyre1:', inputRefTyre1.current.value);
+      } else {
 
-    <div className="labelRow" >
-      <label>
-        Tyre3:
-        <input type="text" defaultValue={tyre3} ref={inputRefTyre3}  className="dialogInput"  style={inputStyle} disabled={!inputRefTyre3.current}/>
-      </label>
+        const isInputRefTyre1Exist = !!inputRefTyre1.current;
+      }
 
-      <label>
-        Tyre4:
-        <input type="text" defaultValue={tyre4} ref={inputRefTyre4} className="dialogInput"  style={inputStyle} disabled={!inputRefTyre4.current} />
-      </label>
-    </div>
+      if (inputRefTyre2.current) {
+        inputRefTyre2.current.value = tyre2;
+        console.log('no Change value for Tyre2:', inputRefTyre2.current.value);
+      }
+      if (inputRefTyre3.current) {
+        inputRefTyre3.current.value = tyre3;
+        console.log('no Change value for Tyre3:', inputRefTyre3.current.value);
+      }
 
-    <div className="buttonContainer">
-      <button type="button" onClick={() => handleButtonClick('cancel')} className="Dialogbutton">Cancel</button>
-      <button type="button" onClick={() => handleButtonClick('confirm')} className="Dialogbutton">Confirm</button>
-    </div>
-  </form>
-    </dialog>
-    );
-    
-  }
+      if (inputRefTyre4.current) {
+        inputRefTyre4.current.value = tyre4;
+        console.log('no Change value for Tyre4:', inputRefTyre4.current.value);
+      }
+
+
+    } else if (value === 'confirm') {
+      console.log('Changed values:');
+
+
+      if (inputRefTyre1.current) {
+        console.log('Tyre1:', inputRefTyre1.current.value);
+
+      }
+
+      if (inputRefTyre2.current) {
+        console.log('Tyre2:', inputRefTyre2.current.value);
+      }
+      if (inputRefTyre3.current) {
+        console.log('Tyre3:', inputRefTyre3.current.value);
+      }
+      if (inputRefTyre4.current) {
+        console.log('Tyre4:', inputRefTyre4.current.value);
+
+      }
+
+      console.log('Confirm button clicked');
+      
+      DialogClose();
+    }
+  };
+
+  function DialogClose() {
+    setTyreIndex(-1);//close the dialog
+    setIsOpen(!isOpen)
+  };
+
   
+
+
+
+  return (
+    <div>
+      {dialogs.map((dialog, i) => (
+        <div key={i} style={{ display: tyreIndex === i + 1 ? 'block' : 'none', position: 'absolute', ...dialog.position, width: '450px',height:"300px",backgroundColor:"white" }} className='dialogContainer'>
+          
+          <form style={{display: "flex", flexDirection: "column", justifyContent: "center"  }}>
+          
+           
+           <div style={{height:"50px",backgroundColor:"#e53121",color:"white",fontSize:"22px",paddingLeft:"10px",display: "flex", alignItems: "center"}}><label>pressure</label></div>
+            <div style={{display:"flex",justifyContent:"center"}}>
+              
+            
+              <label style={{margin:"50px",width:"80%",height:"60%",}}>{dialog.tyrename}: <input type='text' defaultValue={dialog.tyrecontent} ref={dialog.ref}  className="dialogInput" ></input></label>
+              
+              </div>
+            </form>
+
+
+          <div className="buttonContainer">
+            <button type="button" onClick={() => handleButtonClick('cancel')} className="Dialogbutton">Cancel</button>
+            <button type="button" onClick={() => handleButtonClick('confirm')} className="Dialogbutton">Confirm</button>
+          </div>
+        </div>
+
+      ))}
+    </div>
+
+
+
+
+
+
+  );
+
+}
+
 
 export default Dialog;
