@@ -6,6 +6,7 @@ import React from 'react';
 import "../assets/styles/modal.css";
 import wheel from '../assets/images/wheel.svg'
 import carNowheel from '../assets/images/carNowheel.svg'
+import "@fontsource/poppins";
 
 
 
@@ -217,7 +218,7 @@ const View =()=> {
                 </div>
                 <CarDetail/>
                 <button onClick={handleBack} className="BackButton">
-                <img src={backArrow.src} style={{ width: '80%'}}alt="back" />
+                <img src={backArrow.src} style={{ width: '80%', position:"absolute", transform:"translate(-50%, -50%)",top:"50%", left:"50%"}}alt="back" />
                 </button>
         </div>
     )

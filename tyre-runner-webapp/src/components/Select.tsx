@@ -9,7 +9,7 @@ import Dialog from "../components/DialogueBox";
 
 
 
-//Run: http://localhost:4321/url-data?licenseplate=AO12XZP&sensorreadings=30,32,28,31
+//Run: http://localhost:8080/url-data?licenseplate=AO12XZP&sensorreadings=30,32,28,31
 
 //API: http://127.0.0.1:6767/tyre-data/{platenumber}
 //Example: http://127.0.0.1:6767/tyre-data/AO12XZP
