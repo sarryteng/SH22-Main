@@ -14,4 +14,4 @@ node_build = <<~YML
         - tyre-runner-webapp/public
 YML
 
-File.open('.node-gitlab-ci.yml', 'w'){ |f| f.write(linux_build)}
+File.open('.node-gitlab-ci.yml', 'w'){ |f| f.write(node_build)}
