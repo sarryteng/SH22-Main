@@ -5,6 +5,8 @@ import LoadRadio from './LoadRadio';
 import SizeDropDown from './SizeDropDown';
 import "@fontsource/poppins";
 import Dialog from "../components/DialogueBox";
+import wheel from '../assets/images/wheel.svg'
+import carNowheel from '../assets/images/carNowheel.svg'
 
 
 
@@ -37,6 +39,10 @@ function Select () {
     const [crb, setcrb] = useState<string>('');
     const [rf, setrf] = useState<string>('');
     const [rr, setrr] = useState<string>('');
+    const [isclickedlt, setIsClickedlt] = useState(false);
+    const [isclickedrt, setIsClickedrt] = useState(false);
+    const [isclickedlb, setIsClickedlb] = useState(false);
+    const [isclickedrb, setIsClickedrb] = useState(false);
     
     useEffect(() => {
         const getQueryParams = () => {
@@ -102,24 +108,43 @@ function Select () {
             <div className='Center'>
                 <div className='text'>Select your preference</div>
                 
-                <div style={{display:"flex",justifyContent:"center"}}>
+                {/* <div style={{display:"flex",justifyContent:"center"}}> */}
                
-                <img src={car.src} style={{ width: '40%', marginTop:"50px"}}alt="car" />
+                {/* <img src={car.src} style={{ width: '40%', marginTop:"50px"}}alt="car" />
                
                 </div>
-                <button style={{opacity:"0", position:"absolute", top:"30%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%",backgroundColor:"red"}} onClick={() => tyreClick(1)}>
+                <button style={{opacity:"1", position:"absolute", top:"30%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%",backgroundColor:"red"}} onClick={() => tyreClick(1)}>
                 top-left
                 </button>
-                <button style={{opacity:"0", position:"absolute", top:"30%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}} onClick={() => tyreClick(2)}>
+                <button style={{opacity:"1", position:"absolute", top:"30%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%",backgroundColor:"red"}} onClick={() => tyreClick(2)}>
                     top-right
                 </button>
-                <button style={{opacity:"0", position:"absolute", top:"69%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}} onClick={() => tyreClick(3)}>
+                <button style={{opacity:"1", position:"absolute", top:"69%", left:"32%", transform:"translate(-50%,-50%)", width:"3%", height:"10%",backgroundColor:"red"}} onClick={() => tyreClick(3)}>
                     buttom-left
                 </button>
-                <button style={{opacity:"0", position:"absolute", top:"69%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%"}} onClick={() => tyreClick(4)}>
+                <button style={{opacity:"1", position:"absolute", top:"69%", left:"68%", transform:"translate(-50%,-50%)", width:"3%", height:"10%",backgroundColor:"red"}} onClick={() => tyreClick(4)}>
                     buttom-right
+                </button> */}
+                <img src={carNowheel.src} style={{ width: '40%', marginTop:"50px", zIndex:"2"}}alt="car" />
+                <img src={wheel.src} className={isclickedlt ? 'clicked':'unclick'} style={{top:"32%", left:"31.7%"}}alt="wheellt"></img>
+                <img src={wheel.src} className={isclickedrt? 'clicked':'unclick'} style={{top:"32%", left:"68.2%"}}alt="wheelrt"></img>
+                <img src={wheel.src} className={isclickedlb?'clicked':'unclick'} style={{top:"63%", left:"31.7%"}}alt="wheellb"></img>
+                <img src={wheel.src} className={isclickedrt?'clicked':'unclick'} style={{top:"63%", left:"68.2%"}}alt="wheelrb"></img>
+                <button className="WheelButtonSelect" style={{top:"32%", left:"31.7%"}}onClick={() => tyreClick(1)}>
+                tl
                 </button>
-                {isDialogOpen && <Dialog isOpen={isDialogOpen} setIsOpen={setDialogOpen} tyreIndex={tyreIndex} setTyreIndex={setTyreIndex}/>}
+                <button className="WheelButtonSelect" style={{top:"32%", left:"68.2%"}}onClick={() => tyreClick(2)}>
+                    tr
+                </button>
+                <button className="WheelButtonSelect" style={{top:"63%", left:"31.7%"}}onClick={() => tyreClick(3)}>
+                    bl
+                </button>
+                <button className="WheelButtonSelect" style={{top:"63%", left:"68.2%"}}onClick={() => tyreClick(4)}>
+                    br
+                </button>
+                {isDialogOpen && (
+                <Dialog isOpen={isDialogOpen} setIsOpen={setDialogOpen} tyreIndex={tyreIndex} setTyreIndex={setTyreIndex}/>
+                )}
                 
 
                     

@@ -34,10 +34,10 @@ function Dialog(props: DialogProps) {
 
   const dialogs = [
    
-    { tyrename: "tyre left-front", tyrecontent: tyre1, position: { top: '10%', left: '3%' } ,ref:inputRefTyre1},
-    { tyrename: "tyre right-front", tyrecontent: tyre2, position: { top: '10%', left: '62%' } ,ref:inputRefTyre2},
-    { tyrename: "tyre left-rear", tyrecontent: tyre3, position: { top: '40%', left: '3%' } ,ref:inputRefTyre3},
-    { tyrename: "tyre right-rear", tyrecontent: tyre4, position: { top: '40%', left: '62%' } ,ref:inputRefTyre4},
+    { tyrename: "tyre left-front", tyrecontent: tyre1, position: { top: '20%', left: '3%' } ,ref:inputRefTyre1},
+    { tyrename: "tyre right-front", tyrecontent: tyre2, position: { top: '20%', left: '52%' } ,ref:inputRefTyre2},
+    { tyrename: "tyre left-rear", tyrecontent: tyre3, position: { top: '50%', left: '3%' } ,ref:inputRefTyre3},
+    { tyrename: "tyre right-rear", tyrecontent: tyre4, position: { top: '50%', left: '52%' } ,ref:inputRefTyre4},
   ];
 
 
@@ -151,24 +151,26 @@ function Dialog(props: DialogProps) {
   return (
     <div>
       {dialogs.map((dialog, i) => (
-        <div key={i} style={{ display: tyreIndex === i + 1 ? 'block' : 'none', position: 'absolute', ...dialog.position, width: '350px',height:"300px",backgroundColor:"white" }} className='dialogContainer'>
+        <div key={i} style={{ display: tyreIndex === i + 1 ? 'block' : 'none', position: 'absolute', ...dialog.position, width: '45%',backgroundColor:"white" }} className='dialogContainer'>
           
           <form style={{display: "flex", flexDirection: "column", justifyContent: "center"  }}>
           
            
-           <div style={{height:"50px",backgroundColor:"#e53121",color:"white",fontSize:"22px",paddingLeft:"10px",display: "flex", alignItems: "center"}}><label>pressure</label></div>
+           <div className='CarDetailHead'>
+            <div className='DetailText'>pressure</div>
+            </div>
             <div style={{display:"flex",justifyContent:"center"}}>
               
             
-              <label style={{margin:"50px",width:"80%",height:"60%",}}>{dialog.tyrename}: <input type='text' defaultValue={dialog.tyrecontent} ref={dialog.ref}  className="dialogInput" ></input></label>
+              <label style={{margin:"10%",width:"80%",height:"60%",}}>{dialog.tyrename}: <input type='text' defaultValue={dialog.tyrecontent} ref={dialog.ref} style={{width:"50%",outline:"1px solid", borderRadius:"10px"}}  className="dialogInput" ></input></label>
               
               </div>
             </form>
 
 
           <div className="buttonContainer">
-            <button type="button" onClick={() => handleButtonClick('cancel')} className="Dialogbutton">Cancel</button>
-            <button type="button" onClick={() => handleButtonClick('confirm')} className="Dialogbutton">Confirm</button>
+            <button type="button" style={{borderRadius:"30px",boxShadow:"0 2px 4px 0 rgba(0, 0, 0, 0.25)"}} onClick={() => handleButtonClick('cancel')} className="Dialogbutton">Cancel</button>
+            <button type="button" style={{borderRadius:"30px",boxShadow:"0 2px 4px 0 rgba(0, 0, 0, 0.25)"}} onClick={() => handleButtonClick('confirm')} className="Dialogbutton">Confirm</button>
           </div>
         </div>
 
