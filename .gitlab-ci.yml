@@ -1,6 +1,7 @@
 stages: 
-  -  setup 
-  -  trigger
+  - setup 
+  - build
+  # - trigger
 
 generate-config:
   stage: setup
@@ -13,9 +14,13 @@ generate-config:
     paths:
       - .node-gitlab-ci.yml
 
-triggers-node-build:
-  stage: trigger
-  trigger:
-    include:
-    - artifact: .node-gitlab-ci.yml
-      job: generate-config
+# triggers-node-build:
+#   stage: trigger
+#   trigger:
+#     include:
+#     - artifact: .node-gitlab-ci.yml
+#       job: generate-config
+build_node:
+  stage: build
+  script:
+    - ls
