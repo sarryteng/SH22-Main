@@ -1,6 +1,6 @@
 stages: 
-  - setup 
-  - trigger
+  -  setup 
+  -  trigger
 
 generate-config:
   stage: setup
