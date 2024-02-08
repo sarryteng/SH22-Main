@@ -14,13 +14,9 @@ generate-config:
     paths:
       - .node-gitlab-ci.yml
 
-# triggers-node-build:
-#   stage: trigger
-#   trigger:
-#     include:
-#     - artifact: .node-gitlab-ci.yml
-#       job: generate-config
-build_node:
+triggers-node-build:
   stage: build
-  script:
-    - ls
+  trigger:
+    include:
+    - artifact: .node-gitlab-ci.yml
+      job: generate-config
