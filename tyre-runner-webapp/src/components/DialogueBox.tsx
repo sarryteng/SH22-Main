@@ -157,7 +157,7 @@ function Dialog(props: DialogProps) {
           
            
            <div className='CarDetailHead'>
-            <div className='DetailText'>pressure</div>
+            <div className='DetailText' style={{paddingBottom:"10px"}}>pressure</div>
             </div>
             <div style={{display:"flex",justifyContent:"center"}}>
               
