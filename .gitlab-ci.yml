@@ -1,20 +1,20 @@
-# Define the Docker image to use for the entire pipeline.
-image: node:lts 
-
-# Define the stages of your pipeline.
 stages:
-- build
-# - deploy
+  - setup
+  - triggers
 
-# Define jobs for each stage.
-build:
-  stage: build
+generate-config:
+  stage: setup
   script:
-  - cd tyre-runner-webapp
-  - npm install
-  - npm run build
+    - ./write-config.rb
+    - git status
+    - cat .node-gitlab-ci.yml
   artifacts:
     paths:
-      - tyre-runner-webapp/public
-  # only:
-  #   - main
+      - .node-gitlab-ci.yml
+
+  triggers-node-build:
+    stage: triggers
+    trigger:
+      - artifact: .linux-gitlab-ci.yml
+        job: generate-config
+
