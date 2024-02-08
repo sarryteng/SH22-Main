@@ -4,6 +4,7 @@ stages:
 
 generate-config:
   stage: setup
+  image: ruby:2.7.2
   script:
     - ruby write-config.rb
     - git status
