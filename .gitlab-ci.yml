@@ -16,7 +16,9 @@ generate-config:
 
 triggers-node-build:
   stage: build
-  trigger:
-    include:
-    - artifact: .node-gitlab-ci.yml
-      job: generate-config
+  script:
+    - ls
+  # trigger:
+  #   include:
+  #   - artifact: .node-gitlab-ci.yml
+  #     job: generate-config
