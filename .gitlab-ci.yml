@@ -1,5 +1,5 @@
-stages:
-  - setup
+stages: 
+  - setup 
   - triggers
 
 generate-config:
@@ -17,6 +17,5 @@ triggers-node-build:
   stage: triggers
   trigger:
     include:
-      - artifact: .node-gitlab-ci.yml
-        job: generate-config
-
+    - artifact: .node-gitlab-ci.yml
+      job: generate-config
