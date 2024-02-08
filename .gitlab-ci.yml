@@ -5,7 +5,7 @@ stages:
 generate-config:
   stage: setup
   script:
-    - sudo ./write-config.rb
+    - chmod +x write-config.rb && ./write-config.rb
     - git status
     - cat .node-gitlab-ci.yml
   artifacts:
