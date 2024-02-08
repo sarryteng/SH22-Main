@@ -2,9 +2,8 @@
 
 node_build = <<~YML
     image: node:lts 
-
     build:
-        stages: build
+        stage: build
         script:
             - cd tyre-runner-webapp
             - npm install
