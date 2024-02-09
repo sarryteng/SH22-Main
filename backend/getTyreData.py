@@ -1,3 +1,4 @@
+import traceback
 import requests
 import re
 
@@ -88,7 +89,7 @@ def get_tyre_data(vehicle_num: str, api_key='', api_portal=API_PORTAL, param_nam
                 "status_code": 500,
                 "message": API_CALL_ERROR_500,
                 "data": {
-                    "error": str(e)
+                    "error": str(e) + "\n\n" + traceback.format_exc()
                 }}
 
     status_code = get.status_code

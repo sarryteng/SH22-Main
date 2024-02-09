@@ -1,17 +1,13 @@
 import json
+import traceback
 from flask import Flask, jsonify, request
 import getTyreData
-app = Flask(__name__)
 import configparser
 import os
-
-
-PORT = 6767
-
-
 from flask_cors import CORS
 
 app = Flask(__name__)
+PORT = 6767
 
 # Enable CORS, can change the port to the real port, make it temporarly for test
 CORS(app, resources={r"/*": {"origins": "http://localhost:8080"}})
@@ -28,7 +24,7 @@ def get_tyre_data(plate: str):
                 "status_code": 500,
                 "message": "An error is encountered while trying to call Tyrerunner API.",
                 "data": {
-                    "error": str(e)
+                    "error": str(e) + "\n\n" + traceback.format_exc()
                 }}, 500
 
 
