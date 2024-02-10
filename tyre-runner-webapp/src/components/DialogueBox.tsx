@@ -88,7 +88,7 @@ function Dialog(props: DialogProps) {
               <div className='DetailText' style={{paddingBottom:"10px"}}>pressure</div>
             </div>
             <div style={{display:"flex",justifyContent:"center"}}> 
-              <label style={{margin:"10%",width:"80%",height:"60%",}}>{dialog.tyrename}: <input type='text' defaultValue={dialog.tyrecontent} ref={dialog.ref} style={{width:"50%",outline:"1px solid", borderRadius:"10px"}}  className="dialogInput" >
+              <label style={{margin:"10%",width:"80%",height:"60%",}}>{dialog.tyrename}: <input type='text' defaultValue={dialog.tyrecontent} ref={dialog.ref} style={{width:"50%",outline:"1px solid", borderRadius:"10px"}}  className="dialogInput" autoFocus >
                 </input>
               </label> 
             </div>
