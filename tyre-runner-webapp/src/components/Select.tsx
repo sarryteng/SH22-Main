@@ -41,6 +41,7 @@ function Select () {
     const [isclickedlb, setIsClickedlb] = useState(false);
     const [isclickedrb, setIsClickedrb] = useState(false);
     const [state, dispatch] = useReducer(tyreReducer, initialTyreState);
+    
 
     useEffect(() => {
 
@@ -58,7 +59,56 @@ function Select () {
         // }
         // fetchdata();
           }, [state.plateNumber]);
+
+    const [isDialogOpen, setDialogOpen] = useState(false); // show dialog or not 
+    const [tyreIndex,setTyreIndex]=useState(0)
+    function tyreClick(tyreIndex:number){
+                setDialogOpen(!isDialogOpen)
+                setTyreIndex(tyreIndex)
+            console.log("clicked tyre",tyreIndex)
+    }
+
+    /* ---  Wheel positions --- */
+    const wheelPositions = [
+        { top: "32%", left: "31.7%", alt: "wheellt", isClicked: isclickedlt },
+        { top: "32%", left: "68.2%", alt: "wheelrt", isClicked: isclickedrt },
+        { top: "63%", left: "31.7%", alt: "wheellb", isClicked: isclickedlb },
+        { top: "63%", left: "68.2%", alt: "wheelrb", isClicked: isclickedrb }
+      ];
+
+    const wheels = wheelPositions.map((position, index) => (
+    <img
+        key={index}
+        src={wheel.src}
+        className={position.isClicked ? 'clicked' : 'unclick'}
+        style={{ top: position.top, left: position.left }}
+        alt={position.alt}
+    />
+      ));
     
+
+
+    /* ---  Wheel Button positions --- */
+    const wheelbuttonPositions = [
+    { top: "32%", left: "31.7%", label: "tl", index: 1 },
+    { top: "32%", left: "68.2%", label: "tr", index: 2 },
+    { top: "63%", left: "31.7%", label: "bl", index: 3 },
+    { top: "63%", left: "68.2%", label: "br", index: 4 }
+    ];
+      
+
+    const wheelButtons = wheelbuttonPositions.map((position) => (
+        <button
+          key={position.index}
+          className="WheelButtonSelect"
+          style={{ top: position.top, left: position.left }}
+          onClick={() => tyreClick(position.index)}
+        >
+          {position.label}
+        </button>
+    ));
+
+    /* ---  event handlers --- */
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedValue(event.target.value);
     };
@@ -82,26 +132,11 @@ function Select () {
         //     );
         // }
         
-        navigate(`/view?size=${selectedSizeValue}&
-                load=${selectedValue}&
-                mno=${mno}&
-                pno=${state.plateNumber}&
-                clt=${state.leftFrontTyre}&
-                crt=${state.rightFrontTyre}&
-                clb=${state.leftBackTyre}&
-                crb=${state.rightBackTyre}&
-                rf=${rf}&
-                rr=${rr}`)
+        const url = `/view?size=${selectedSizeValue}&load=${selectedValue}&mno=${mno}&pno=${state.plateNumber}&clt=${state.leftFrontTyre}&crt=${state.rightFrontTyre}&clb=${state.leftBackTyre}&crb=${state.rightBackTyre}&rf=${rf}&rr=${rr}`;
+
+        navigate(url);
+
     };
-
-
-    const [isDialogOpen, setDialogOpen] = useState(false); // show dialog or not 
-    const [tyreIndex,setTyreIndex]=useState(0)
-    function tyreClick(tyreIndex:number){
-                setDialogOpen(!isDialogOpen)
-                setTyreIndex(tyreIndex)
-            console.log("clicked tyre",tyreIndex)
-    }
 
     return (
         <div className="Select">
@@ -109,22 +144,10 @@ function Select () {
                 <div className='text'>Select your preference</div>
                 
                 <img src={carNowheel.src} style={{ width: '40%', marginTop:"50px", zIndex:"2"}} alt="car" />
-                <img src={wheel.src} className={isclickedlt ? 'clicked':'unclick'} style={{top:"32%", left:"31.7%"}}alt="wheellt"></img>
-                <img src={wheel.src} className={isclickedrt? 'clicked':'unclick'} style={{top:"32%", left:"68.2%"}}alt="wheelrt"></img>
-                <img src={wheel.src} className={isclickedlb?'clicked':'unclick'} style={{top:"63%", left:"31.7%"}}alt="wheellb"></img>
-                <img src={wheel.src} className={isclickedrb?'clicked':'unclick'} style={{top:"63%", left:"68.2%"}}alt="wheelrb"></img>
-                <button className="WheelButtonSelect" style={{top:"32%", left:"31.7%"}}onClick={() => tyreClick(1)}>
-                tl
-                </button>
-                <button className="WheelButtonSelect" style={{top:"32%", left:"68.2%"}}onClick={() => tyreClick(2)}>
-                    tr
-                </button>
-                <button className="WheelButtonSelect" style={{top:"63%", left:"31.7%"}}onClick={() => tyreClick(3)}>
-                    bl
-                </button>
-                <button className="WheelButtonSelect" style={{top:"63%", left:"68.2%"}}onClick={() => tyreClick(4)}>
-                    br
-                </button>
+                
+                {wheels}
+
+                {wheelButtons}
 
                 {isDialogOpen && (
                 <Dialog isOpen={isDialogOpen} setIsOpen={setDialogOpen} tyreIndex={tyreIndex} setTyreIndex={setTyreIndex} state={state} dispatch={dispatch}/>

@@ -74,7 +74,7 @@ function Dialog(props: DialogProps) {
 
           <form style={{display: "flex", flexDirection: "column", justifyContent: "center"  }}>
             <div className='CarDetailHead'>
-              <div className='DetailText' style={{paddingBottom:"10px"}}>pressure</div>
+              <div className='DetailText' style={{paddingBottom:"10px"}}>Pressure</div>
             </div>
             <div style={{display:"flex",justifyContent:"center"}}> 
               <label style={{margin:"10%",width:"80%",height:"60%",}}>{dialog.tyrename}: <input type='text' defaultValue={dialog.tyrecontent} ref={dialog.ref} style={{width:"50%",outline:"1px solid", borderRadius:"10px"}}  className="dialogInput" >

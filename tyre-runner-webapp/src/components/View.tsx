@@ -51,63 +51,48 @@ const View =()=> {
           toggleModal();
         }
         useEffect(() => {
-            // const getQueryParams = () => {
-            //   const queryParams = new URLSearchParams(window.location.search);
-            //   const cltParam = queryParams.get('clt')||'';
-            //   const crtParam = queryParams.get('crt')||'';
-            //   const clbParam = queryParams.get('clb')||'';
-            //   const crbParam = queryParams.get('crb')||'';
-            //   const rfParam = queryParams.get('rf')||'';
-            //   const rrParam = queryParams.get('rr')||'';
-            //   const pnoParam = queryParams.get('pno')||'';
+            const getQueryParams = () => {
+              const queryParams = new URLSearchParams(window.location.search);
+              const cltParam = queryParams.get('clt')||'';
+              const crtParam = queryParams.get('crt')||'';
+              const clbParam = queryParams.get('clb')||'';
+              const crbParam = queryParams.get('crb')||'';
+              const rfParam = queryParams.get('rf')||'';
+              const rrParam = queryParams.get('rr')||'';
+              const pnoParam = queryParams.get('pno')||'';
               
-            //   setclt(cltParam);
-            //   setcrt(crtParam);
-            //   setclb(clbParam);
-            //   setcrb(crbParam);
-            //   setrf(rfParam);
-            //   setrr(rrParam);
-            //   setpno(pnoParam);
-              
-            // };
-            // getQueryParams();
-
-              async function yourFunction() {
-                if (clt > rf) {
-                  setTextlt('Higher than recommended');
-                } else if (clt < rf) {
-                  setTextlt('Lower than recommended');
+            setclt(cltParam);
+            setcrt(crtParam);
+            setclb(clbParam);
+            setcrb(crbParam);
+            setrf(rfParam);
+            setrr(rrParam);
+            setpno(pnoParam);
+            
+            };
+            getQueryParams();
+            
+            const updateRecommendState = async () => {
+              const checkValue = (value: string, recommendedValue: string) => {
+                if (parseInt(value, 10) > parseInt(recommendedValue, 10)) {
+                  return 'Higher than recommended';
+                } else if (parseInt(value, 10) < parseInt(recommendedValue, 10)) {
+                  return 'Lower than recommended';
                 } else {
-                  setTextlt('');
-                }
-              
-                if (crt > rf) {
-                  setTextrt('Higher than recommended');
-                } else if (crt < rf) {
-                  setTextrt('Lower than recommended');
-                } else {
-                  setTextrt('');
-                }
-              
-                if (clb > rr) {
-                  setTextlb('Higher than recommended');
-                } else if (clb < rr) {
-                  setTextlb('Lower than recommended');
-                } else {
-                  setTextlb('');
-                }
-              
-                if (crb > rr) {
-                  setTextrb('Higher than recommended');
-                } else if (crb < rr) {
-                  setTextrb('Lower than recommended');
-                } else {
-                  setTextrb('');
+                  return '';
                 }
               }
-              
-              yourFunction();
+                setTextlt(await checkValue(clt, rf));
+                setTextrt(await checkValue(crt, rf));
+                setTextlb(await checkValue(clb, rr));
+                setTextrb(await checkValue(crb, rr));
+            }
+            
+            updateRecommendState();
+            
           }, [clt, crt, clb, crb, rf, rr]);
+
+
           const showtyreLT = (event: React.MouseEvent<HTMLButtonElement>) => {
             setIsClickedlt((prevIsClicked) => !prevIsClicked);
             setName('Front-Left');
