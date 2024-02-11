@@ -32,8 +32,12 @@ function Dialog(props: DialogProps) {
   ];
 
   useEffect(() => {
-    console.log("tyre index", tyreIndex)
-  }, []);
+    dialogs[0].tyrecontent = state.leftFrontTyre;
+    dialogs[1].tyrecontent = state.rightFrontTyre;
+    dialogs[2].tyrecontent = state.leftBackTyre;
+    dialogs[3].tyrecontent = state.rightBackTyre;
+    console.log("tyre index", tyreIndex);
+  }, [state]);
 
   const handleButtonClick = (value: string) => {
     if (value === 'cancel') {
@@ -43,19 +47,19 @@ function Dialog(props: DialogProps) {
     else if (value === 'confirm') {
       if (inputRefTyre1.current) {
         console.log('Tyre1:', inputRefTyre1.current.value);
-        dispatch({type:'updateTyreState', leftFrontTyre:inputRefTyre1.current.value})
+        dispatch({type:'updateLeftFrontTyre', payload: inputRefTyre1.current.value})
       }
       if (inputRefTyre2.current) {
         console.log('Tyre2:', inputRefTyre2.current.value);
-        dispatch({type:'updateTyreState', rightFrontTyre:inputRefTyre2.current.value})
+        dispatch({type:'updateRightFrontTyre', payload:inputRefTyre2.current.value})
       }
       if (inputRefTyre3.current) {
         console.log('Tyre3:', inputRefTyre3.current.value);
-        dispatch({type:'updateTyreState', leftBackTyre:inputRefTyre3.current.value})
+        dispatch({type:'updateLeftBackTyre', payload:inputRefTyre3.current.value})
       }
       if (inputRefTyre4.current) {
         console.log('Tyre4:', inputRefTyre4.current.value);
-        dispatch({type:'updateTyreState', rightBackTyre:inputRefTyre4.current.value})
+        dispatch({type:'updateRightBackTyre', payload:inputRefTyre4.current.value})
       }
       console.log('Confirmed');
       DialogClose();

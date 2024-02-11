@@ -36,13 +36,28 @@ export const tyreReducer = (state : any, action : any) => {
                 rightBackTyre: readArray[3],
             };
         
-        case 'updateTyreState':
+        case 'updateLeftFrontTyre':
             return {
-                plateNumber: action.plateNumber,
-                leftFrontTyre: action.leftFrontTyre,
-                rightFrontTyre: action.rightFrontTyre,
-                leftBackTyre: action.leftBackTyre,
-                rightBackTyre: action.rightBackTyre,
+                ...state,
+                leftFrontTyre: action.payload
+            };
+        
+        case 'updateRightFrontTyre':
+            return {
+                ...state,
+                rightFrontTyre: action.payload
+            };
+        
+        case 'updateLeftBackTyre':
+            return {
+                ...state,
+                leftBackTyre: action.payload
+            };
+        
+        case 'updateRightBackTyre':
+            return {
+                ...state,
+                rightBackTyre: action.payload
             };
 
         default:
