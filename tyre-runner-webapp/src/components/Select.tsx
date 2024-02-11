@@ -70,8 +70,8 @@ function Select () {
 
     /* ---  Wheel positions --- */
     const wheelPositions = [
-        { top: "32%", left: "31.7%", alt: "wheellt", isClicked: isclickedlt },
-        { top: "32%", left: "68.2%", alt: "wheelrt", isClicked: isclickedrt },
+        { top: "31.5%", left: "31.7%", alt: "wheellt", isClicked: isclickedlt },
+        { top: "31.5%", left: "68.2%", alt: "wheelrt", isClicked: isclickedrt },
         { top: "63%", left: "31.7%", alt: "wheellb", isClicked: isclickedlb },
         { top: "63%", left: "68.2%", alt: "wheelrb", isClicked: isclickedrb }
       ];
@@ -90,8 +90,8 @@ function Select () {
 
     /* ---  Wheel Button positions --- */
     const wheelbuttonPositions = [
-    { top: "32%", left: "31.7%", label: "tl", index: 1 },
-    { top: "32%", left: "68.2%", label: "tr", index: 2 },
+    { top: "31.5%", left: "31.7%", label: "tl", index: 1 },
+    { top: "31.5%", left: "68.2%", label: "tr", index: 2 },
     { top: "63%", left: "31.7%", label: "bl", index: 3 },
     { top: "63%", left: "68.2%", label: "br", index: 4 }
     ];

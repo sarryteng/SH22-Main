@@ -22,8 +22,6 @@ function Dialog(props: DialogProps) {
   const inputRefTyre3 = useRef<HTMLInputElement | null>(null);
   const inputRefTyre4 = useRef<HTMLInputElement | null>(null);
 
-  setIsOpen(props.isOpen)
-
   const dialogs = [
     { tyrename: "tyre left-front", tyrecontent: state.leftFrontTyre, position: { top: '20%', left: '3%' } ,ref:inputRefTyre1},
     { tyrename: "tyre right-front", tyrecontent: state.rightFrontTyre, position: { top: '20%', left: '52%' }, ref:inputRefTyre2},
@@ -32,11 +30,7 @@ function Dialog(props: DialogProps) {
   ];
 
   useEffect(() => {
-    dialogs[0].tyrecontent = state.leftFrontTyre;
-    dialogs[1].tyrecontent = state.rightFrontTyre;
-    dialogs[2].tyrecontent = state.leftRearTyre;
-    dialogs[3].tyrecontent = state.rightRearTyre;
-    // console.log("tyre index", tyreIndex);
+    console.log("tyre index", tyreIndex);
   }, [state]);
 
   const handleButtonClick = (value: string) => {
