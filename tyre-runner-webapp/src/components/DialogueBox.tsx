@@ -1,4 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { getSensorReadings, getPlateReadings } from '../services/getPressurePlate';
+
+
+
 
 interface DialogProps {
   isOpen: boolean;
@@ -20,18 +24,19 @@ function Dialog(props: DialogProps) {
   const isOpen = props.isOpen;
   const setIsOpen = props.setIsOpen;
   const setTyreIndex=props.setTyreIndex;
-  const tyre1=props.tyre1;
-  const tyre2=props.tyre2;
-  const tyre3=props.tyre3;
-  const tyre4=props.tyre4;
-  const setTyre1=props.setTyre1;
-  const setTyre2=props.setTyre2;
-  const setTyre3=props.setTyre3;
-  const setTyre4=props.setTyre4;
+  setIsOpen(props.isOpen)
   const inputRefTyre1 = useRef<HTMLInputElement | null>(null);
   const inputRefTyre2 = useRef<HTMLInputElement | null>(null);
   const inputRefTyre3 = useRef<HTMLInputElement | null>(null);
   const inputRefTyre4 = useRef<HTMLInputElement | null>(null);
+  const [generatedUrl, setGeneratedUrl] = useState('');
+  const [sensorReadings, setSensorReadings] = useState('');
+  const [plateReadings, setPlateReadings] = useState('');
+
+  const [tyre1, setTyre1] = useState('');
+  const [tyre2, setTyre2] = useState('');
+  const [tyre3, setTyre3] = useState('');
+  const [tyre4, setTyre4] = useState('');
 
   setIsOpen(props.isOpen)
 
@@ -44,6 +49,36 @@ function Dialog(props: DialogProps) {
 
   useEffect(() => {
     console.log("tyre index", tyreIndex)
+    const fetchGeneratedUrl = async () => {
+
+      try {
+        const response = await fetch('http://localhost:8000/get-data');
+        const data = await response.json();
+        setGeneratedUrl(data.url);
+        console.log("fetched url:" + data.url)
+        const sensorData = await getSensorReadings(data.url);
+        const plateData = await getPlateReadings(data.url);
+
+        setSensorReadings(sensorData || '');
+        setPlateReadings(plateData || '');
+        console.log("the plateReadings is ", plateReadings);
+        console.log("the sensorReadings is ", sensorData);
+        const readingsArray = sensorData?.split(',') || [];
+        setTyre1(readingsArray[0] || '');
+        setTyre2(readingsArray[1] || '');
+        setTyre3(readingsArray[2] || '');
+        setTyre4(readingsArray[3] || '');
+
+
+
+
+      } catch (error) {
+        console.error('Error fetching generated URL:', error);
+      }
+    };
+
+
+    fetchGeneratedUrl();
   }, []);
 
   const handleButtonClick = (value: string) => {
