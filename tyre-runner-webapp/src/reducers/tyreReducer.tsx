@@ -3,16 +3,16 @@ interface TyreState {
     plateNumber: string;
     leftFrontTyre: string;
     rightFrontTyre: string;
-    leftBackTyre: string;
-    rightBackTyre: string;
+    leftRearTyre: string;
+    rightRearTyre: string;
 }
 
 export const initialTyreState : TyreState = {
     plateNumber: '',
     leftFrontTyre: '',
     rightFrontTyre: '',
-    leftBackTyre: '',
-    rightBackTyre: '',
+    leftRearTyre: '',
+    rightRearTyre: '',
 }
 
 export const tyreReducer = (state : any, action : any) => {
@@ -32,8 +32,8 @@ export const tyreReducer = (state : any, action : any) => {
                 plateNumber: pnoParam,
                 leftFrontTyre: readArray[0],
                 rightFrontTyre: readArray[1],
-                leftBackTyre: readArray[2],
-                rightBackTyre: readArray[3],
+                leftRearTyre: readArray[2],
+                rightRearTyre: readArray[3],
             };
         
         case 'updateLeftFrontTyre':
@@ -48,16 +48,16 @@ export const tyreReducer = (state : any, action : any) => {
                 rightFrontTyre: action.payload
             };
         
-        case 'updateLeftBackTyre':
+        case 'updateleftRearTyre':
             return {
                 ...state,
-                leftBackTyre: action.payload
+                leftRearTyre: action.payload
             };
         
-        case 'updateRightBackTyre':
+        case 'updaterightRearTyre':
             return {
                 ...state,
-                rightBackTyre: action.payload
+                rightRearTyre: action.payload
             };
 
         default:

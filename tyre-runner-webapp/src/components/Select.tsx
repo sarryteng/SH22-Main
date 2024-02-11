@@ -65,7 +65,7 @@ function Select () {
     function tyreClick(tyreIndex:number){
                 setDialogOpen(!isDialogOpen)
                 setTyreIndex(tyreIndex)
-            console.log("clicked tyre",tyreIndex)
+            // console.log("clicked tyre",tyreIndex)
     }
 
     /* ---  Wheel positions --- */
@@ -125,14 +125,14 @@ function Select () {
     
     const handleSelectClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
-        console.log(state.leftBackTyre, state.rightBackTyre, state.leftFrontTyre, state.rightFrontTyre);
+        // console.log(state.leftFrontTyre, state.rightFrontTyre, state.leftRearTyre, state.rightRearTyre);
         // if(!selectedValue || !selectedSizeValue) {
         //     return(
         //         alert('Please select size and load')
         //     );
         // }
         
-        const url = `/view?size=${selectedSizeValue}&load=${selectedValue}&mno=${mno}&pno=${state.plateNumber}&clt=${state.leftFrontTyre}&crt=${state.rightFrontTyre}&clb=${state.leftBackTyre}&crb=${state.rightBackTyre}&rf=${rf}&rr=${rr}`;
+        const url = `/view?size=${selectedSizeValue}&load=${selectedValue}&mno=${mno}&pno=${state.plateNumber}&clt=${state.leftFrontTyre}&crt=${state.rightFrontTyre}&clb=${state.leftRearTyre}&crb=${state.rightRearTyre}&rf=${rf}&rr=${rr}`;
 
         navigate(url);
 

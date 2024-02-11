@@ -27,41 +27,41 @@ function Dialog(props: DialogProps) {
   const dialogs = [
     { tyrename: "tyre left-front", tyrecontent: state.leftFrontTyre, position: { top: '20%', left: '3%' } ,ref:inputRefTyre1},
     { tyrename: "tyre right-front", tyrecontent: state.rightFrontTyre, position: { top: '20%', left: '52%' }, ref:inputRefTyre2},
-    { tyrename: "tyre left-rear", tyrecontent: state.leftBackTyre, position: { top: '50%', left: '3%' } ,ref:inputRefTyre3},
-    { tyrename: "tyre right-rear", tyrecontent: state.rightBackTyre, position: { top: '50%', left: '52%' } ,ref:inputRefTyre4},
+    { tyrename: "tyre left-rear", tyrecontent: state.leftRearTyre, position: { top: '50%', left: '3%' } ,ref:inputRefTyre3},
+    { tyrename: "tyre right-rear", tyrecontent: state.rightRearTyre, position: { top: '50%', left: '52%' } ,ref:inputRefTyre4},
   ];
 
   useEffect(() => {
     dialogs[0].tyrecontent = state.leftFrontTyre;
     dialogs[1].tyrecontent = state.rightFrontTyre;
-    dialogs[2].tyrecontent = state.leftBackTyre;
-    dialogs[3].tyrecontent = state.rightBackTyre;
-    console.log("tyre index", tyreIndex);
+    dialogs[2].tyrecontent = state.leftRearTyre;
+    dialogs[3].tyrecontent = state.rightRearTyre;
+    // console.log("tyre index", tyreIndex);
   }, [state]);
 
   const handleButtonClick = (value: string) => {
     if (value === 'cancel') {
-      console.log('canceled');
+      // console.log('canceled');
       DialogClose();
     } 
     else if (value === 'confirm') {
       if (inputRefTyre1.current) {
-        console.log('Tyre1:', inputRefTyre1.current.value);
+        // console.log('Tyre1:', inputRefTyre1.current.value);
         dispatch({type:'updateLeftFrontTyre', payload: inputRefTyre1.current.value})
       }
       if (inputRefTyre2.current) {
-        console.log('Tyre2:', inputRefTyre2.current.value);
+        // console.log('Tyre2:', inputRefTyre2.current.value);
         dispatch({type:'updateRightFrontTyre', payload:inputRefTyre2.current.value})
       }
       if (inputRefTyre3.current) {
-        console.log('Tyre3:', inputRefTyre3.current.value);
-        dispatch({type:'updateLeftBackTyre', payload:inputRefTyre3.current.value})
+        // console.log('Tyre3:', inputRefTyre3.current.value);
+        dispatch({type:'updateleftRearTyre', payload:inputRefTyre3.current.value})
       }
       if (inputRefTyre4.current) {
-        console.log('Tyre4:', inputRefTyre4.current.value);
-        dispatch({type:'updateRightBackTyre', payload:inputRefTyre4.current.value})
+        // console.log('Tyre4:', inputRefTyre4.current.value);
+        dispatch({type:'updaterightRearTyre', payload:inputRefTyre4.current.value})
       }
-      console.log('Confirmed');
+      // console.log('Confirmed');
       DialogClose();
     }
   };
