@@ -1,18 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { tyreReducer } from '../reducers';
 
 interface DialogProps {
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   tyreIndex: number;
   setTyreIndex:React.Dispatch<React.SetStateAction<number>>;
-  tyre1:string;
-  setTyre1:React.Dispatch<React.SetStateAction<string>>;
-  tyre2:string;
-  setTyre2:React.Dispatch<React.SetStateAction<string>>;
-  tyre3:string;
-  setTyre3:React.Dispatch<React.SetStateAction<string>>;
-  tyre4:string;
-  setTyre4:React.Dispatch<React.SetStateAction<string>>;
+  state: any;
+  dispatch: any;
 }
 
 function Dialog(props: DialogProps) {
@@ -20,14 +15,8 @@ function Dialog(props: DialogProps) {
   const isOpen = props.isOpen;
   const setIsOpen = props.setIsOpen;
   const setTyreIndex=props.setTyreIndex;
-  const tyre1=props.tyre1;
-  const tyre2=props.tyre2;
-  const tyre3=props.tyre3;
-  const tyre4=props.tyre4;
-  const setTyre1=props.setTyre1;
-  const setTyre2=props.setTyre2;
-  const setTyre3=props.setTyre3;
-  const setTyre4=props.setTyre4;
+  const state=props.state;
+  const dispatch=props.dispatch;
   const inputRefTyre1 = useRef<HTMLInputElement | null>(null);
   const inputRefTyre2 = useRef<HTMLInputElement | null>(null);
   const inputRefTyre3 = useRef<HTMLInputElement | null>(null);
@@ -36,10 +25,10 @@ function Dialog(props: DialogProps) {
   setIsOpen(props.isOpen)
 
   const dialogs = [
-    { tyrename: "tyre left-front", tyrecontent: tyre1, position: { top: '20%', left: '3%' } ,ref:inputRefTyre1},
-    { tyrename: "tyre right-front", tyrecontent: tyre2, position: { top: '20%', left: '52%' } ,ref:inputRefTyre2},
-    { tyrename: "tyre left-rear", tyrecontent: tyre3, position: { top: '50%', left: '3%' } ,ref:inputRefTyre3},
-    { tyrename: "tyre right-rear", tyrecontent: tyre4, position: { top: '50%', left: '52%' } ,ref:inputRefTyre4},
+    { tyrename: "tyre left-front", tyrecontent: state.leftFrontTyre, position: { top: '20%', left: '3%' } ,ref:inputRefTyre1},
+    { tyrename: "tyre right-front", tyrecontent: state.rightFrontTyre, position: { top: '20%', left: '52%' }, ref:inputRefTyre2},
+    { tyrename: "tyre left-rear", tyrecontent: state.leftBackTyre, position: { top: '50%', left: '3%' } ,ref:inputRefTyre3},
+    { tyrename: "tyre right-rear", tyrecontent: state.rightBackTyre, position: { top: '50%', left: '52%' } ,ref:inputRefTyre4},
   ];
 
   useEffect(() => {
@@ -54,19 +43,19 @@ function Dialog(props: DialogProps) {
     else if (value === 'confirm') {
       if (inputRefTyre1.current) {
         console.log('Tyre1:', inputRefTyre1.current.value);
-        setTyre1(inputRefTyre1.current.value);
+        dispatch({type:'updateTyreState', leftFrontTyre:inputRefTyre1.current.value})
       }
       if (inputRefTyre2.current) {
         console.log('Tyre2:', inputRefTyre2.current.value);
-        setTyre2(inputRefTyre2.current.value);
+        dispatch({type:'updateTyreState', rightFrontTyre:inputRefTyre2.current.value})
       }
       if (inputRefTyre3.current) {
         console.log('Tyre3:', inputRefTyre3.current.value);
-        setTyre3(inputRefTyre3.current.value);
+        dispatch({type:'updateTyreState', leftBackTyre:inputRefTyre3.current.value})
       }
       if (inputRefTyre4.current) {
         console.log('Tyre4:', inputRefTyre4.current.value);
-        setTyre4(inputRefTyre4.current.value);
+        dispatch({type:'updateTyreState', rightBackTyre:inputRefTyre4.current.value})
       }
       console.log('Confirmed');
       DialogClose();
@@ -103,11 +92,6 @@ function Dialog(props: DialogProps) {
 
       ))}
     </div>
-
-
-
-
-
 
   );
 

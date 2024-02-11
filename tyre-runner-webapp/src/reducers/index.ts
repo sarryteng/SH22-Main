@@ -1,0 +1,1 @@
+export { tyreReducer } from './tyreReducer';

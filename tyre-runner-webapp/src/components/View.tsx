@@ -51,26 +51,26 @@ const View =()=> {
           toggleModal();
         }
         useEffect(() => {
-            const getQueryParams = () => {
-              const queryParams = new URLSearchParams(window.location.search);
-              const cltParam = queryParams.get('clt')||'';
-              const crtParam = queryParams.get('crt')||'';
-              const clbParam = queryParams.get('clb')||'';
-              const crbParam = queryParams.get('crb')||'';
-              const rfParam = queryParams.get('rf')||'';
-              const rrParam = queryParams.get('rr')||'';
-              const pnoParam = queryParams.get('pno')||'';
+            // const getQueryParams = () => {
+            //   const queryParams = new URLSearchParams(window.location.search);
+            //   const cltParam = queryParams.get('clt')||'';
+            //   const crtParam = queryParams.get('crt')||'';
+            //   const clbParam = queryParams.get('clb')||'';
+            //   const crbParam = queryParams.get('crb')||'';
+            //   const rfParam = queryParams.get('rf')||'';
+            //   const rrParam = queryParams.get('rr')||'';
+            //   const pnoParam = queryParams.get('pno')||'';
               
-              setclt(cltParam);
-              setcrt(crtParam);
-              setclb(clbParam);
-              setcrb(crbParam);
-              setrf(rfParam);
-              setrr(rrParam);
-              setpno(pnoParam);
+            //   setclt(cltParam);
+            //   setcrt(crtParam);
+            //   setclb(clbParam);
+            //   setcrb(crbParam);
+            //   setrf(rfParam);
+            //   setrr(rrParam);
+            //   setpno(pnoParam);
               
-            };
-            getQueryParams();
+            // };
+            // getQueryParams();
 
               async function yourFunction() {
                 if (clt > rf) {

@@ -1,12 +1,14 @@
 import car from '../assets/images/Car.svg'
 import "../assets/styles/app.css"
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useReducer } from 'react';
 import LoadRadio from './LoadRadio';
 import SizeDropDown from './SizeDropDown';
 import "@fontsource/poppins";
 import Dialog from "../components/DialogueBox";
 import wheel from '../assets/images/wheel.svg'
 import carNowheel from '../assets/images/carNowheel.svg'
+import { tyreReducer, initialTyreState } from '../reducers/tyreReducer';
+import { navigate } from 'astro:transitions/client';
 
 
 
@@ -32,46 +34,31 @@ function Select () {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
     const [selectedSizeValue, setSelectedSizeValue] = useState<string | undefined>(undefined);
     const [mno, setmno] = useState<string>('');
-    const [pno, setpno] = useState<string>('');
-    const [clt, setclt] = useState<string>('');
-    const [crt, setcrt] = useState<string>('');
-    const [clb, setclb] = useState<string>('');
-    const [crb, setcrb] = useState<string>('');
     const [rf, setrf] = useState<string>('');
     const [rr, setrr] = useState<string>('');
     const [isclickedlt, setIsClickedlt] = useState(false);
     const [isclickedrt, setIsClickedrt] = useState(false);
     const [isclickedlb, setIsClickedlb] = useState(false);
     const [isclickedrb, setIsClickedrb] = useState(false);
-    
+    const [state, dispatch] = useReducer(tyreReducer, initialTyreState);
+
     useEffect(() => {
-        const getQueryParams = () => {
-          const queryParams = new URLSearchParams(window.location.search);
-          const pnoParam = queryParams.get('licenseplate')||'';
-          const readingParam = queryParams.get('sensorreadings')||'';
-          
-          setpno(pnoParam);
-          const readArray=readingParam.split(',');
-          console.log(readArray);
-          setclt(readArray[0]);
-          setcrt(readArray[1]);
-          setclb(readArray[2]);
-          setcrb(readArray[3]);
-        };
-        getQueryParams();
-        
-        async function fetchdata() {
-            try {
-                const response = await fetch(`http://127.0.0.1:6767/tyre-data/${pno}`);
-                const result = await response.json();
-                setmno(result.data.make+' '+result.data.model);
-                console.log(result.data.make+' '+result.data.model);
-            } catch (error) {
-                console.error('Error occurred:', error);
-            }
-        }
-        fetchdata();
-          }, [pno]);
+
+        dispatch({ type: 'fetchTyreState' });
+
+        // async function fetchdata() {
+        //     try {
+        //         const response = await fetch(`http://127.0.0.1:6767/tyre-data/${pno}`);
+        //         const result = await response.json();
+        //         setmno(result.data.make+' '+result.data.model);
+        //         console.log(result.data.make+' '+result.data.model);
+        //     } catch (error) {
+        //         console.error('Error occurred:', error);
+        //     }
+        // }
+        // fetchdata();
+          }, [state.plateNumber]);
+    
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedValue(event.target.value);
     };
@@ -80,21 +67,34 @@ function Select () {
         setSelectedSizeValue(value);
         handletest();
     };
+    
     const handletest = () => {
         setrf('20');
         setrr('21');
     }
-
+    
     const handleSelectClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
-        console.log(clt, crt, clb, crb);
-        if(!selectedValue || !selectedSizeValue) {
-            return(
-                alert('Please select size and load')
-            );
-        }
-        window.location.href = `/view?size=${selectedSizeValue}&load=${selectedValue}&mno=${mno}&pno=${pno}&clt=${clt}&crt=${crt}&clb=${clb}&crb=${crb}&rf=${rf}&rr=${rr}`;
+        console.log(state.leftBackTyre, state.rightBackTyre, state.leftFrontTyre, state.rightFrontTyre);
+        // if(!selectedValue || !selectedSizeValue) {
+        //     return(
+        //         alert('Please select size and load')
+        //     );
+        // }
+        
+        navigate(`/view?size=${selectedSizeValue}&
+                load=${selectedValue}&
+                mno=${mno}&
+                pno=${state.plateNumber}&
+                clt=${state.leftFrontTyre}&
+                crt=${state.rightFrontTyre}&
+                clb=${state.leftBackTyre}&
+                crb=${state.rightBackTyre}&
+                rf=${rf}&
+                rr=${rr}`)
     };
+
+
     const [isDialogOpen, setDialogOpen] = useState(false); // show dialog or not 
     const [tyreIndex,setTyreIndex]=useState(0)
     function tyreClick(tyreIndex:number){
@@ -108,7 +108,7 @@ function Select () {
             <div className='Center'>
                 <div className='text'>Select your preference</div>
                 
-                <img src={carNowheel.src} style={{ width: '40%', marginTop:"50px", zIndex:"2"}}alt="car" />
+                <img src={carNowheel.src} style={{ width: '40%', marginTop:"50px", zIndex:"2"}} alt="car" />
                 <img src={wheel.src} className={isclickedlt ? 'clicked':'unclick'} style={{top:"32%", left:"31.7%"}}alt="wheellt"></img>
                 <img src={wheel.src} className={isclickedrt? 'clicked':'unclick'} style={{top:"32%", left:"68.2%"}}alt="wheelrt"></img>
                 <img src={wheel.src} className={isclickedlb?'clicked':'unclick'} style={{top:"63%", left:"31.7%"}}alt="wheellb"></img>
@@ -127,7 +127,7 @@ function Select () {
                 </button>
 
                 {isDialogOpen && (
-                <Dialog isOpen={isDialogOpen} setIsOpen={setDialogOpen} tyreIndex={tyreIndex} setTyreIndex={setTyreIndex} tyre1={clt} tyre2={crt} tyre3={clb} tyre4={crb} setTyre1={setclt} setTyre2={setcrt} setTyre3={setclb} setTyre4={setcrb}/>
+                <Dialog isOpen={isDialogOpen} setIsOpen={setDialogOpen} tyreIndex={tyreIndex} setTyreIndex={setTyreIndex} state={state} dispatch={dispatch}/>
                 )}
                 
                 <SizeDropDown onSelect={handleSelect}/>

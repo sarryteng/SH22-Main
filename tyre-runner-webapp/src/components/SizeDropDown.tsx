@@ -22,47 +22,43 @@ function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void
     const [pno, setpno] = useState<string>('');
 
     
-  useEffect(() => {
-    const getQueryParams = () => {
-      const queryParams = new URLSearchParams(window.location.search);
-      const pnoParam = queryParams.get('licenseplate')||'';
+  // useEffect(() => {
+  //   const getQueryParams = () => {
+  //     const queryParams = new URLSearchParams(window.location.search);
+  //     const pnoParam = queryParams.get('licenseplate')||'';
       
-      setpno(pnoParam);
-    };
-    getQueryParams();
-    const fetchData = async () => {
-      try {
-        console.log('start requesting....'); 
-        const response = await fetch(`http://127.0.0.1:6767/tyre-data/${pno}`);
-        const result = await response.json();
-        console.log(result.data);
-        const tyreOptionsWithPressure = result.tyreOptionsWithPressure;
+  //     setpno(pnoParam);
+  //   };
+  //   getQueryParams();
+  //   const fetchData = async () => {
+  //     try {
+  //       console.log('start requesting....'); 
+  //       const response = await fetch(`http://127.0.0.1:6767/tyre-data/${pno}`);
+  //       const result = await response.json();
+  //       console.log(result.data);
+  //       const tyreOptionsWithPressure = result.tyreOptionsWithPressure;
 
   
-        let currentId = 1;
-        tyreOptionsWithPressure.forEach((tyreOption: { ratio: any; rim: any; width:any;}) => {
-            const ratio = JSON.stringify(tyreOption.ratio);
-            const rim = JSON.stringify(tyreOption.rim);
-            const width=JSON.stringify(tyreOption.width);
+  //       let currentId = 1;
+  //       tyreOptionsWithPressure.forEach((tyreOption: { ratio: any; rim: any; width:any;}) => {
+  //           const ratio = JSON.stringify(tyreOption.ratio);
+  //           const rim = JSON.stringify(tyreOption.rim);
+  //           const width=JSON.stringify(tyreOption.width);
             
-            const newElement = { id: currentId++, rim: rim, ratio: ratio, width:width };
-            tyreSize.push(newElement)
+  //           const newElement = { id: currentId++, rim: rim, ratio: ratio, width:width };
+  //           tyreSize.push(newElement)
           
-          });
-          console.log("tyreSize is",tyreSize);
-        setData(result);
-      } catch (error) {
-        console.error('request error:', error);
-      }
-    };
+  //         });
+  //         console.log("tyreSize is",tyreSize);
+  //       setData(result);
+  //     } catch (error) {
+  //       console.error('request error:', error);
+  //     }
+  //   };
             
-    fetchData();
-  }, [pno]); 
+  //   fetchData();
+  // }, [pno]); 
 
-
-
-  
-    
     const [value, setValue] = useState<string | undefined>(undefined);
 
     const handleSelectChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -87,7 +83,6 @@ function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void
             </select>
         </div>
     );
-
 }
 
 export default SizeDropDown;
