@@ -1,8 +1,8 @@
 // import QRcode from "./QRCodeBox/test.tsx";
-import BlackBox from "../components/QRCodeBox/box.tsx";
+import BlackBox from "./QRCodeBox/box.tsx";
 import "../assets/styles/app.css";
 import logo from '../assets/Images/logo_transparent.png'
-import Contact from "../components/contact.tsx";
+import Contact from "./contact.tsx";
 import { useEffect } from 'react';
 
 
