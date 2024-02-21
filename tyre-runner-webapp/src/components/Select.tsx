@@ -43,7 +43,8 @@ function Select () {
     const [isclickedrt, setIsClickedrt] = useState(false);
     const [isclickedlb, setIsClickedlb] = useState(false);
     const [isclickedrb, setIsClickedrb] = useState(false);
-    
+    const [ladenExist, setLadenExist] = useState<boolean>(true);
+    const [dataresult, setDataResult] = useState<any>(null);
     useEffect(() => {
         const getQueryParams = () => {
           const queryParams = new URLSearchParams(window.location.search);
@@ -52,7 +53,7 @@ function Select () {
           
           setpno(pnoParam);
           const readArray=readingParam.split(',');
-          console.log(readArray);
+        //   console.log(readArray);
           setclt(readArray[0]);
           setcrt(readArray[1]);
           setclb(readArray[2]);
@@ -64,8 +65,10 @@ function Select () {
             try {
                 const response = await fetch(`http://127.0.0.1:6767/tyre-data/${pno}`);
                 const result = await response.json();
+                // setResult(await response.json());
+                setDataResult(result.data);
                 setmno(result.data.make+' '+result.data.model);
-                console.log(result.data.make+' '+result.data.model);
+                // console.log(result.data.make+' '+result.data.model);
             } catch (error) {
                 console.error('Error occurred:', error);
             }
@@ -78,12 +81,10 @@ function Select () {
     
     const handleSelect = (value: string) => {
         setSelectedSizeValue(value);
-        handletest();
+        const valueint=parseInt(value);
+        console.log(dataresult.frontTyres[valueint-1]);
+        setLadenExist(dataresult.frontTyres[valueint-1].ladenOption);
     };
-    const handletest = () => {
-        setrf('20');
-        setrr('21');
-    }
 
     const handleSelectClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
@@ -93,7 +94,19 @@ function Select () {
                 alert('Please select size and load')
             );
         }
-        window.location.href = `/view?size=${selectedSizeValue}&load=${selectedValue}&mno=${mno}&pno=${pno}&clt=${clt}&crt=${crt}&clb=${clb}&crb=${crb}&rf=${rf}&rr=${rr}`;
+        if(!ladenExist && selectedValue === 'heavy'){
+            return(
+                alert('Heavy load does not exist for this size')
+            );
+        }
+            let rf=dataresult.frontTyres[parseInt(selectedSizeValue)-1].normalPSI;
+            let rr=dataresult.rearTyres[parseInt(selectedSizeValue)-1].normalPSI;
+        if(selectedValue==='heavy'){
+            rf=dataresult.frontTyres[parseInt(selectedSizeValue)-1].ladenPSI;
+            rr=dataresult.rearTyres[parseInt(selectedSizeValue)-1].ladenPSI;
+        }
+        const tyre=dataresult.frontTyres[parseInt(selectedSizeValue)-1].markings;
+        window.location.href = `/view?size=${tyre}&load=${selectedValue}&mno=${mno}&pno=${pno}&clt=${clt}&crt=${crt}&clb=${clb}&crb=${crb}&rf=${rf}&rr=${rr}`;
     };
     const [isDialogOpen, setDialogOpen] = useState(false); // show dialog or not 
     const [tyreIndex,setTyreIndex]=useState(0)
@@ -131,7 +144,7 @@ function Select () {
                 )}
                 
                 <SizeDropDown onSelect={handleSelect}/>
-                <LoadRadio selectedValue={selectedValue} handleChange={handleChange}/>
+                <LoadRadio selectedValue={selectedValue} handleChange={handleChange} ladenExist={ladenExist}/>
                 <a className="button" onClick={handleSelectClick}>Select</a>
             </div>
         </div>
