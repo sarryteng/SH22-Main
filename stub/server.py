@@ -1,20 +1,22 @@
-# this file is a test server for urlgenerator
+# flask server that receives the data from the SDK and sends it to frontend
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS  # CORS needed to have all routes in app 
 
+import json
 
 app = Flask(__name__)
 CORS(app)  # enable CORS for all routes in the app 
-
 
 # list to store data
 data_list = []
 
 @app.route('/url-data', methods=['POST'])
 def handle_url_data():
-    data = request.json
-    print(f"Received data: {data}")
+
+    form = request.form
+    data = json.loads(form["json"])
+    print(f"Received JSON data: {data}")
 
     data_list.append(data)      # add data to the list
 
@@ -31,18 +33,22 @@ def getData():
     # gets the latest data 
     latest_data = data_list[0]  
     
-    registration_plate = latest_data.get('licenceplate', '')
-    sensor_readings = latest_data.get('sensorreadings', '')
+    # old:
+    # registration_plate = latest_data.get('licenceplate', '')
+    # sensor_readings = latest_data.get('sensorreadings', '')
+
+    # new:
+    registration_plate = latest_data['data']['results'][0]['plate']     # data from SDK
+    sensor_readings = '30,32,28,31'                                     # temporary dummy data as TPMS is not implemented yet
     
     # generate url
     urlGenerated = f'http://tyrerunner.com/url-data?licenceplate={registration_plate}&sensorreadings={sensor_readings}'
     
-    
     # clear data_list
-
-    # data_list.clear()
+    data_list.clear()
     
-    return jsonify({"url": urlGenerated})
+    # just for debugging purposes
+    print(f"url: {urlGenerated}")
 
 if __name__ == '__main__':
     app.run(debug=True, port=8000)

@@ -1,3 +1,6 @@
+# fake data generator for URL generation
+# ----- no longer needed as SDK is used -----
+
 import requests
 
 def send_request(url, data):
