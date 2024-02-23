@@ -1,6 +1,6 @@
 import car from '../assets/images/Car.svg'
 import "../assets/styles/app.css"
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import LoadRadio from './LoadRadio';
 import SizeDropDown from './SizeDropDown';
 import "@fontsource/poppins";
@@ -37,14 +37,15 @@ function Select () {
     const [crt, setcrt] = useState<string>('');
     const [clb, setclb] = useState<string>('');
     const [crb, setcrb] = useState<string>('');
-    const [rf, setrf] = useState<string>('');
-    const [rr, setrr] = useState<string>('');
     const [isclickedlt, setIsClickedlt] = useState(false);
     const [isclickedrt, setIsClickedrt] = useState(false);
     const [isclickedlb, setIsClickedlb] = useState(false);
     const [isclickedrb, setIsClickedrb] = useState(false);
     const [ladenExist, setLadenExist] = useState<boolean>(true);
     const [dataresult, setDataResult] = useState<any>(null);
+    const [isMobile, setIsMobile] = useState<boolean>(false);
+    let windowWidth = 0;
+
     useEffect(() => {
         const getQueryParams = () => {
           const queryParams = new URLSearchParams(window.location.search);
@@ -74,9 +75,32 @@ function Select () {
             }
         }
         fetchdata();
+        if (typeof window !== 'undefined') {
+                //   setWindowWidth(window.screen.width);
+                windowWidth = window.screen.width;
+                  setIsMobile(windowWidth < 500);
+                }
+        const handleResize = () => {
+            windowWidth = window.screen.width;
+            setIsMobile(windowWidth < 500);
+            console.log("window width",windowWidth);
+          };
+      
+          window.addEventListener('resize', handleResize);
+
+          return () => {
+            window.removeEventListener('resize', handleResize);
+
+          };
           }, [pno]);
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedValue(event.target.value);
+        if(isMobile){
+            console.log("mobile");
+        }
+        else{
+            console.log("desktop");
+        }
     };
     
     const handleSelect = (value: string) => {
@@ -118,7 +142,7 @@ function Select () {
 
     return (
         <div className="Select">
-            <div className='Center'>
+            {isMobile ?(<div className='Center'>
                 <div className='text'>Select your preference</div>
                 
                 <img src={carNowheel.src} style={{ width: '40%', marginTop:"50px", zIndex:"2"}}alt="car" />
@@ -144,9 +168,44 @@ function Select () {
                 )}
                 
                 <SizeDropDown onSelect={handleSelect}/>
-                <LoadRadio selectedValue={selectedValue} handleChange={handleChange} ladenExist={ladenExist}/>
+                <LoadRadio selectedValue={selectedValue} handleChange={handleChange} ladenExist={ladenExist} isMobile={isMobile}/>
                 <a className="button" onClick={handleSelectClick}>Select</a>
-            </div>
+            </div>):(
+                <div style={{display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
+                    {/* <div>Select your preference</div> */}
+                    <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+                        <img src={car.src} style={{ width: '40%',maxHeight:"500px", marginTop:"50px", zIndex:"2"}}alt="car" />
+                    </div> 
+                    
+                {/* <img src={wheel.src} className={isclickedlt ? 'clickeddesk':'unclickdesk'} style={{top:"32%", left:"31.7%"}}alt="wheellt"></img>
+                <img src={wheel.src} className={isclickedrt? 'clickeddesk':'unclickdesk'} style={{top:"32%", left:"68.2%"}}alt="wheelrt"></img>
+                <img src={wheel.src} className={isclickedlb?'clickeddesk':'unclickdesk'} style={{top:"63%", left:"31.7%"}}alt="wheellb"></img>
+                <img src={wheel.src} className={isclickedrb?'clickeddesk':'unclickdesk'} style={{top:"63%", left:"68.2%"}}alt="wheelrb"></img>
+                <button className="WheelButtonSelect" style={{top:"32%", left:"31.7%"}}onClick={() => tyreClick(1)}>
+                tl
+                </button>
+                <button className="WheelButtonSelect" style={{top:"32%", left:"68.2%"}}onClick={() => tyreClick(2)}>
+                    tr
+                </button>
+                <button className="WheelButtonSelect" style={{top:"63%", left:"31.7%"}}onClick={() => tyreClick(3)}>
+                    bl
+                </button>
+                <button className="WheelButtonSelect" style={{top:"63%", left:"68.2%"}}onClick={() => tyreClick(4)}>
+                    br
+                </button>
+
+                {isDialogOpen && (
+                <Dialog isOpen={isDialogOpen} setIsOpen={setDialogOpen} tyreIndex={tyreIndex} setTyreIndex={setTyreIndex} tyre1={clt} tyre2={crt} tyre3={clb} tyre4={crb} setTyre1={setclt} setTyre2={setcrt} setTyre3={setclb} setTyre4={setcrb}/>
+                )} */}
+                <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}><SizeDropDown onSelect={handleSelect}/>
+                <LoadRadio selectedValue={selectedValue} handleChange={handleChange} ladenExist={ladenExist} isMobile={isMobile}/>
+                <a className="button" onClick={handleSelectClick}>Select</a></div>
+                
+                </div>
+                
+                
+                
+            )}
         </div>
     )
 }

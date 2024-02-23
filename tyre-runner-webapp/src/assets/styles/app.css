@@ -364,3 +364,28 @@ body{
     opacity: 0.2;
     background-color: #000;
  }
+
+
+ /* @media (min-width: 500px) {
+ .endpage{
+    position: relative;
+    width: 100%;
+ }
+} */
+
+.BackButtonpc{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 60%;
+    left: 78%;
+    width: 25%;
+    height: 10%;
+    border-radius: 30px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    background-color: #F5F5F5;
+ }
+
+ .BackButtonpc:hover{
+    background-color: #e2e2e2;
+ }
+ 
