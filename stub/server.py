@@ -16,9 +16,18 @@ def handle_url_data():
 
     form = request.form
     data = json.loads(form["json"])
-    print(f"Received JSON data: {data}")
 
-    data_list.append(data)      # add data to the list
+    # ------------- when standby page is ready -------------
+    if data['hook']['event'] == 'recognition':
+        data_list.append(data)      # add data to the list
+        print("Vehicle detected (entered)")
+
+    if data['hook']['event'] == 'dwell_time':        # means vehicle left
+        data_list.clear()       # clear the list to signify to frontend so that standby page will be shown
+        print("Vehicle left")
+
+    # just to make sure data was received from SDK --- uncomment if needed
+    # print(f"Received JSON data: {data}")
 
     return jsonify({"message": "Data received successfully"})
 
@@ -43,9 +52,6 @@ def getData():
     
     # generate url
     urlGenerated = f'http://tyrerunner.com/url-data?licenceplate={registration_plate}&sensorreadings={sensor_readings}'
-    
-    # clear data_list
-    data_list.clear()
     
     # just for debugging purposes
     print(f"url: {urlGenerated}")
