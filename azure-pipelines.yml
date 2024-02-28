@@ -1,22 +1,58 @@
-# Node.js
-# Build a general Node.js project with npm.
-# Add steps that analyze code, save build artifacts, deploy, and more:
-# https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
-
 trigger:
 - main
 
-pool:
-  vmImage: ubuntu-latest
+pr:
+  branches:
+    include:
+    - main
 
-steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: '10.x'
-  displayName: 'Install Node.js'
+jobs:
+- job: BuildApp
+  displayName: 'Build Application'
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: '20.x'
+    displayName: 'Install Node.js'
 
-- script: |
-    cd tyre-runner-web-app
-    npm install
-    npm run build
-  displayName: 'npm install and build'
+  - script: |
+      cd tyre-runner-webapp
+      npm ci
+      npm run build
+    displayName: 'Install and Build App'
+
+  - task: CopyFiles@2
+    inputs:
+      sourceFolder: '$(Build.SourcesDirectory)/tyre-runner-webapp/' 
+      targetFolder: '$(Build.ArtifactStagingDirectory)' 
+    displayName: 'Copy build output'
+
+  - task: ArchiveFiles@2
+    inputs:
+      rootFolderOrFile: '$(Build.ArtifactStagingDirectory)' 
+      includeRootFolder: false
+      archiveType: 'zip'
+      archiveFile: '$(Build.ArtifactStagingDirectory)/astro-app-artifact.zip'
+      replaceExistingArchive: true 
+
+  - task: PublishPipelineArtifact@1
+    inputs:
+      artifactName: 'astro-app-artifact'
+      targetPath: '$(Build.ArtifactStagingDirectory)/astro-app-artifact.zip'
+
+- job: DeployToWebApp
+  displayName: 'Deploy to Web App'
+  condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
+  dependsOn: BuildApp
+  steps:
+  - task: DownloadPipelineArtifact@2
+    inputs:
+      artifactName: 'astro-app-artifact'
+      targetPath: '$(Pipeline.Workspace)'
+
+  - task: AzureWebApp@1
+    inputs:
+      azureSubscription: 'Test'
+      appType: 'webAppLinux'
+      appName: 'Test9797797'
+      package: '$(Pipeline.Workspace)/astro-app-artifact.zip'
