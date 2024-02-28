@@ -54,5 +54,5 @@ jobs:
     inputs:
       azureSubscription: 'Test'
       appType: 'webAppLinux'
-      appName: 'Test9797797'
+      appName: 'Tyre-runner-web-app'
       package: '$(Pipeline.Workspace)/astro-app-artifact.zip'
