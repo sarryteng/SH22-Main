@@ -1,6 +1,7 @@
 stages: 
   - setup 
   - triggers
+  - test
 
 generate-config:
   stage: setup
@@ -19,3 +20,17 @@ triggers-node-build:
     include:
     - artifact: .node-gitlab-ci.yml
       job: generate-config
+
+backend-python-unit-test:
+  stage: test
+  image: python:latest
+  script:
+    - pip install pytest pytest-cov
+    - python -m pytest --junitxml=CICD/report.xml --cov=backend
+  artifacts:
+    when: always
+    reports:
+      junit: CICD/report.xml
+    expire_in: 30 days
+
+
