@@ -30,7 +30,7 @@ backend-python-unit-test:
     - python -m coverage xml -o CICD/report.xml 
 
   artifacts:
-    when: always
+    when: on_success
     reports:
       coverage_report:
         coverage_format: cobertura
