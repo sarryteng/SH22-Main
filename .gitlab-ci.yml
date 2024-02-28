@@ -32,7 +32,9 @@ backend-python-unit-test:
   artifacts:
     when: always
     reports:
-      cobertura: CICD/report.xml
+      coverage_report:
+        coverage_format: cobertura
+        path: CICD/report.xml
     expire_in: 30 days
 
 
