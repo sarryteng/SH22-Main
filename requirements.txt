@@ -1,0 +1,9 @@
+### Requirements for backend server
+
+### Without version
+Flask
+requests
+
+
+### For testing
+coverage
