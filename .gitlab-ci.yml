@@ -18,6 +18,7 @@ backend-requirements:
   stage: setup
   image: python:latest
   script:
+    - cd backend
     - pip freeze > requirements.txt
   artifacts:
     paths:
