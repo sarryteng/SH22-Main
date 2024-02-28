@@ -14,6 +14,17 @@ generate-config:
     paths:
       - .node-gitlab-ci.yml
 
+backend-requirements:
+  stage: setup
+  image: python:latest
+  script:
+    - pip freeze > requirements.txt
+  artifacts:
+    paths:
+      - requirements.txt
+    untracked: false
+    when: on_success
+
 triggers-node-build:
   stage: triggers
   trigger:
