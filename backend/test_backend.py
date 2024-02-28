@@ -4,22 +4,16 @@ from unittest.mock import patch
 import json
 
 from backendServices import *
-# from getTyreData import get_tyre_data
-from backendServices import get_tyre_data
-config = configparser.ConfigParser()
-config_path = os.path.join(os.path.dirname(__file__), 'config.ini')
-config.read('../config.ini')
 
-API_PORTAL = config.get("TyreRunner API", "api_portal")
-PARAM_NAME = config.get("TyreRunner API", "param_name")
-API_KEY = config.get("TyreRunner API", "api_key")
+from backendServices import get_tyre_data
+# config = configparser.ConfigParser()
+# config_path = os.path.join(os.path.dirname(__file__), 'config.ini')
+# config.read('../config.ini')
+
+
 class TestFlaskApp(unittest.TestCase):
 
-    @classmethod
-    def setUpClass(cls):
-        config = configparser.ConfigParser()
-        config.read('../config.ini')
-        cls.api_key = config.get('TyreRunner API', 'api_key')
+    
     def setUp(self):
         # app.config['TESTING'] = True
         # self.app = app.test_client()
