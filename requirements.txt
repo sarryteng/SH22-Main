@@ -3,6 +3,7 @@
 ### Without version
 Flask
 requests
+flask-cors
 
 
 ### For testing
