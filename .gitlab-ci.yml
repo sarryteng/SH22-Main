@@ -19,7 +19,7 @@ backend-requirements:
   image: python:latest
   script:
     - cd backend
-    - pip freeze > requirements.txt
+    - pip freeze > ../requirements.txt
   artifacts:
     paths:
       - requirements.txt
