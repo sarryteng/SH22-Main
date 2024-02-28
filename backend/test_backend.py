@@ -22,7 +22,7 @@ class TestFlaskApp(unittest.TestCase):
                     "tyre_info": "some tyre info"
                 }
             }
-            response = self.app.get('/tyre-data/ABC123')
+            response = self.app.get('/tyre-data/A012XZP')
             data = json.loads(response.data.decode('utf-8'))
             self.assertEqual(response.status_code, 200)
             self.assertTrue(data['success'])
@@ -32,7 +32,7 @@ class TestFlaskApp(unittest.TestCase):
     def test_get_tyre_data_failure(self):
         with patch('backendServices.getTyreData.get_tyre_data') as mock_get_tyre_data:
             mock_get_tyre_data.side_effect = Exception("Some error occurred")
-            response = self.app.get('/tyre-data/ABC123')
+            response = self.app.get('/tyre-data/Z000ABC')
             data = json.loads(response.data.decode('utf-8'))
             self.assertEqual(response.status_code, 500)
             self.assertFalse(data['success'])
