@@ -40,19 +40,19 @@ jobs:
       artifactName: 'astro-app-artifact'
       targetPath: '$(Build.ArtifactStagingDirectory)/astro-app-artifact.zip'
 
-- job: DeployToWebApp
-  displayName: 'Deploy to Web App'
-  condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
-  dependsOn: BuildApp
-  steps:
-  - task: DownloadPipelineArtifact@2
-    inputs:
-      artifactName: 'astro-app-artifact'
-      targetPath: '$(Pipeline.Workspace)'
+# - job: DeployToWebApp
+#   displayName: 'Deploy to Web App'
+#   condition: eq(variables['Build.SourceBranch'], 'refs/heads/main')
+#   dependsOn: BuildApp
+#   steps:
+#   - task: DownloadPipelineArtifact@2
+#     inputs:
+#       artifactName: 'astro-app-artifact'
+#       targetPath: '$(Pipeline.Workspace)'
 
-  - task: AzureWebApp@1
-    inputs:
-      azureSubscription: 'Test'
-      appType: 'webAppLinux'
-      appName: 'Tyre-runner-web-app'
-      package: '$(Pipeline.Workspace)/astro-app-artifact.zip'
+#   - task: AzureWebApp@1
+#     inputs:
+#       azureSubscription: 'Test'
+#       appType: 'webAppLinux'
+#       appName: 'Tyre-runner-web-app'
+#       package: '$(Pipeline.Workspace)/astro-app-artifact.zip'
