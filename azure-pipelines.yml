@@ -14,12 +14,16 @@ jobs:
     inputs:
       versionSpec: '20.x'
     displayName: 'Install Node.js'
+
   - task: SonarQubePrepare@5
     inputs:
       SonarQube: 'tyrerunner'
       scannerMode: 'CLI'
-      configMode: 'file'
-      
+      configMode: 'manual'
+      cliProjectKey: 'GLA-SH22_GLA-SH22_8f4a9875-9701-4a50-83a8-d9f637b8e497'
+      cliProjectName: 'tyrerunner'
+      cliSources: 'tyre-runner-webapp'
+        
   - script: |
       cd tyre-runner-webapp
       npm ci
