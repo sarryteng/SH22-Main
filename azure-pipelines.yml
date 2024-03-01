@@ -14,7 +14,12 @@ jobs:
     inputs:
       versionSpec: '20.x'
     displayName: 'Install Node.js'
-
+  - task: SonarQubePrepare@5
+    inputs:
+      SonarQube: 'tyrerunner'
+      scannerMode: 'CLI'
+      configMode: 'file'
+      
   - script: |
       cd tyre-runner-webapp
       npm ci
