@@ -58,32 +58,5 @@ def main():
         
 
 if __name__ == "__main__":
-    if not os.path.isfile("config.ini"):
-        config_init = configparser.ConfigParser()
-        config_init["TyreRunner API"] = {"api_portal": "https://qa-tyrerunner-api.azure-api.net/vrm/v1/VRM/TyreDataByVRM",
-                                         "param_name": "VehicleNumberPlate",
-                                         "api_key": "ENTER_API_KEY_HERE"}
-        # write
-        with open("config.ini", "w") as config_file:
-            config_init.write(config_file)
-
-    # open config
-    config = configparser.ConfigParser()
-    config.read("config.ini")
-
-    # parse into var
-    # globals from tyrerunner api
-    global API_PORTAL, PARAM_NAME, API_KEY
-    API_PORTAL = config.get("TyreRunner API", "api_portal")
-    PARAM_NAME = config.get("TyreRunner API", "param_name")
-    API_KEY = config.get("TyreRunner API", "api_key")
-
-    if API_KEY == "ENTER_API_KEY_HERE":
-        API_KEY = input("Enter Ocp-Apim-Subscription-Key for Tyrerunner: ").strip()
-        config.set("TyreRunner API", "api_key", API_KEY)
-        with open("config.ini", "w") as config_file:
-            config.write(config_file)
-
+    main()
     app.run(port=PORT)
-
-
