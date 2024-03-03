@@ -12,8 +12,8 @@ export async function getCarData() {
             }
             
             const data = await response.json();
-
-            return data.url;
+           
+            return data;
             
     } catch (error) {
         console.error('Error fetching data:', error);
