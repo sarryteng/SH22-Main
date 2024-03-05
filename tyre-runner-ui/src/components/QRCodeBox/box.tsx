@@ -16,14 +16,14 @@ function BlackBox () {
           try {
             let fetchedUrl = await getCarData();
             setQRUrl(fetchedUrl.toString());
-            const url = new URL(fetchedUrl);
-            
-            const urlParams = new URLSearchParams(url.search);
+            // const url = new URL(fetchedUrl);
+            console.log(fetchedUrl);
+            // const urlParams = new URLSearchParams(url.search);
 
-            const licensePlateParam = urlParams.get('licenceplate');
-            const sensorReadingsParam = urlParams.get('sensorreadings');
+            const licensePlateParam = fetchedUrl.registration_plate;
+            // const sensorReadingsParam = urlParams.get('sensorreadings');
             
-            console.log('Data fetched:', licensePlateParam, sensorReadingsParam);
+            // console.log('Data fetched:', licensePlateParam, sensorReadingsParam);
             setPlate(licensePlateParam);
             
           } catch (error) {
