@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock, patch, mock_open
 import json
 
 from backendServices import *
@@ -14,12 +14,13 @@ class TestFlaskApp(unittest.TestCase):
 
     def tearDown(self):
         pass
-    
+
+    @patch('builtins.open', new_callable=mock_open)
     @patch('backendServices.os.path.isfile', return_value=False)
     @patch('configparser.ConfigParser')
-    def test_create_config(self, mock_configparser, mock_path_isfile):
-        global TEST_RUNNING
-        TEST_RUNNING = True
+    def test_create_config(self, mock_configparser, mock_path_isfile, mock_file):
+        # global TEST_RUNNING
+        # TEST_RUNNING = True
         mock_config = MagicMock()
         mock_config.get.return_value = {
             "TyreRunner API": {
@@ -28,9 +29,14 @@ class TestFlaskApp(unittest.TestCase):
                 "api_key": ""
             }
         }
+
+        def mock_write(f):
+            pass
+
+        mock_config.write.side_effect = mock_write
         mock_configparser.return_value = mock_config
 
-        main()
+        set_globals()
 
 
     @patch('backendServices.getTyreData.get_tyre_data')
@@ -137,7 +143,7 @@ class TestFlaskApp(unittest.TestCase):
             self.assertEqual(data['status_code'], 500)
             self.assertIn('An error is encountered', data['message'])
 
-    
+
 
 if __name__ == '__main__':
     unittest.main()

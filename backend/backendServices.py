@@ -20,8 +20,7 @@ CORS(app, resources={r"/*": {"origins": [r"^https?://localhost:[0-9]{3,}$",
 # global vars
 global API_PORTAL, PARAM_NAME, API_KEY
 
-# test var
-TEST_RUNNING = False
+# TEST FLAG
 
 
 # container class for env var names
@@ -66,9 +65,8 @@ def create_config() -> None:
                                           ConfigDefault.PARAM_NAME_VAR: ConfigDefault.PARAM_NAME_VAL,
                                           ConfigDefault.API_KEY_VAR: ConfigDefault.API_KEY_VAL}
     # write
-    if not TEST_RUNNING:
-        with open("config.ini", "w") as config_file:
-            config_init.write(config_file)
+    with open("config.ini", "w") as config_file:
+        config_init.write(config_file)
 
     return
 
@@ -148,19 +146,20 @@ def update_api_key(key:str, overwrite:bool=False) -> None:
     config.read("config.ini")
     config.set(ConfigDefault.SECTION, ConfigDefault.API_KEY_VAR, key)
 
-    if not TEST_RUNNING:
-        with open("config.ini", "w") as config_file:
-            config.write(config_file)
+    with open("config.ini", "w") as config_file:
+        config.write(config_file)
 
 
-def main():
+def set_globals():
     # declare globals
     global API_PORTAL, PARAM_NAME, API_KEY
     API_PORTAL = get_api_portal()
     PARAM_NAME = get_param_name()
     API_KEY = get_api_key()
 
-    # run app
+
+def main():
+    set_globals()
     app.run(port=PORT)
 
 
