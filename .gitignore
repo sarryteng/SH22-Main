@@ -35,10 +35,3 @@ pnpm-debug.log*
 
 # config
 config.ini
-
-# git config
-.gitconfig
-
-# yml config
-*.yml
-*.rb

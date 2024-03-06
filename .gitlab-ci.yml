@@ -1,0 +1,57 @@
+stages: 
+  - setup 
+  - triggers
+  - test
+
+generate-config:
+  stage: setup
+  image: ruby:2.7.2
+  script:
+    - ruby write-config.rb
+    - git status
+    - cat .node-gitlab-ci.yml
+  artifacts:
+    paths:
+      - .node-gitlab-ci.yml
+
+triggers-node-build:
+  stage: triggers
+  trigger:
+    include:
+    - artifact: .node-gitlab-ci.yml
+      job: generate-config
+
+backend-python-unit-test:
+  stage: test
+  image: python:latest
+  script:
+    - python -m pip install -r requirements.txt
+    - python -m coverage run -m unittest discover ./backend
+    - python -m coverage xml -o CICD/report.xml 
+    - python -m coverage report
+
+  artifacts:
+    when: on_success
+    reports:
+      coverage_report:
+        coverage_format: cobertura
+        path: CICD/report.xml
+    expire_in: 30 days
+
+sonarqube-check:
+  image: 
+    name: sonarsource/sonar-scanner-cli:latest
+    entrypoint: [""]
+  variables:
+    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script: 
+    - sonar-scanner
+  allow_failure: true
+  only:
+    - main
+
