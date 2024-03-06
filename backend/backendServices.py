@@ -6,16 +6,6 @@ import configparser
 import os
 from flask_cors import CORS
 
-app = Flask(__name__)
-PORT = 6767
-
-# Enable CORS, can change the port to the real port, make it temporarly for test
-# CORS(app, resources={r"/*": {"origins": "http://localhost:8080"}})
-
-# regex version of CORS
-CORS(app, resources={r"/*": {"origins": [r"^https?://localhost:[0-9]{3,}$",
-                                         r"^https?://.*gla-team22\.azurewebsites\.net([/:].*)*$"]
-                             }})
 
 # global vars
 global API_PORTAL, PARAM_NAME, API_KEY
@@ -41,18 +31,7 @@ class ConfigDefault:
     API_KEY_VAL = "ENTER_API_KEY_HERE"
 
 
-@app.route("/tyre-data/<string:plate>", methods=["GET"])
-def get_tyre_data(plate: str):
-    try:
-        return_json = getTyreData.get_tyre_data(plate, API_KEY, API_PORTAL, PARAM_NAME)
-        return return_json, return_json["status_code"]
-    except Exception as e:
-        return {"success": False,
-                "status_code": 500,
-                "message": "An error is encountered while trying to call Tyrerunner API.",
-                "data": {
-                    "error": str(e) + "\n\n" + traceback.format_exc()
-                }}, 500
+PORT = 6767
 
 
 def create_config() -> None:
@@ -149,7 +128,6 @@ def update_api_key(key:str, overwrite:bool=False) -> None:
     with open("config.ini", "w") as config_file:
         config.write(config_file)
 
-
 def set_globals():
     # declare globals
     global API_PORTAL, PARAM_NAME, API_KEY
@@ -158,10 +136,44 @@ def set_globals():
     API_KEY = get_api_key()
 
 
-def main():
+### ====================================================================================================
+
+
+def create_app():
+    app = Flask(__name__)
     set_globals()
+    return app
+
+# app def
+app = create_app()
+
+# Enable CORS, can change the port to the real port, make it temporarly for test
+# CORS(app, resources={r"/*": {"origins": "http://localhost:8080"}})
+
+# regex version of CORS
+CORS(app, resources={r"/*": {"origins": [r"^https?://localhost:[0-9]{3,}$",
+                                         r"^https?://.*gla-team22\.azurewebsites\.net([/:].*)*$"]
+                             }})
+
+
+@app.route("/tyre-data/<string:plate>", methods=["GET"])
+def get_tyre_data(plate: str):
+    try:
+        return_json = getTyreData.get_tyre_data(plate, API_KEY, API_PORTAL, PARAM_NAME)
+        return return_json, return_json["status_code"]
+    except Exception as e:
+        return {"success": False,
+                "status_code": 500,
+                "message": "An error is encountered while trying to call Tyrerunner API.",
+                "data": {
+                    "error": str(e) + "\n\n" + traceback.format_exc()
+                }}, 500
+
+
+def main():
     app.run(port=PORT)
 
 
 if __name__ == "__main__":
     main()
+
