@@ -95,12 +95,8 @@ def get_api_key() -> str:
     if api_key is None:
         api_key = read_config(ConfigDefault.SECTION, ConfigDefault.API_KEY_VAR)
 
-    if api_key == ConfigDefault.API_KEY_VAL:
-        # prompt user
-        api_key = input("Enter Ocp-Apim-Subscription-Key for Tyrerunner: ").strip()
-
     # update api key in config
-    update_api_key(api_key)
+    # update_api_key(api_key)
     return api_key
 
 
