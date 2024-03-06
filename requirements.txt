@@ -1,0 +1,10 @@
+### Requirements for backend server
+
+### Without version
+Flask
+requests
+flask-cors
+
+
+### For testing
+coverage
