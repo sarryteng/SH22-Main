@@ -152,7 +152,9 @@ app = create_app()
 
 # regex version of CORS
 CORS(app, resources={r"/*": {"origins": [r"^https?://localhost:[0-9]{3,}$",
-                                         r"^https?://.*gla-team22\.azurewebsites\.net([/:].*)*$"]
+                                         r"^https?://.*gla-team22\.azurewebsites\.net([/:].*)*$",
+                                         r"^https?://127\.[0-9]+\.[0-9]+\.[0-9]:[0-9]{3,}$",
+                                         r"^https?://192\.[0-9]+\.[0-9]+\.[0-9]:[0-9]{3,}$"]
                              }})
 
 
