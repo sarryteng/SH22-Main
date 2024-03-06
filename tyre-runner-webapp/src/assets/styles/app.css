@@ -425,7 +425,7 @@ body{
 }
 .HeaderLogo{
    display:flex;
-   flex-direction:row;
+   flex-direction:column;
 }
 .HeaderImg{
    width: 320px;
