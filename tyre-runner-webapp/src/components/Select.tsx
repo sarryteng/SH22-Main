@@ -82,7 +82,8 @@ function Select () {
                 }
         const handleResize = () => {
             windowWidth = window.screen.width;
-            setIsMobile(windowWidth < 500);
+            setIsMobile(windowWidth < 600);
+            console.log("isMobile",isMobile);
             console.log("window width",windowWidth);
           };
       
@@ -172,35 +173,15 @@ function Select () {
                 <a className="button" onClick={handleSelectClick}>Select</a>
             </div>):(
                 <div style={{display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
-                    {/* <div>Select your preference</div> */}
                     <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
                         <img src={car.src} style={{ width: '40%',maxHeight:"500px", marginTop:"50px", zIndex:"2"}}alt="car" />
                     </div> 
                     
-                {/* <img src={wheel.src} className={isclickedlt ? 'clickeddesk':'unclickdesk'} style={{top:"32%", left:"31.7%"}}alt="wheellt"></img>
-                <img src={wheel.src} className={isclickedrt? 'clickeddesk':'unclickdesk'} style={{top:"32%", left:"68.2%"}}alt="wheelrt"></img>
-                <img src={wheel.src} className={isclickedlb?'clickeddesk':'unclickdesk'} style={{top:"63%", left:"31.7%"}}alt="wheellb"></img>
-                <img src={wheel.src} className={isclickedrb?'clickeddesk':'unclickdesk'} style={{top:"63%", left:"68.2%"}}alt="wheelrb"></img>
-                <button className="WheelButtonSelect" style={{top:"32%", left:"31.7%"}}onClick={() => tyreClick(1)}>
-                tl
-                </button>
-                <button className="WheelButtonSelect" style={{top:"32%", left:"68.2%"}}onClick={() => tyreClick(2)}>
-                    tr
-                </button>
-                <button className="WheelButtonSelect" style={{top:"63%", left:"31.7%"}}onClick={() => tyreClick(3)}>
-                    bl
-                </button>
-                <button className="WheelButtonSelect" style={{top:"63%", left:"68.2%"}}onClick={() => tyreClick(4)}>
-                    br
-                </button>
-
-                {isDialogOpen && (
-                <Dialog isOpen={isDialogOpen} setIsOpen={setDialogOpen} tyreIndex={tyreIndex} setTyreIndex={setTyreIndex} tyre1={clt} tyre2={crt} tyre3={clb} tyre4={crb} setTyre1={setclt} setTyre2={setcrt} setTyre3={setclb} setTyre4={setcrb}/>
-                )} */}
-                <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}><SizeDropDown onSelect={handleSelect}/>
+                <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+                <div style={{textAlign:"center", fontSize:"25px", fontFamily:"Poppins"}}>Select your preference</div>    
+                <SizeDropDown onSelect={handleSelect}/>
                 <LoadRadio selectedValue={selectedValue} handleChange={handleChange} ladenExist={ladenExist} isMobile={isMobile}/>
                 <a className="button" onClick={handleSelectClick}>Select</a></div>
-                
                 </div>
                 
                 

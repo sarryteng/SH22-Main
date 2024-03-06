@@ -165,6 +165,17 @@ body{
     justify-content: center;
  }
 
+ .HeaderLogo{
+   display:flex;
+   flex-direction:column;
+   align-items: center;
+   position: relative;
+}
+
+.HeaderImg{
+   width: 430px;
+}
+
  .CRFooter{
     background-color: #E53121;
     width: 100%;
@@ -337,10 +348,10 @@ body{
  .BackButton{
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 75.5%;
+    top: 91%;
     left: 80%;
     width: 10%;
-    height: 15%;
+    height: 18%;
     border-radius: 30px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     background-color: #F5F5F5;
@@ -366,19 +377,108 @@ body{
  }
 
 
- /* @media (min-width: 500px) {
- .endpage{
-    position: relative;
-    width: 100%;
+ /* @media (min-width: 1000px) {
+   .endpage {
+      position: fixed;
+    }
+    .CRFooter{
+       background-color: #E53121;
+       width: 100%;
+       height: 20px;
+       justify-content: center;
+    }
+   
+    .copyrighttext{
+       color: #FFF;
+       font-family: Poppins;
+       font-size: 12px;
+       font-style: normal;
+       font-weight: 400;
+       line-height: normal;
+       justify-content: center;
+       padding-top: 2px;
+    }
+ } */
+
+ @media (max-height: 1200px) {
+   .text{
+  font-size: 18px;
+  }
+  .button{
+   font-size: 20px;
+   width: 30%;
+   }
+   .dropdown {
+      width: 32%;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      transform: scale(1.5);
+      outline: 1px solid #000000;
+      border-radius: 20px;
+      font-size: 15px;
+  }
+  .Header{
+   display: flex;
+   padding-top: 0px;
+   padding-bottom: 0px;
+   justify-content: left;
+}
+.HeaderLogo{
+   display:flex;
+   flex-direction:row;
+}
+.HeaderImg{
+   width: 320px;
+}
+
+  .endpage {
+   position: fixed;
  }
-} */
+ .CRFooter{
+    background-color: #E53121;
+    width: 100%;
+    height: 20px;
+    justify-content: center;
+ }
+
+ .copyrighttext{
+    color: #FFF;
+    font-family: Poppins;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    justify-content: center;
+    padding-top: 2px;
+ }
+
+ .CarDetail{
+   width: 75%;
+   font-size: 15px;
+}
+
+.CarDetailHead{
+   color: #FFF;
+   background-color: #E53121;
+   font-family: Poppins;
+   border-top-left-radius: 20px;
+   border-top-right-radius: 20px;
+   font-size: 20px;
+}
+
+.DetailText{
+   margin-top: 1%;
+   margin-left: 5%;
+   margin-right: 5%;
+}
+ }
 
 .BackButtonpc{
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 60%;
-    left: 78%;
-    width: 25%;
+    top: 85%;
+    left: 77.5%;
+    width: 37%;
     height: 10%;
     border-radius: 30px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));

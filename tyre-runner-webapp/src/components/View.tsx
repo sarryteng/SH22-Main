@@ -249,32 +249,32 @@ const View =()=> {
                   <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
                   <CarDetail/>
                 <button onClick={handleBack} className="BackButtonpc" style={{zIndex:"3"}}>
-                <img src={backArrow.src} style={{ width: '20%', position:"absolute", transform:"translate(-50%, -50%)",top:"50%", left:"50%"}}alt="back" />
+                <img src={backArrow.src} style={{ width: '10%', position:"absolute", transform:"translate(-50%, -50%)",top:"50%", left:"50%"}}alt="back" />
                 </button>
                 </div>
                 <div style={{zIndex:"2", width:"100%", height:"100%", position:"absolute"}}>
-                         <div className="modalContent" style={{top:"31%", left:"12%", width:'15%', height:'15%'}}>
+                         <div className="modalContent" style={{top:"31%", left:"12%"}}>
                              <p>Tyre-Pressure: Front left</p>
                              <p>Currently: {clt}</p> 
                              <p>Recommended: {rf}</p>
                          </div>
                          </div>
                          <div style={{zIndex:"2", width:"100%", height:"100%", position:"absolute"}}>
-                         <div className="modalContent" style={{top:"31%", left:"38%", width:'15%', height:'15%'}}>
+                         <div className="modalContent" style={{top:"31%", left:"38%"}}>
                              <p>Tyre-Pressure: Front right</p>
                              <p>Currently: {crt}</p> 
                              <p>Recommended: {rf}</p>
                          </div>
                          </div>
                          <div style={{zIndex:"2", width:"100%", height:"100%", position:"absolute"}}>
-                         <div className="modalContent" style={{top:"75%", left:"12%", width:'15%', height:'15%'}}>
+                         <div className="modalContent" style={{top:"75%", left:"12%"}}>
                              <p>Tyre-Pressure: Rear left</p>
                              <p>Currently: {clb}</p> 
                              <p>Recommended: {rr}</p>
                          </div>
                          </div>
                          <div style={{zIndex:"2", width:"100%", height:"100%", position:"absolute"}}>
-                         <div className="modalContent" style={{top:"75%", left:"38%", width:'15%', height:'15%'}}>
+                         <div className="modalContent" style={{top:"75%", left:"38%"}}>
                              <p>Tyre-Pressure: Rear right</p>
                              <p>Currently: {crb}</p> 
                              <p>Recommended: {rr}</p>
