@@ -18,6 +18,8 @@ class TestFlaskApp(unittest.TestCase):
     @patch('backendServices.os.path.isfile', return_value=False)
     @patch('configparser.ConfigParser')
     def test_create_config(self, mock_configparser, mock_path_isfile):
+        global TEST_RUNNING
+        TEST_RUNNING = True
         mock_config = MagicMock()
         mock_config.get.return_value = {
             "TyreRunner API": {

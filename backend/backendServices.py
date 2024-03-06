@@ -17,6 +17,13 @@ CORS(app, resources={r"/*": {"origins": [r"^https?://localhost:[0-9]{3,}$",
                                          r"^https?://.*gla-team22\.azurewebsites\.net([/:].*)*$"]
                              }})
 
+# global vars
+global API_PORTAL, PARAM_NAME, API_KEY
+
+# test var
+TEST_RUNNING = False
+
+
 # container class for env var names
 class Env:
     API_PORTAL = "API_PORTAL"
@@ -33,10 +40,6 @@ class ConfigDefault:
     PARAM_NAME_VAL = "VehicleNumberPlate"
     API_KEY_VAR = "api_key"
     API_KEY_VAL = "ENTER_API_KEY_HERE"
-
-
-# global vars
-global API_PORTAL, PARAM_NAME, API_KEY
 
 
 @app.route("/tyre-data/<string:plate>", methods=["GET"])
@@ -63,8 +66,9 @@ def create_config() -> None:
                                           ConfigDefault.PARAM_NAME_VAR: ConfigDefault.PARAM_NAME_VAL,
                                           ConfigDefault.API_KEY_VAR: ConfigDefault.API_KEY_VAL}
     # write
-    with open("config.ini", "w") as config_file:
-        config_init.write(config_file)
+    if not TEST_RUNNING:
+        with open("config.ini", "w") as config_file:
+            config_init.write(config_file)
 
     return
 
@@ -143,8 +147,10 @@ def update_api_key(key:str, overwrite:bool=False) -> None:
     config = configparser.ConfigParser()
     config.read("config.ini")
     config.set(ConfigDefault.SECTION, ConfigDefault.API_KEY_VAR, key)
-    with open("config.ini", "w") as config_file:
-        config.write(config_file)
+
+    if not TEST_RUNNING:
+        with open("config.ini", "w") as config_file:
+            config.write(config_file)
 
 
 def main():
