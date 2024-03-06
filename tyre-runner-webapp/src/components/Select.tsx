@@ -1,6 +1,6 @@
 import car from '../assets/images/Car.svg'
 import "../assets/styles/app.css"
-import { useState, useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import LoadRadio from './LoadRadio';
 import SizeDropDown from './SizeDropDown';
 import "@fontsource/poppins";
@@ -37,13 +37,15 @@ function Select () {
     const [crt, setcrt] = useState<string>('');
     const [clb, setclb] = useState<string>('');
     const [crb, setcrb] = useState<string>('');
-    const [rf, setrf] = useState<string>('');
-    const [rr, setrr] = useState<string>('');
     const [isclickedlt, setIsClickedlt] = useState(false);
     const [isclickedrt, setIsClickedrt] = useState(false);
     const [isclickedlb, setIsClickedlb] = useState(false);
     const [isclickedrb, setIsClickedrb] = useState(false);
-    
+    const [ladenExist, setLadenExist] = useState<boolean>(true);
+    const [dataresult, setDataResult] = useState<any>(null);
+    const [isMobile, setIsMobile] = useState<boolean>(false);
+    let windowWidth = 0;
+
     useEffect(() => {
         const getQueryParams = () => {
           const queryParams = new URLSearchParams(window.location.search);
@@ -52,7 +54,7 @@ function Select () {
           
           setpno(pnoParam);
           const readArray=readingParam.split(',');
-          console.log(readArray);
+        //   console.log(readArray);
           setclt(readArray[0]);
           setcrt(readArray[1]);
           setclb(readArray[2]);
@@ -64,26 +66,50 @@ function Select () {
             try {
                 const response = await fetch(`http://127.0.0.1:6767/tyre-data/${pno}`);
                 const result = await response.json();
+                // setResult(await response.json());
+                setDataResult(result.data);
                 setmno(result.data.make+' '+result.data.model);
-                console.log(result.data.make+' '+result.data.model);
+                // console.log(result.data.make+' '+result.data.model);
             } catch (error) {
                 console.error('Error occurred:', error);
             }
         }
         fetchdata();
+        if (typeof window !== 'undefined') {
+                //   setWindowWidth(window.screen.width);
+                windowWidth = window.screen.width;
+                  setIsMobile(windowWidth < 500);
+                }
+        const handleResize = () => {
+            windowWidth = window.screen.width;
+            setIsMobile(windowWidth < 600);
+            console.log("isMobile",isMobile);
+            console.log("window width",windowWidth);
+          };
+      
+          window.addEventListener('resize', handleResize);
+
+          return () => {
+            window.removeEventListener('resize', handleResize);
+
+          };
           }, [pno]);
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         setSelectedValue(event.target.value);
+        if(isMobile){
+            console.log("mobile");
+        }
+        else{
+            console.log("desktop");
+        }
     };
     
     const handleSelect = (value: string) => {
         setSelectedSizeValue(value);
-        handletest();
+        const valueint=parseInt(value);
+        console.log(dataresult.frontTyres[valueint-1]);
+        setLadenExist(dataresult.frontTyres[valueint-1].ladenOption);
     };
-    const handletest = () => {
-        setrf('20');
-        setrr('21');
-    }
 
     const handleSelectClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
         event.preventDefault();
@@ -93,7 +119,19 @@ function Select () {
                 alert('Please select size and load')
             );
         }
-        window.location.href = `/view?size=${selectedSizeValue}&load=${selectedValue}&mno=${mno}&pno=${pno}&clt=${clt}&crt=${crt}&clb=${clb}&crb=${crb}&rf=${rf}&rr=${rr}`;
+        if(!ladenExist && selectedValue === 'heavy'){
+            return(
+                alert('Heavy load does not exist for this size')
+            );
+        }
+            let rf=dataresult.frontTyres[parseInt(selectedSizeValue)-1].normalPSI;
+            let rr=dataresult.rearTyres[parseInt(selectedSizeValue)-1].normalPSI;
+        if(selectedValue==='heavy'){
+            rf=dataresult.frontTyres[parseInt(selectedSizeValue)-1].ladenPSI;
+            rr=dataresult.rearTyres[parseInt(selectedSizeValue)-1].ladenPSI;
+        }
+        const tyre=dataresult.frontTyres[parseInt(selectedSizeValue)-1].markings;
+        window.location.href = `/view?size=${tyre}&load=${selectedValue}&mno=${mno}&pno=${pno}&clt=${clt}&crt=${crt}&clb=${clb}&crb=${crb}&rf=${rf}&rr=${rr}`;
     };
     const [isDialogOpen, setDialogOpen] = useState(false); // show dialog or not 
     const [tyreIndex,setTyreIndex]=useState(0)
@@ -105,7 +143,7 @@ function Select () {
 
     return (
         <div className="Select">
-            <div className='Center'>
+            {isMobile ?(<div className='Center'>
                 <div className='text'>Select your preference</div>
                 
                 <img src={carNowheel.src} style={{ width: '40%', marginTop:"50px", zIndex:"2"}}alt="car" />
@@ -131,9 +169,24 @@ function Select () {
                 )}
                 
                 <SizeDropDown onSelect={handleSelect}/>
-                <LoadRadio selectedValue={selectedValue} handleChange={handleChange}/>
+                <LoadRadio selectedValue={selectedValue} handleChange={handleChange} ladenExist={ladenExist} isMobile={isMobile}/>
                 <a className="button" onClick={handleSelectClick}>Select</a>
-            </div>
+            </div>):(
+                <div style={{display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
+                    <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+                        <img src={car.src} style={{ width: '40%',maxHeight:"500px", marginTop:"50px", zIndex:"2"}}alt="car" />
+                    </div> 
+                    
+                <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+                <div style={{textAlign:"center", fontSize:"25px", fontFamily:"Poppins"}}>Select your preference</div>    
+                <SizeDropDown onSelect={handleSelect}/>
+                <LoadRadio selectedValue={selectedValue} handleChange={handleChange} ladenExist={ladenExist} isMobile={isMobile}/>
+                <a className="button" onClick={handleSelectClick}>Select</a></div>
+                </div>
+                
+                
+                
+            )}
         </div>
     )
 }

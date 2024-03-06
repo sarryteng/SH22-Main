@@ -5,8 +5,8 @@ function Header () {
 
     return (
         <nav className="Header">
-                <a href='/' className='Center'>
-                    <img src={logo.src} style={{ width: '430px'}}alt="logo" />
+                <a href='/' className='HeaderLogo'>
+                    <img src={logo.src} className="HeaderImg" alt="logo" />
                 </a>        
         </nav>
     )
