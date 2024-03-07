@@ -7,6 +7,7 @@ import "@fontsource/poppins";
 import Dialog from "../components/DialogueBox";
 import wheel from '../assets/images/wheel.svg'
 import carNowheel from '../assets/images/carNowheel.svg'
+import Loading from './Loading';
 
 
 
@@ -45,6 +46,7 @@ function Select () {
     const [dataresult, setDataResult] = useState<any>(null);
     const [isMobile, setIsMobile] = useState<boolean>(false);
     let windowWidth = 0;
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
         const getQueryParams = () => {
@@ -70,6 +72,7 @@ function Select () {
                 setDataResult(result.data);
                 setmno(result.data.make+' '+result.data.model);
                 // console.log(result.data.make+' '+result.data.model);
+                setLoading(false);
             } catch (error) {
                 console.error('Error occurred:', error);
             }
@@ -143,7 +146,11 @@ function Select () {
 
     return (
         <div className="Select">
-            {isMobile ?(<div className='Center'>
+            {loading?(
+                <Loading/>
+            ):(
+                <>
+                {isMobile ?(<div className='Center'>
                 <div className='text'>Select your preference</div>
                 
                 <img src={carNowheel.src} style={{ width: '40%', marginTop:"50px", zIndex:"2"}}alt="car" />
@@ -184,9 +191,10 @@ function Select () {
                 <a className="button" onClick={handleSelectClick}>Select</a></div>
                 </div>
                 
-                
-                
             )}
+                </>
+            )}
+            
         </div>
     )
 }

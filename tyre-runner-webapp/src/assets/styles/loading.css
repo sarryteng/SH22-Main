@@ -1,0 +1,29 @@
+.main {
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    height: 80vh;       
+    flex-direction: column; 
+}
+
+.loading-text {
+    font-size: 35px; 
+    font-family: 'poppins'; 
+    color: #000000; 
+    margin-top: 10px;
+    padding-left: 30%;
+    margin-left: 10%;
+   
+  }
+  .load-wrapper {
+    display: flex;       
+    justify-content: center; 
+    align-items: center;     
+          
+  }
+  .loader-container {
+    padding-right: 40%;
+}
+#logo {
+    width: 50%;
+}
