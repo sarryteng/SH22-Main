@@ -171,6 +171,13 @@ def set_globals():
 def create_app():
     app = Flask(__name__)
     set_globals()
+    # regex version of CORS
+    CORS(app, resources={r"/*": {"origins": [r"^https?:\/\/localhost:[0-9]{2,}$",
+                                             r"^https?:\/\/.*gla-team22\.azurewebsites\.net([\/:].*)*$",
+                                             r"^https?:\/\/127\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]{2,}$",
+                                             r"^https?:\/\/192\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]{2,}$",
+                                             r"^https?:\/\/172\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]{2,}$"]
+                                 }})
     return app
 
 
@@ -179,14 +186,6 @@ app = create_app()
 
 # Enable CORS, can change the port to the real port, make it temporarly for test
 # CORS(app, resources={r"/*": {"origins": "http://localhost:8080"}})
-
-# regex version of CORS
-CORS(app, resources={r"/*": {"origins": [r"^https?://localhost:[0-9]{3,}$",
-                                         r"^https?://.*gla-team22\.azurewebsites\.net([/:].*)*$",
-                                         r"^https?://127\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]{2,}$",
-                                         r"^https?://192\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]{2,}$",
-                                         r"^https?://172\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]{2,}$"]
-                             }})
 
 
 @app.route("/tyre-data/<string:plate>", methods=["GET"])
