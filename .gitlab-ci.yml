@@ -28,6 +28,7 @@ backend-python-unit-test:
     - python -m pip install -r requirements.txt
     - python -m coverage run -m unittest discover ./backend
     - python -m coverage xml -o CICD/report.xml 
+    - python -m coverage report
 
   artifacts:
     when: always
