@@ -2,16 +2,17 @@
     display: flex;
     justify-content: center; 
     align-items: center;     
-    height: 100vh;       
+    height: 80vh;       
     flex-direction: column; 
 }
 
 .loading-text {
     font-size: 35px; 
-    font-family: 'Arial', sans-serif; 
-    font-weight: bold; 
+    font-family: 'poppins'; 
     color: #000000; 
     margin-top: 10px;
+    padding-left: 30%;
+    margin-left: 10%;
    
   }
   .load-wrapper {
@@ -21,13 +22,7 @@
           
   }
   .loader-container {
-    
-  
-    /* background:
-    
-        url("https://giphy.com/embed/sSgvbe1m3n93G") center
-        no-repeat;
-     */
+    padding-right: 40%;
 }
 #logo {
     width: 50%;
