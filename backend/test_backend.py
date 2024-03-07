@@ -1,12 +1,12 @@
 import unittest
 from unittest.mock import MagicMock, patch, mock_open
 import json
-
+import os
 from backendServices import *
+
 
 class TestFlaskApp(unittest.TestCase):
 
-    
     def setUp(self):
         self.app = app.test_client()
         self.app.testing = True
@@ -80,8 +80,8 @@ class TestFlaskApp(unittest.TestCase):
             "status_code": 200,
             "success": True
         }
-         
-            
+
+
         response, status_code = get_tyre_data("A012XZP")
         print(status_code)
         self.assertTrue(response['success'])
@@ -142,7 +142,6 @@ class TestFlaskApp(unittest.TestCase):
             self.assertFalse(data['success'])
             self.assertEqual(data['status_code'], 500)
             self.assertIn('An error is encountered', data['message'])
-
 
 
 if __name__ == '__main__':

@@ -7,17 +7,12 @@ import os
 from flask_cors import CORS
 
 
-# global vars
-global API_PORTAL, PARAM_NAME, API_KEY
-
-# TEST FLAG
-
-
 # container class for env var names
 class Env:
     API_PORTAL = "API_PORTAL"
     PARAM_NAME = "PARAM_NAME"
     API_KEY = "TYRERUNNER_API_KEY"
+    USE_CONFIG = "USE_CONFIG_FILE"
 
 
 # container class for config
@@ -29,16 +24,37 @@ class ConfigDefault:
     PARAM_NAME_VAL = "VehicleNumberPlate"
     API_KEY_VAR = "api_key"
     API_KEY_VAL = "ENTER_API_KEY_HERE"
+    USE_CONFIG_TRUE = "True"
+    USE_CONFIG_FALSE = "False"
 
 
 PORT = 6767
 
+# global vars
+global API_PORTAL, PARAM_NAME, API_KEY
 
+# CONFIG FLAG
+USE_CONFIG_FILE = ConfigDefault.USE_CONFIG_TRUE == os.getenv(Env.USE_CONFIG, default=ConfigDefault.USE_CONFIG_FALSE)
+
+
+def if_use_config(alt_func=lambda *args, **kwargs: None):
+    def inner(func):
+        def wrapper(*args, **kwargs):
+            if USE_CONFIG_FILE:
+                return func(*args, **kwargs)
+            else:
+                return alt_func(*args, **kwargs)
+        return wrapper
+    return inner
+
+        
+@if_use_config
 def create_config() -> None:
     """
     This function create a new fresh config.ini file
     :return: None
     """
+
     config_init = configparser.ConfigParser()
     config_init[ConfigDefault.SECTION] = {ConfigDefault.API_PORTAL_VAR: ConfigDefault.API_PORTAL_VAL,
                                           ConfigDefault.PARAM_NAME_VAR: ConfigDefault.PARAM_NAME_VAL,
@@ -50,7 +66,22 @@ def create_config() -> None:
     return
 
 
-def read_config(val_sec:str, val_name:str):
+def __read_config_no_config(val_sec: str, val_name:str):
+    if val_sec != ConfigDefault.SECTION:
+        raise Exception("Wrong section in config. Expected " + ConfigDefault.SECTION + " received: " + val_sec)
+    match val_name:
+        case ConfigDefault.API_PORTAL_VAR:
+            return ConfigDefault.API_PORTAL_VAL
+        case ConfigDefault.API_KEY_VAR:
+            return ConfigDefault.API_KEY_VAL
+        case ConfigDefault.PARAM_NAME_VAR:
+            return ConfigDefault.PARAM_NAME_VAL
+        case _:
+            raise Exception("Value: " + val_name + " not found.")
+
+
+@if_use_config(__read_config_no_config)
+def read_config(val_sec: str, val_name: str):
     """
     Function to read a value from config.ini
     Function will create a fresh config.ini file if it does not exist.
@@ -100,6 +131,7 @@ def get_api_key() -> str:
     return api_key
 
 
+@if_use_config
 def update_api_key(key:str, overwrite:bool=False) -> None:
     """
     Function to update the api_key in config.ini. By default, will only update if
@@ -124,6 +156,7 @@ def update_api_key(key:str, overwrite:bool=False) -> None:
     with open("config.ini", "w") as config_file:
         config.write(config_file)
 
+
 def set_globals():
     # declare globals
     global API_PORTAL, PARAM_NAME, API_KEY
@@ -132,13 +165,14 @@ def set_globals():
     API_KEY = get_api_key()
 
 
-### ====================================================================================================
+# ====================================================================================================
 
 
 def create_app():
     app = Flask(__name__)
     set_globals()
     return app
+
 
 # app def
 app = create_app()
