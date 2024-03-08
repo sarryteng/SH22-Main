@@ -190,8 +190,8 @@ def get_tyre_data(vehicle_num: str, api_key='', api_portal=API_PORTAL, param_nam
 
 
 if __name__ == "__main__":
-    print(requests.get("http://127.0.0.1:6767/tyre-data/" + TEST_PLATE))
-    print(requests.get("http://127.0.0.1:6767/tyre-data/" + TEST_PLATE).json())
+    # print(requests.get("http://127.0.0.1:6767/tyre-data/" + TEST_PLATE))
+    # print(requests.get("http://127.0.0.1:6767/tyre-data/" + TEST_PLATE).json())
 
-    # print(requests.get("http://127.0.0.1:6767/tyre-data/" + BAD_PLATE))
-    # print(requests.get("http://127.0.0.1:6767/tyre-data/" + BAD_PLATE).text)
+    print(requests.get("http://backend-gla-team22.azurewebsites.net/tyre-data/" + TEST_PLATE))
+    print(requests.get("http://backend-gla-team22.azurewebsites.net/tyre-data/" + TEST_PLATE).text)
