@@ -12,7 +12,7 @@ export async function getCarData() {
             }
             
             const data = await response.json();
-           
+             console.log(data.registration_plate)
             return data;
             
     } catch (error) {
