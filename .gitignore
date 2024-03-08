@@ -30,8 +30,12 @@ pnpm-debug.log*
 .env
 .env.production
 
+# venv
+.env/
+
 # macOS-specific files
 .DS_Store
 
 # config
 config.ini
+
