@@ -14,7 +14,8 @@ function BlackBox () {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            let fetchedUrl = await getCarData();
+            let carData = await getCarData();
+            let fetchedUrl=carData.url;
             setQRUrl(fetchedUrl.toString());
             // const url = new URL(fetchedUrl);
             console.log(fetchedUrl);
