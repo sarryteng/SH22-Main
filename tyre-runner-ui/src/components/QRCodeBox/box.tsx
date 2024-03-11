@@ -21,7 +21,7 @@ function BlackBox () {
             console.log(fetchedUrl);
             // const urlParams = new URLSearchParams(url.search);
 
-            const licensePlateParam = fetchedUrl.registration_plate;
+            const licensePlateParam = carData.registration_plate;
             // const sensorReadingsParam = urlParams.get('sensorreadings');
             
             // console.log('Data fetched:', licensePlateParam, sensorReadingsParam);
