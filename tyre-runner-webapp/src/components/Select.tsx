@@ -66,7 +66,7 @@ function Select () {
         
         async function fetchdata() {
             try {
-                const response = await fetch(`http://127.0.0.1:6767/tyre-data/${pno}`);
+                const response = await fetch(`http://backend-gla-team22.azurewebsites.net/tyre-data/${pno}`);
                 const result = await response.json();
                 // setResult(await response.json());
                 setDataResult(result.data);
@@ -147,7 +147,12 @@ function Select () {
     return (
         <div className="Select">
             {loading?(
+                <>
                 <Loading/>
+                <div style={{textAlign:"center",fontFamily:"Poppins", fontSize:"24px"}}>
+                    If it's loading for more than 2 minutes, please check the link and refresh the page
+                    </div>
+                </>
             ):(
                 <>
                 {isMobile ?(<div className='Center'>
