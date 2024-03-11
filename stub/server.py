@@ -115,7 +115,7 @@ def getData():
         sensor_readings = '30,32,28,31'                                     # temporary dummy data as TPMS is not implemented yet
         
         # generate url
-        urlGenerated = f'http://tyrerunner.com/url-data?licenceplate={registration_plate}&sensorreadings={sensor_readings}'
+        urlGenerated = f'http://gla-team22.azurewebsites.net/url-data?licenceplate={registration_plate}&sensorreadings={sensor_readings}'
         
         # just for debugging purposes
         print(f"url: {urlGenerated}")
