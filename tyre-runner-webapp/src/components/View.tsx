@@ -5,6 +5,7 @@ import CarDetail from "./CarDetail";
 import React from 'react';
 import "../assets/styles/modal.css";
 import wheel from '../assets/images/wheel.svg'
+import car from '../assets/images/Car.svg'
 import carNowheel from '../assets/images/carNowheel.svg'
 import "@fontsource/poppins";
 
@@ -35,6 +36,8 @@ const View =()=> {
         const[isshownrt, setIsShownrt] = useState(true);
         const[isshownlb, setIsShownlb] = useState(true);
         const[isshownrb, setIsShownrb] = useState(true);
+        const [isMobile, setIsMobile] = useState<boolean>(false);
+        let windowWidth = 0;
 
         const toggleModal = () => {
           setModal(!modal);
@@ -107,6 +110,24 @@ const View =()=> {
               }
               
               yourFunction();
+
+              if (typeof window !== 'undefined') {
+                //   setWindowWidth(window.screen.width);
+                windowWidth = window.screen.width;
+                  setIsMobile(windowWidth < 500);
+                }
+        const handleResize = () => {
+            windowWidth = window.screen.width;
+            setIsMobile(windowWidth < 500);
+            console.log("window width",windowWidth);
+          };
+      
+          window.addEventListener('resize', handleResize);
+
+          return () => {
+            window.removeEventListener('resize', handleResize);
+
+          };
           }, [clt, crt, clb, crb, rf, rr]);
           const showtyreLT = (event: React.MouseEvent<HTMLButtonElement>) => {
             setIsClickedlt((prevIsClicked) => !prevIsClicked);
@@ -171,6 +192,7 @@ const View =()=> {
           };
     return (
         <div className="View">
+          {isMobile ?(<div>
                 <div className='Center'>
                 <div className='text'>Click the tyre for pressure details.</div>
                 <img src={carNowheel.src} style={{ width: '40%', marginTop:"50px", zIndex:"2"}}alt="car" />
@@ -219,7 +241,47 @@ const View =()=> {
                 <CarDetail/>
                 <button onClick={handleBack} className="BackButton">
                 <img src={backArrow.src} style={{ width: '80%', position:"absolute", transform:"translate(-50%, -50%)",top:"50%", left:"50%"}}alt="back" />
+                </button></div>):(
+                  <div style={{display:"flex", flexDirection:"row", justifyContent:"center", alignItems:"center"}}>
+                  <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+                      <img src={car.src} style={{ width: '40%',maxHeight:"500px", marginTop:"50px", zIndex:"2"}}alt="car" />
+                  </div> 
+                  <div style={{display:"flex", flexDirection:"column", justifyContent:"center", alignItems:"center"}}>
+                  <CarDetail/>
+                <button onClick={handleBack} className="BackButtonpc" style={{zIndex:"3"}}>
+                <img src={backArrow.src} style={{ width: '10%', position:"absolute", transform:"translate(-50%, -50%)",top:"50%", left:"50%"}}alt="back" />
                 </button>
+                </div>
+                <div style={{zIndex:"2", width:"100%", height:"100%", position:"absolute"}}>
+                         <div className="modalContent" style={{top:"31%", left:"12%"}}>
+                             <p>Tyre-Pressure: Front left</p>
+                             <p>Currently: {clt}</p> 
+                             <p>Recommended: {rf}</p>
+                         </div>
+                         </div>
+                         <div style={{zIndex:"2", width:"100%", height:"100%", position:"absolute"}}>
+                         <div className="modalContent" style={{top:"31%", left:"38%"}}>
+                             <p>Tyre-Pressure: Front right</p>
+                             <p>Currently: {crt}</p> 
+                             <p>Recommended: {rf}</p>
+                         </div>
+                         </div>
+                         <div style={{zIndex:"2", width:"100%", height:"100%", position:"absolute"}}>
+                         <div className="modalContent" style={{top:"75%", left:"12%"}}>
+                             <p>Tyre-Pressure: Rear left</p>
+                             <p>Currently: {clb}</p> 
+                             <p>Recommended: {rr}</p>
+                         </div>
+                         </div>
+                         <div style={{zIndex:"2", width:"100%", height:"100%", position:"absolute"}}>
+                         <div className="modalContent" style={{top:"75%", left:"38%"}}>
+                             <p>Tyre-Pressure: Rear right</p>
+                             <p>Currently: {crb}</p> 
+                             <p>Recommended: {rr}</p>
+                         </div>
+                         </div>
+                  </div>
+                )}
         </div>
     )
 }
