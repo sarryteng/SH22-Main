@@ -1,0 +1,34 @@
+.main {
+    display: flex;
+    justify-content: center; 
+    align-items: center;     
+    height: 100vh;       
+    flex-direction: column; 
+}
+
+.loading-text {
+    font-size: 35px; 
+    font-family: 'Arial', sans-serif; 
+    font-weight: bold; 
+    color: #000000; 
+    margin-top: 10px;
+   
+  }
+  .load-wrapper {
+    display: flex;       
+    justify-content: center; 
+    align-items: center;     
+          
+  }
+  .loader-container {
+    
+  
+    /* background:
+    
+        url("https://giphy.com/embed/sSgvbe1m3n93G") center
+        no-repeat;
+     */
+}
+#logo {
+    width: 50%;
+}
