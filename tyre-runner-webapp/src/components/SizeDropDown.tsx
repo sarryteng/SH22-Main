@@ -42,7 +42,7 @@ function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void
         tyreSize.length = 0;
         let currentId = 1;
         tyreOptionsWithPressure.forEach((tyreOption: { markings: string;}) => {
-            const marking = JSON.stringify(tyreOption.markings);
+            const marking = JSON.stringify(tyreOption.markings).replace(/"/g, '');
             console.log("marking is",marking);
             
             const newElement = { id: currentId++, markings:marking };
