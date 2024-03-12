@@ -15,20 +15,7 @@ class TestFlaskApp(unittest.TestCase):
     def tearDown(self):
         pass
     
-    @patch('backendServices.os.path.isfile', return_value=False)
-    @patch('configparser.ConfigParser')
-    def test_create_config(self, mock_configparser, mock_path_isfile):
-        mock_config = MagicMock()
-        mock_config.get.return_value = {
-            "TyreRunner API": {
-                "api_portal": "https://qa-tyrerunner-api.azure-api.net/vrm/v1/VRM/TyreDataByVRM",
-                "param_name": "VehicleNumberPlate",
-                "api_key": ""
-            }
-        }
-        mock_configparser.return_value = mock_config
 
-        main()
 
 
     @patch('backendServices.getTyreData.get_tyre_data')

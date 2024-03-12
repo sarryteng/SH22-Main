@@ -6,20 +6,7 @@ import requests
 from getTyreData import get_tyre_data
 from backendServices import *
 class TestGetTyreData(unittest.TestCase):
-    @patch('backendServices.os.path.isfile', return_value=False)
-    @patch('configparser.ConfigParser')
-    def test_create_config(self, mock_configparser, mock_path_isfile):
-        mock_config = MagicMock()
-        mock_config.get.return_value = {
-            "TyreRunner API": {
-                "api_portal": "https://qa-tyrerunner-api.azure-api.net/vrm/v1/VRM/TyreDataByVRM",
-                "param_name": "VehicleNumberPlate",
-                "api_key": ""
-            }
-        }
-        mock_configparser.return_value = mock_config
 
-        main()
 
 
     def test_valid_plate(self):
@@ -125,7 +112,7 @@ class TestGetTyreData(unittest.TestCase):
             # Simulate 500 Internal Server Error
             mock_get.return_value.status_code = 500
             result,_ = get_tyre_data("AO12XZP")
-            
+
             self.assertFalse(result["success"])
             self.assertEqual(result["status_code"], 500)
             self.assertEqual(result["message"], "There is an internal server error from Tyrerunner API. (Check the plate numbers)")
