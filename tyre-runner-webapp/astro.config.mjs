@@ -8,7 +8,10 @@ export default defineConfig({
   integrations: [react(), tailwind()],
   server: {
     port: 8080,
-    host: true
+    host: true,
+    fs: {
+      allow: [".."]
+    }
   },
   output: "server",
   adapter: node({

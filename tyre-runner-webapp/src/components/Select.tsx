@@ -66,7 +66,7 @@ function Select () {
         
         async function fetchdata() {
             try {
-                const response = await fetch(`http://backend-gla-team22.azurewebsites.net/tyre-data/${pno}`);
+                const response = await fetch(`https://backend-gla-team22.azurewebsites.net/tyre-data/${pno}`);
                 const result = await response.json();
                 // setResult(await response.json());
                 setDataResult(result.data);
