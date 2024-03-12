@@ -49,7 +49,7 @@ def main():
         PARAM_NAME = config.get("TyreRunner API", "param_name")
         API_KEY = config.get("TyreRunner API", "api_key")
 
-        if API_KEY == "ENTER_API_KEY_HERE":
+        if API_KEY == "ENTER_API_KEY_HERE" or '' :
             API_KEY = input("Enter Ocp-Apim-Subscription-Key for Tyrerunner: ").strip()
             config.set("TyreRunner API", "api_key", API_KEY)
             with open("config.ini", "w") as config_file:
