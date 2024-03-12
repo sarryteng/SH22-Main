@@ -33,7 +33,7 @@ function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void
     const fetchData = async () => {
       try {
         // console.log('start requesting....'); 
-        const response = await fetch(`http://backend-gla-team22.azurewebsites.net/tyre-data/${pno}`);
+        const response = await fetch(`https://backend-gla-team22.azurewebsites.net/tyre-data/${pno}`);
         const result = await response.json();
         // console.log(result.data);
         // const tyreOptionsWithPressure = result.tyreOptionsWithPressure;

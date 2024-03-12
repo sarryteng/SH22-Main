@@ -3,12 +3,10 @@ import "../assets/styles/app.css"
 import { useState, useEffect} from 'react';
 import LoadRadio from './LoadRadio';
 import SizeDropDown from './SizeDropDown';
-import "@fontsource/poppins";
 import Dialog from "../components/DialogueBox";
 import wheel from '../assets/images/wheel.svg'
 import carNowheel from '../assets/images/carNowheel.svg'
 import Loading from './Loading';
-
 
 
 
@@ -66,7 +64,7 @@ function Select () {
         
         async function fetchdata() {
             try {
-                const response = await fetch(`http://backend-gla-team22.azurewebsites.net/tyre-data/${pno}`);
+                const response = await fetch(`https://backend-gla-team22.azurewebsites.net/tyre-data/${pno}`);
                 const result = await response.json();
                 // setResult(await response.json());
                 setDataResult(result.data);
@@ -86,8 +84,8 @@ function Select () {
         const handleResize = () => {
             windowWidth = window.screen.width;
             setIsMobile(windowWidth < 600);
-            console.log("isMobile",isMobile);
-            console.log("window width",windowWidth);
+            // console.log("isMobile",isMobile);
+            // console.log("window width",windowWidth);
           };
       
           window.addEventListener('resize', handleResize);
@@ -150,7 +148,8 @@ function Select () {
                 <>
                 <Loading/>
                 <div style={{textAlign:"center",fontFamily:"Poppins", fontSize:"24px"}}>
-                    If it's loading for more than 2 minutes, please check the link and refresh the page
+                    If it's loading for more than 2 minutes, <br />
+                     please check the link and refresh the page
                     </div>
                 </>
             ):(

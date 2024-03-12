@@ -6,37 +6,28 @@ import Logo from '../assets/images/logo_red.svg'
 function LoadingPage() {
 
 
-    // const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
 
-    // useEffect(() => {
-    //     setLoading(true);
-    //     setTimeout(() => {
-    //         setLoading(false);
+    useEffect(() => {
+        setLoading(true);
+        setTimeout(() => {
+            setLoading(false);
 
-    //     }, 2000);
-    // }, []);
-
-    
+        }, 2000);
+    }, []);
 
 
     return (
         <div className='exclude-component'>
         <div className='main'>
         <img id='logo' src={Logo.src} alt="logo"  />
-        {/* {loading && (
-            <div className='load-wrapper'>
-                <p className='loading-text'>Loading</p>
-                <div className="loader-container">
-                    <div className="spinner">
-                        <iframe src="https://giphy.com/embed/sSgvbe1m3n93G" width="30" height="30" frameBorder="0" className="giphy-embed" ></iframe>
-                    </div>
-                </div>
-            </div>
-        )} */}
+
         <div className='load-wrapper'>
                 <p className='loading-text'>Loading</p>
                 <div className="loader-container">
-                        <iframe src="https://giphy.com/embed/sSgvbe1m3n93G" width="30" height="30" frameBorder="0" className="giphy-embed" ></iframe>
+                <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 26 26" fill="none">
+<path d="M12.7586 25.0241C11.0367 25.0241 9.36459 24.6942 7.7922 24.0417C6.27213 23.4112 4.90906 22.507 3.73786 21.3585C2.56667 20.2099 1.64466 18.8732 1.00175 17.3825C0.336408 15.8405 0 14.2007 0 12.5121C0 12.0257 0.401197 11.6323 0.897087 11.6323C1.39298 11.6323 1.79417 12.0257 1.79417 12.5121C1.79417 13.9636 2.08324 15.3713 2.65637 16.6982C3.20958 17.9787 3.99951 19.1298 5.00624 20.117C6.01297 21.1043 7.18666 21.8814 8.49242 22.4215C9.84304 22.9811 11.2784 23.2646 12.7586 23.2646C14.2388 23.2646 15.6741 22.9811 17.0272 22.4191C18.333 21.8765 19.5067 21.1019 20.5134 20.1146C21.5201 19.1273 22.3125 17.9763 22.8633 16.6958C23.4339 15.3713 23.723 13.9636 23.723 12.5121C23.723 11.0605 23.4339 9.65285 22.8608 8.32589C22.3094 7.04844 21.5115 5.88754 20.5109 4.90707C19.5122 3.92448 18.3282 3.14178 17.0247 2.60261C15.6741 2.04298 14.2388 1.75951 12.7586 1.75951C12.2627 1.75951 11.8615 1.36606 11.8615 0.879754C11.8615 0.393445 12.2627 0 12.7586 0C14.4805 0 16.1525 0.329908 17.7249 0.982392C19.245 1.61288 20.6081 2.51707 21.7793 3.66564C22.9505 4.81421 23.87 6.15339 24.5129 7.64164C25.1782 9.18365 25.5146 10.8234 25.5146 12.5121C25.5146 14.2007 25.1782 15.8405 24.5129 17.3825C23.8725 18.8732 22.9505 20.2099 21.7793 21.3585C20.6081 22.507 19.2425 23.4088 17.7249 24.0393C16.1525 24.6942 14.4805 25.0241 12.7586 25.0241Z" fill="black"/>
+</svg>
                     
                 </div>
             </div>

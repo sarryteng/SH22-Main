@@ -7,7 +7,6 @@ import "../assets/styles/modal.css";
 import wheel from '../assets/images/wheel.svg'
 import car from '../assets/images/Car.svg'
 import carNowheel from '../assets/images/carNowheel.svg'
-import "@fontsource/poppins";
 
 
 
