@@ -40,9 +40,9 @@ function BlackBox () {
       <div className="Box">
         <div style={{height:"45px"}}/>
         
-            <div className="TextBox">
-                <span className="TextInBox Label"> No.Plate:  </span>
-                <span className="TextInBox"> {plate} </span>
+            <div className="TextInBox" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span className="Label" style={{ textAlign: "left", marginLeft: "30px" }}>No.Plate:</span>
+              <span className="TextInBox" style={{ textAlign: "right", marginRight: "30px" }}>{plate}</span>
             </div>
             
             <div className="Center">
