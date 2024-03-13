@@ -27,7 +27,7 @@ const CarDetail =()=> {
         <div className="CarDetail">  
           <div className="CarDetailHead">
             <div className="DetailText">
-              <p style={{paddingTop:"20px", paddingBottom:"10px"}}>Car Details:</p>
+              <p style={{paddingTop:"20px", paddingBottom:"10px", marginBlock:"0em"}}>Car Details:</p>
             </div>
             </div> 
               <div className="DetailText">

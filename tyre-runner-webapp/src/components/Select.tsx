@@ -3,12 +3,10 @@ import "../assets/styles/app.css"
 import { useState, useEffect} from 'react';
 import LoadRadio from './LoadRadio';
 import SizeDropDown from './SizeDropDown';
-import "@fontsource/poppins";
 import Dialog from "../components/DialogueBox";
 import wheel from '../assets/images/wheel.svg'
 import carNowheel from '../assets/images/carNowheel.svg'
 import Loading from './Loading';
-
 
 
 
@@ -86,8 +84,8 @@ function Select () {
         const handleResize = () => {
             windowWidth = window.screen.width;
             setIsMobile(windowWidth < 600);
-            console.log("isMobile",isMobile);
-            console.log("window width",windowWidth);
+            // console.log("isMobile",isMobile);
+            // console.log("window width",windowWidth);
           };
       
           window.addEventListener('resize', handleResize);
@@ -150,7 +148,8 @@ function Select () {
                 <>
                 <Loading/>
                 <div style={{textAlign:"center",fontFamily:"Poppins", fontSize:"24px"}}>
-                    If it's loading for more than 2 minutes, please check the link and refresh the page
+                    If it's loading for more than 2 minutes, <br />
+                     please check the link and refresh the page
                     </div>
                 </>
             ):(
@@ -163,7 +162,7 @@ function Select () {
                 <img src={wheel.src} className={isclickedrt? 'clicked':'unclick'} style={{top:"32%", left:"68.2%"}}alt="wheelrt"></img>
                 <img src={wheel.src} className={isclickedlb?'clicked':'unclick'} style={{top:"63%", left:"31.7%"}}alt="wheellb"></img>
                 <img src={wheel.src} className={isclickedrb?'clicked':'unclick'} style={{top:"63%", left:"68.2%"}}alt="wheelrb"></img>
-                <button className="WheelButtonSelect" style={{top:"32%", left:"31.7%"}}onClick={() => tyreClick(1)}>
+                {/* <button className="WheelButtonSelect" style={{top:"32%", left:"31.7%"}}onClick={() => tyreClick(1)}>
                 tl
                 </button>
                 <button className="WheelButtonSelect" style={{top:"32%", left:"68.2%"}}onClick={() => tyreClick(2)}>
@@ -174,12 +173,13 @@ function Select () {
                 </button>
                 <button className="WheelButtonSelect" style={{top:"63%", left:"68.2%"}}onClick={() => tyreClick(4)}>
                     br
-                </button>
+                </button> */}
 
-                {isDialogOpen && (
+                {/* {isDialogOpen && (
                 <Dialog isOpen={isDialogOpen} setIsOpen={setDialogOpen} tyreIndex={tyreIndex} setTyreIndex={setTyreIndex} tyre1={clt} tyre2={crt} tyre3={clb} tyre4={crb} setTyre1={setclt} setTyre2={setcrt} setTyre3={setclb} setTyre4={setcrb}/>
                 )}
-                
+                 */}
+
                 <SizeDropDown onSelect={handleSelect}/>
                 <LoadRadio selectedValue={selectedValue} handleChange={handleChange} ladenExist={ladenExist} isMobile={isMobile}/>
                 <a className="button" onClick={handleSelectClick}>Select</a>
