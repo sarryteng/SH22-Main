@@ -5,14 +5,74 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS  # CORS needed to have all routes in app 
 
 from  datetime import datetime
-import json
+import json, os, configparser
 
-app = Flask(__name__)
-CORS(app)  # enable CORS for all routes in the app 
+# ----------------------------- CONFIG -----------------------------
 
-PROB_SCORE_THRESHOLD = 0.6      # threshold for probability score -- vehicle's scoreculag must be higher than this to be "recognised"
-LOADING_BUFFER_TIME = 40        # loading buffer time -- if no vehicle detected within this time, go back to loading page
-DETECTION_BUFFER_TIME = 10      # detection buffer time -- vehicle must be detected for this amout of time to be considered "detected"
+# container class for config
+class ConfigDefault:
+    SECTION = "Kiosk Backend"
+    DOMAIN_VAR = "domain"
+    DOMAIN_VAL = "http://gla-team22.azurewebsites.net"
+    ENDPOINT_VAR = "endpoint"
+    ENDPOINT_VAL = "url-data"
+    LICENCEPLATE_VAR = "licenceplate"
+    LICENCEPLATE_VAL = "licenceplate"
+    SENSOR_READINGS_VAR = "sensorreadings"
+    SENSOR_READINGS_VAL = "sensorreadings"
+    PROB_SCORE_THRESHOLD_VAR = "PROB_SCORE_THRESHOLD"
+    PROB_SCORE_THRESHOLD_VAL = 0.6
+    LOADING_BUFFER_TIME_VAR = "LOADING_BUFFER_TIME"
+    LOADING_BUFFER_TIME_VAL = 40
+    DETECTION_BUFFER_TIME_VAR = "DETECTION_BUFFER_TIME"
+    DETECTION_BUFFER_TIME_VAL = 10
+
+
+def create_config() -> None:
+    config_init = configparser.ConfigParser()
+    config_init[ConfigDefault.SECTION] = {ConfigDefault.DOMAIN_VAR: ConfigDefault.DOMAIN_VAL,
+                                          ConfigDefault.ENDPOINT_VAR: ConfigDefault.ENDPOINT_VAL,
+                                          ConfigDefault.LICENCEPLATE_VAR: ConfigDefault.LICENCEPLATE_VAL,
+                                          ConfigDefault.SENSOR_READINGS_VAR: ConfigDefault.SENSOR_READINGS_VAL,
+                                          ConfigDefault.PROB_SCORE_THRESHOLD_VAR: ConfigDefault.PROB_SCORE_THRESHOLD_VAL,
+                                          ConfigDefault.LOADING_BUFFER_TIME_VAR: ConfigDefault.LOADING_BUFFER_TIME_VAL,
+                                          ConfigDefault.DETECTION_BUFFER_TIME_VAR: ConfigDefault.DETECTION_BUFFER_TIME_VAL
+                                          }
+    # write
+    with open("config.ini", "w") as config_file:
+        config_init.write(config_file)
+
+    return
+
+def read_config():
+    # if config file does not exist -> create
+    if not os.path.isfile("config.ini"):
+        create_config()
+
+    # open config
+    config = configparser.ConfigParser()
+    config.read("config.ini")
+
+    global DOMAIN, ENDPOINT, LICENSE_PLATE_NAME, SENSOR_READINGS_NAME, PROB_SCORE_THRESHOLD, LOADING_BUFFER_TIME, DETECTION_BUFFER_TIME
+    DOMAIN = config.get(ConfigDefault.SECTION, ConfigDefault.DOMAIN_VAR)
+    ENDPOINT = config.get(ConfigDefault.SECTION, ConfigDefault.ENDPOINT_VAR)
+    LICENSE_PLATE_NAME = config.get(ConfigDefault.SECTION, ConfigDefault.LICENCEPLATE_VAR)
+    SENSOR_READINGS_NAME = config.get(ConfigDefault.SECTION, ConfigDefault.SENSOR_READINGS_VAR)
+    PROB_SCORE_THRESHOLD = float(config.get(ConfigDefault.SECTION, ConfigDefault.PROB_SCORE_THRESHOLD_VAR))
+    LOADING_BUFFER_TIME = int(config.get(ConfigDefault.SECTION, ConfigDefault.LOADING_BUFFER_TIME_VAR))
+    DETECTION_BUFFER_TIME = int(config.get(ConfigDefault.SECTION, ConfigDefault.DETECTION_BUFFER_TIME_VAR))
+
+    return
+
+def create_app():
+    read_config()
+    app = Flask(__name__)
+    CORS(app)  # enable CORS for all routes in the app 
+    return app
+
+app = create_app()
+
+# ----------------------------- END OF CONFIG -----------------------------
 
 data_list = []              # list to store data from SDK
 vehicleDetected = False     # vehicle detected flag
@@ -105,19 +165,14 @@ def getData():
         
         # gets the latest data 
         latest_data = data_list[0]  
-        
-        # old:
-        # registration_plate = latest_data.get('licenceplate', '')
-        # sensor_readings = latest_data.get('sensorreadings', '')
 
         # new:
-        registration_plate = latest_data['data']['results'][0]['plate']     # data from SDK
+        registration_plate = (latest_data['data']['results'][0]['plate']).upper()     # data from SDK
         sensor_readings = '30,32,28,31'                                     # temporary dummy data as TPMS is not implemented yet
         
         # generate url
-        urlGenerated = f'http://gla-team22.azurewebsites.net/url-data?licenceplate={registration_plate}&sensorreadings={sensor_readings}'
-        
-        # just for debugging purposes
+        urlGenerated = DOMAIN + '/' + ENDPOINT + '?' + LICENSE_PLATE_NAME + '=' + registration_plate + '&' + SENSOR_READINGS_NAME + '=' + sensor_readings
+
         print(f"url: {urlGenerated}")
         return jsonify({
             "url": urlGenerated,
