@@ -1,6 +1,10 @@
-export async function getCarData() {
+export async function getCarData() {    
+    
+
     try {
-            const response = await fetch('http://localhost:8000/get-data', {
+        const response = await fetch(`${import.meta.env.PUBLIC_BASE_URL}/get-data`, {
+      
+            // const response = await fetch('http://localhost:8000/get-data', {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json'
