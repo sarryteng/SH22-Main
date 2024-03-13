@@ -77,7 +77,7 @@ function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void
                 value={value ?? ''}
                 onChange={handleSelectChange}
             >
-                <option value="">Select tyre size</option>
+                <option value="-1" key={-1}>Select tyre size</option>
                 {tyreSize.map((item) => (
                     // <option key={item.id} value={item.id}>
                     //    ratio: {item.ratio} rim:{item.rim} width:{item.width}

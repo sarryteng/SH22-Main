@@ -3,29 +3,10 @@ import "../assets/styles/app.css"
 import { useState, useEffect} from 'react';
 import LoadRadio from './LoadRadio';
 import SizeDropDown from './SizeDropDown';
-import Dialog from "../components/DialogueBox";
+// import Dialog from "../components/DialogueBox";
 import wheel from '../assets/images/wheel.svg'
 import carNowheel from '../assets/images/carNowheel.svg'
 import Loading from './Loading';
-
-
-
-//Run: http://localhost:8080/url-data?licenseplate=AO12XZP&sensorreadings=30,32,28,31
-
-//API: http://127.0.0.1:6767/tyre-data/{platenumber}
-//Example: http://127.0.0.1:6767/tyre-data/AO12XZP
-
-//{"dataSource":"N/A","dateTimeSaved":"2023-11-11T20:34:19.907","make":"AUDI","model":"A6 ALLROAD TDI QUATTRO A",
-//"tyreOptionsWithPressure":[
-    //{"loadIndex":"100","pressure":{"bar":2.3,"laden":{},"psi":33},"ratio":55,"rim":18,"speedIndex":"Y","tyreType":"FRONT","width":235},
-    //{"loadIndex":"100","pressure":{"bar":2.1,"laden":{},"psi":30},"ratio":55,"rim":18,"speedIndex":"Y","tyreType":"REAR","width":235}],
-//"vrm":"AO12XZP"}
-
-//Use PSI units
-//a common tire size format is expressed as something like "235/55R18," where:
-    // 235 = width
-    // 55 = ratio
-    // R18 = rim
 
 function Select () {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
@@ -108,8 +89,13 @@ function Select () {
     const handleSelect = (value: string) => {
         setSelectedSizeValue(value);
         const valueint=parseInt(value);
-        console.log(dataresult.frontTyres[valueint-1]);
+        if(valueint===-1){
+            setLadenExist(true);
+        }
+        else{
+            console.log(dataresult.frontTyres[valueint-1]);
         setLadenExist(dataresult.frontTyres[valueint-1].ladenOption);
+        }
     };
 
     const handleSelectClick = (event: React.MouseEvent<HTMLAnchorElement>) => {

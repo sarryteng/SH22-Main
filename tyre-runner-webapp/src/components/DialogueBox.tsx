@@ -93,25 +93,16 @@ function Dialog(props: DialogProps) {
               </label> 
             </div>
           </form>
-
+          
           <div className="buttonContainer">
             <button type="button" style={{borderRadius:"30px",boxShadow:"0 2px 4px 0 rgba(0, 0, 0, 0.25)"}} onClick={() => handleButtonClick('cancel')} className="Dialogbutton">Cancel</button>
             <button type="button" style={{borderRadius:"30px",boxShadow:"0 2px 4px 0 rgba(0, 0, 0, 0.25)"}} onClick={() => handleButtonClick('confirm')} className="Dialogbutton">Confirm</button>
           </div>
-          
         </div>
-
       ))}
     </div>
-
-
-
-
-
-
   );
 
 }
-
 
 export default Dialog;
