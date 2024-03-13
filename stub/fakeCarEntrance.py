@@ -1,4 +1,5 @@
 # fake data to stimulate data received from Platerecognizer
+#       - dscore is 0.621 (higher than threshold) -> represents entrance
 
 import json
 import requests
