@@ -3,8 +3,8 @@
 
 # Project Description
 This project aims to provide educational information for drivers about the optimal pressure of their tyres. The project consists of two parts
-    * **Web Application**: to provide an interface for user to interact with. This website will show the optimal tyre pressure specific for the model of the driver's car, presenting it in an easy-to-understand graphic. Additionally, the website can also show diagnostic information(if the current tyre pressure values are available), showing which tyre(s) has low/high pressure than optimal.
-    * **Kiosk**: to identify critical information about the user's car, and provide a gateway for the user to reach the website. This section is intended to be ran entirely offline, on a raspberry pi. The kiosk reads the plate number of the car that it sees via a camera, and presents a QR code for the driver to open the web application.
+* **Web Application**: to provide an interface for user to interact with. This website will show the optimal tyre pressure specific for the model of the driver's car, presenting it in an easy-to-understand graphic. Additionally, the website can also show diagnostic information(if the current tyre pressure values are available), showing which tyre(s) has low/high pressure than optimal.
+* **Kiosk**: to identify critical information about the user's car, and provide a gateway for the user to reach the website. This section is intended to be ran entirely offline, on a raspberry pi. The kiosk reads the plate number of the car that it sees via a camera, and presents a QR code for the driver to open the web application.
 
 # How to Run
 To run either the kiosk or the web application, clone the repository with 
