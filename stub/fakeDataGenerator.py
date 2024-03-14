@@ -1,6 +1,3 @@
-# fake data generator for URL generation
-# ----- no longer needed as SDK is used -----
-
 import requests
 
 def send_request(url, data):
@@ -19,6 +16,7 @@ def send_request(url, data):
 def send_url(reg_plate, sensor_readings):
 
     base_url = 'http://localhost:8000/url-data'
+    # base_url =  (`${import.meta.env.PUBLIC_POKEAPI}/url-data`)
     car_data = {
         'licenceplate': reg_plate,
         'sensorreadings': sensor_readings,

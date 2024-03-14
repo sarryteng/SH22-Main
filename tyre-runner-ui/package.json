@@ -7,8 +7,7 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "test": "cypress run"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/check": "^0.3.1",
@@ -18,7 +17,7 @@
     "@fontsource/suez-one": "^5.0.17",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
-    "astro": "^4.4.9",
+    "astro": "^4.3.7",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-qr-code": "^2.0.12",
@@ -27,8 +26,5 @@
   "main": "index.js",
   "author": "",
   "license": "ISC",
-  "description": "",
-  "devDependencies": {
-    "cypress": "^13.6.6"
-  }
+  "description": ""
 }
