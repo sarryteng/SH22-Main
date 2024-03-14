@@ -118,7 +118,7 @@ def get_tyre_data(vehicle_num: str, api_key='', api_portal=API_PORTAL, param_nam
                 laden_option = True
 
             # construct tyre marking
-            markings = (str(tyre_choice["width"]) + "/" + str(tyre_choice["ratio"]) + "  " + str(tyre_choice["rim"])
+            markings = (str(tyre_choice["width"]) + "/" + str(tyre_choice["ratio"]) + "  R  " + str(tyre_choice["rim"])
                         + "  " + tyre_choice["loadIndex"] + tyre_choice["speedIndex"])
             # construct tyre data json
             tyre_data = {"tyreType": tyre_choice["tyreType"],

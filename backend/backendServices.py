@@ -172,11 +172,11 @@ def create_app():
     app = Flask(__name__)
     set_globals()
     # regex version of CORS
-    CORS(app, resources={r"/*": {"origins": [r"^https?:\/\/localhost:[0-9]{2,}$",
+    CORS(app, resources={r"/*": {"origins": [r"^https?:\/\/localhost:[0-9]{1,}$",
                                              r"^https?:\/\/.*gla-team22\.azurewebsites\.net([\/:].*)*$",
-                                             r"^https?:\/\/127\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]{2,}$",
-                                             r"^https?:\/\/192\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]{2,}$",
-                                             r"^https?:\/\/172\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]{2,}$"]
+                                             r"^https?:\/\/127\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]{1,}$",
+                                             r"^https?:\/\/192\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]{1,}$",
+                                             r"^https?:\/\/172\.[0-9]+\.[0-9]+\.[0-9]+:[0-9]{1,}$"]
                                  }})
     return app
 

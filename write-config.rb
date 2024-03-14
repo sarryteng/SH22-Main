@@ -2,11 +2,17 @@
 
 node_build = <<~YML
     image: node:lts 
+    test:
+        stage: test
+        script:
+            - cd tyre-runner-webapp
+            - npm ci & npm start
+            - npm test
     build:
         stage: build
         script:
             - cd tyre-runner-webapp
-            - npm install
+            - npm ci
             - npm run build
         artifacts:
             paths:
