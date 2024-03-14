@@ -54,3 +54,32 @@ For instructions on how to run the kiosk, [navigate here](https://stgit.dcs.gla.
 
 > not sure about links
 
+
+# Contributors
+1. Name: Sarry Teng \
+Principle Note Taker \
+Contact: +44 7452 726646
+
+2. Name: Ruyan Qin \
+Developer \
+Contact:+44 7385 214281
+
+3. Name: Kumpob Yuwapreecha \
+Developer \
+Contact: +44 7787 587972
+
+4. Name: Jetanat Sihanatkathakul \
+Meeting Chair \
+Contact: +44 7903 417238
+
+5. Name: Atip Kajitamkul \
+Product Owner \
+Contact: 
+
+6. Name: Kittiphong Thachaphat \
+Lead Demonstrator \
+Contact:
+
+## Team Coach
+Name: Jordan Scott \
+Contact: \
