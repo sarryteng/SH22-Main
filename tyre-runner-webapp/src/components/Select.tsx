@@ -8,7 +8,12 @@ import wheel from '../assets/images/wheel.svg'
 import carNowheel from '../assets/images/carNowheel.svg'
 import Loading from './Loading';
 
-function Select () {
+interface URLProp {
+    url: string;
+}
+
+
+const Select = ({url}: URLProp) => {
     const [selectedValue, setSelectedValue] = useState<string | null>(null);
     const [selectedSizeValue, setSelectedSizeValue] = useState<string | undefined>(undefined);
     const [mno, setmno] = useState<string>('');
@@ -45,7 +50,7 @@ function Select () {
         
         async function fetchdata() {
             try {
-                const response = await fetch(`https://backend-gla-team22.azurewebsites.net/tyre-data/${pno}`);
+                const response = await fetch(`${url}/${pno}`);
                 const result = await response.json();
                 // setResult(await response.json());
                 setDataResult(result.data);
@@ -165,8 +170,7 @@ function Select () {
                 <Dialog isOpen={isDialogOpen} setIsOpen={setDialogOpen} tyreIndex={tyreIndex} setTyreIndex={setTyreIndex} tyre1={clt} tyre2={crt} tyre3={clb} tyre4={crb} setTyre1={setclt} setTyre2={setcrt} setTyre3={setclb} setTyre4={setcrb}/>
                 )}
                  */}
-
-                <SizeDropDown onSelect={handleSelect}/>
+                <SizeDropDown url={url} onSelect={handleSelect}/>
                 <LoadRadio selectedValue={selectedValue} handleChange={handleChange} ladenExist={ladenExist} isMobile={isMobile}/>
                 <a className="button" onClick={handleSelectClick}>Select</a>
             </div>):(

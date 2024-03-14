@@ -1,10 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Select from '../components/Select';
+const BACKEND_URL = import.meta.env.BACKEND_URL;
 ---
 
 <Layout>
 	<div class="Center">
-        <Select client:load/>
+        <Select url={BACKEND_URL} client:load/>
     </div>
 </Layout>

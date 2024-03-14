@@ -8,19 +8,19 @@ type TyreOption = {
 };
 
 type SizeDropDownProps = {
+  url: string;
   onSelect: (selectedValue: string, tyreOption: TyreOption) => void;
   tyreOptionsWithPressure: TyreOption[];
 };
 
-const tyreSize: { id:number; markings: string;}[] = [
-    
-]
+const tyreSize: { id:number; markings: string;}[] = []
 
-function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void }) {
+
+const SizeDropDown = ({ url, onSelect}: SizeDropDownProps) => {
     const [data, setData] = useState(null);
     const [sizeArray, setSizeArray] = useState<string[]>([]);
     const [pno, setpno] = useState<string>('');
-
+  
     
   useEffect(() => {
     const getQueryParams = () => {
@@ -33,7 +33,7 @@ function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void
     const fetchData = async () => {
       try {
         // console.log('start requesting....'); 
-        const response = await fetch(`https://backend-gla-team22.azurewebsites.net/tyre-data/${pno}`);
+        const response = await fetch(`${url}/${pno}`);
         const result = await response.json();
         // console.log(result.data);
         // const tyreOptionsWithPressure = result.tyreOptionsWithPressure;
