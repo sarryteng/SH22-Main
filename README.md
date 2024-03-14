@@ -46,8 +46,6 @@ Kiosk requires:
 
 For instructions on how to run the kiosk, [navigate here](https://stgit.dcs.gla.ac.uk/team-project-h/2023/sh22/sh22-main/-/wikis/Documentation/User-Manual/Kiosk)
 
-> not sure about links
-
 
 # Contributors
 1. Name: Sarry Teng \
