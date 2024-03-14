@@ -1,4 +1,3 @@
-import React from 'react';
 import '../assets/styles/loading.css';
 import "../assets/styles/app.css"
 import { useState, useEffect } from 'react';
@@ -25,7 +24,7 @@ function LoadingPage() {
         <div className='load-wrapper'>
                 <p className='loading-text'>Loading</p>
                 <div className="loader-container">
-                <iframe src="https://giphy.com/embed/sSgvbe1m3n93G" width="30" height="30" frameBorder="0" className="giphy-embed" ></iframe>
+                <iframe src="https://giphy.com/embed/sSgvbe1m3n93G" width="30" height="30" style={{border:0}} className="giphy-embed" ></iframe>
                     
                 </div>
             </div>
