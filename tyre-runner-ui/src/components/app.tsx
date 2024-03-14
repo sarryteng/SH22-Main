@@ -1,22 +1,53 @@
-// import QRcode from "./QRCodeBox/test.tsx";
+import React, { useState, useEffect } from 'react';
 import BlackBox from "./QRCodeBox/box.tsx";
 import "../assets/styles/app.css";
-import logo from '../assets/Images/logo_transparent.png'
+import logo from '../assets/Images/logo_transparent.png';
+import LoadingPage from './loading.tsx';
 import Contact from "./contact.tsx";
-import { useEffect } from 'react';
-
+import { getCarData } from '../services/dataHandlers.ts'; 
 
 function App() {
+  const [data, setData] = useState(null); 
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    
+    const fetchData = async () => {
+      try {
+        const carData = await getCarData();
+        if (carData.vehicleDetected==false) {
+          console.log(carData.vehicleDetected);
+
+          setLoading(true); 
+        }
+        else{
+          setData(carData); 
+          setLoading(false); 
+        }
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      } 
+    };
+
+    fetchData(); 
+    
+    const intervalId = setInterval(fetchData, 15000);//interval is 15s
+
+   
+    return () => clearInterval(intervalId);
+  }, []); 
+
+  if (loading) {
+    return <LoadingPage />;
+  }
 
   return (
     <div className="Center">
-      {/* <img src= 'https://cdn.discordapp.com/attachments/941167937799225345/1173766943103266816/gfFsIGaVY6lqAAAAABJRU5ErkJggg.png?ex=656526a6&is=6552b1a6&hm=a702834f5a2c99b6dddf16983ba35bc7ffd50a8ce27736694a3ed4b1dbcf55b2&' alt="Banner" /> */}
-      <img src={logo.src} style={{ width: '630px'}}alt="logo" />
+      <img src={logo.src} style={{ width: '630px'}} alt="logo" />
       <div className="QuoteText">Check Your Pressure</div>
-      {/* <QRcode /> */}
       <div style={{height:'100px'}}/>
       <BlackBox />
-      <div style={{height:'300px'}}/>
+      <div style={{height:'100px'}}/>
       <Contact />
     </div>
   );

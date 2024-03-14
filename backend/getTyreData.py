@@ -118,7 +118,7 @@ def get_tyre_data(vehicle_num: str, api_key='', api_portal=API_PORTAL, param_nam
                 laden_option = True
 
             # construct tyre marking
-            markings = (str(tyre_choice["width"]) + "/" + str(tyre_choice["ratio"]) + "  " + str(tyre_choice["rim"])
+            markings = (str(tyre_choice["width"]) + "/" + str(tyre_choice["ratio"]) + "  R  " + str(tyre_choice["rim"])
                         + "  " + tyre_choice["loadIndex"] + tyre_choice["speedIndex"])
             # construct tyre data json
             tyre_data = {"tyreType": tyre_choice["tyreType"],
@@ -190,8 +190,8 @@ def get_tyre_data(vehicle_num: str, api_key='', api_portal=API_PORTAL, param_nam
 
 
 if __name__ == "__main__":
-    print(requests.get("http://127.0.0.1:6767/tyre-data/" + TEST_PLATE))
-    print(requests.get("http://127.0.0.1:6767/tyre-data/" + TEST_PLATE).json())
+    # print(requests.get("http://127.0.0.1:6767/tyre-data/" + TEST_PLATE))
+    # print(requests.get("http://127.0.0.1:6767/tyre-data/" + TEST_PLATE).json())
 
-    # print(requests.get("http://127.0.0.1:6767/tyre-data/" + BAD_PLATE))
-    # print(requests.get("http://127.0.0.1:6767/tyre-data/" + BAD_PLATE).text)
+    print(requests.get("http://backend-gla-team22.azurewebsites.net/tyre-data/" + TEST_PLATE))
+    print(requests.get("http://backend-gla-team22.azurewebsites.net/tyre-data/" + TEST_PLATE).text)

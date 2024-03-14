@@ -8,19 +8,19 @@ type TyreOption = {
 };
 
 type SizeDropDownProps = {
+  url: string;
   onSelect: (selectedValue: string, tyreOption: TyreOption) => void;
   tyreOptionsWithPressure: TyreOption[];
 };
 
-const tyreSize: { id:number; rim: string; ratio: string; width:string }[] = [
-    
-]
+const tyreSize: { id:number; markings: string;}[] = []
 
-function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void }) {
+
+const SizeDropDown = ({ url, onSelect}: SizeDropDownProps) => {
     const [data, setData] = useState(null);
     const [sizeArray, setSizeArray] = useState<string[]>([]);
     const [pno, setpno] = useState<string>('');
-
+  
     
   useEffect(() => {
     const getQueryParams = () => {
@@ -32,22 +32,21 @@ function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void
     getQueryParams();
     const fetchData = async () => {
       try {
-        console.log('start requesting....'); 
-        const response = await fetch(`http://127.0.0.1:6767/tyre-data/${pno}`);
+        // console.log('start requesting....'); 
+        const response = await fetch(`${url}/${pno}`);
         const result = await response.json();
-        console.log(result.data);
-        const tyreOptionsWithPressure = result.tyreOptionsWithPressure;
+        // console.log(result.data);
+        // const tyreOptionsWithPressure = result.tyreOptionsWithPressure;
+        const tyreOptionsWithPressure = result.data.frontTyres;
 
-  
+        tyreSize.length = 0;
         let currentId = 1;
-        tyreOptionsWithPressure.forEach((tyreOption: { ratio: any; rim: any; width:any;}) => {
-            const ratio = JSON.stringify(tyreOption.ratio);
-            const rim = JSON.stringify(tyreOption.rim);
-            const width=JSON.stringify(tyreOption.width);
+        tyreOptionsWithPressure.forEach((tyreOption: { markings: string;}) => {
+            const marking = JSON.stringify(tyreOption.markings).replace(/"/g, '');
+            console.log("marking is",marking);
             
-            const newElement = { id: currentId++, rim: rim, ratio: ratio, width:width };
+            const newElement = { id: currentId++, markings:marking };
             tyreSize.push(newElement)
-          
           });
           console.log("tyreSize is",tyreSize);
         setData(result);
@@ -70,7 +69,7 @@ function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void
         setValue(selectedValue);
         onSelect(selectedValue);
     };
-    console.log(value);
+    // console.log(value);
 
     return (
         <div className="dropdown">
@@ -78,10 +77,13 @@ function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void
                 value={value ?? ''}
                 onChange={handleSelectChange}
             >
-                <option value="">Select tyre size</option>
+                <option value="-1" key={-1}>Select tyre size</option>
                 {tyreSize.map((item) => (
+                    // <option key={item.id} value={item.id}>
+                    //    ratio: {item.ratio} rim:{item.rim} width:{item.width}
+                    // </option>
                     <option key={item.id} value={item.id}>
-                       ratio: {item.ratio} rim:{item.rim} width:{item.width}
+                       {item.markings}
                     </option>
                 ))}
             </select>

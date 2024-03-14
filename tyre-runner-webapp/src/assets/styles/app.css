@@ -1,3 +1,8 @@
+@font-face {
+   font-family: "Poppins";
+   src: url("../fonts/Poppins-Regular.ttf") format("truetype");
+}
+
 .App { 
     padding-top: 30px;
     padding-left: 430px;
@@ -88,7 +93,7 @@
 
 .contact_text{
     color: #FFF;
-    font-family: Poppins;
+    font-family: "Poppins";
     font-size: 30px;
     font-style: normal;
     font-weight: 400;
@@ -113,7 +118,7 @@ flex-shrink: 0;
 border-radius: 50px;
 background: #E53121;
 color: #FFF;
-font-family: Poppins;
+font-family: "Poppins";
 font-size: 40px;
 font-style: normal;
 font-weight: 500;
@@ -149,6 +154,7 @@ box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
 *{
     box-sizing: border-box;
     width: 100%;
+    border-color: #FFF;
 }
 
 body{
@@ -165,6 +171,17 @@ body{
     justify-content: center;
  }
 
+ .HeaderLogo{
+   display:flex;
+   flex-direction:column;
+   align-items: center;
+   position: relative;
+}
+
+.HeaderImg{
+   width: 430px;
+}
+
  .CRFooter{
     background-color: #E53121;
     width: 100%;
@@ -174,7 +191,7 @@ body{
 
  .copyrighttext{
     color: #FFF;
-    font-family: Poppins;
+    font-family: "Poppins";
     font-size: 25px;
     font-style: normal;
     font-weight: 400;
@@ -196,15 +213,15 @@ body{
     border-radius: 20px;
     width: 60%;
     font-size: 20px;
-    font-family: Poppins;
+    font-family: "Poppins";
     margin-left: 10%;
-    margin-top: 10%;
+    margin-top: 5%;
  }
 
  .CarDetailHead{
     color: #FFF;
     background-color: #E53121;
-    font-family: Poppins;
+    font-family: "Poppins";
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
     font-size: 30px;
@@ -230,7 +247,6 @@ body{
     border-radius: 20px; 
     overflow: hidden;
     box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.25);
-  
     
   }
 
@@ -289,7 +305,7 @@ body{
     position: absolute;
     background-color: #E53121;
     color: #F5F5F5;
-    font-family: Poppins;
+    font-family: "Poppins";
     font-size: 20px;
     width: 20%;
     text-align: center;
@@ -337,10 +353,10 @@ body{
  .BackButton{
     position: absolute;
     transform: translate(-50%, -50%);
-    top: 75.5%;
+    top: 89%;
     left: 80%;
     width: 10%;
-    height: 15%;
+    height: 18%;
     border-radius: 30px;
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     background-color: #F5F5F5;
@@ -364,3 +380,118 @@ body{
     opacity: 0.2;
     background-color: #000;
  }
+
+
+ /* @media (min-width: 1000px) {
+   .endpage {
+      position: fixed;
+    }
+    .CRFooter{
+       background-color: #E53121;
+       width: 100%;
+       height: 20px;
+       justify-content: center;
+    }
+   
+    .copyrighttext{
+       color: #FFF;
+       font-family: Poppins;
+       font-size: 12px;
+       font-style: normal;
+       font-weight: 400;
+       line-height: normal;
+       justify-content: center;
+       padding-top: 2px;
+    }
+ } */
+
+ @media (max-height: 1200px) {
+   .text{
+  font-size: 18px;
+  }
+  .button{
+   font-size: 20px;
+   width: 30%;
+   }
+   .dropdown {
+      width: 32%;
+      margin-top: 50px;
+      margin-bottom: 20px;
+      transform: scale(1.5);
+      outline: 1px solid #000000;
+      border-radius: 20px;
+      font-size: 15px;
+  }
+  .Header{
+   display: flex;
+   padding-top: 0px;
+   padding-bottom: 0px;
+   justify-content: left;
+}
+
+.HeaderLogo{
+   display:flex;
+   flex-direction:column;
+}
+.HeaderImg{
+   width: 320px;
+}
+
+.endpage {
+   position: fixed;
+ }
+ .CRFooter{
+    background-color: #E53121;
+    width: 100%;
+    height: 30px;
+    justify-content: center;
+ }
+
+ .copyrighttext{
+    color: #FFF;
+    font-family: "Poppins";
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    justify-content: center;
+    padding-top: 2px;
+ }
+
+ .CarDetail{
+   width: 75%;
+   font-size: 15px;
+}
+
+.CarDetailHead{
+   color: #FFF;
+   background-color: #E53121;
+   font-family: "Poppins";
+   border-top-left-radius: 20px;
+   border-top-right-radius: 20px;
+   padding-top:  5px;
+}
+
+.DetailText{
+   margin-top: 1%;
+   margin-left: 5%;
+   margin-right: 5%;
+}
+ }
+
+.BackButtonpc{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 90%;
+    left: 77.5%;
+    width: 37%;
+    height: 10%;
+    border-radius: 30px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+    background-color: #F5F5F5;
+ }
+
+ .BackButtonpc:hover{
+    background-color: #e2e2e2;
+ }
+ 
