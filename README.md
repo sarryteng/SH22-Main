@@ -68,7 +68,7 @@ Contact: +44 7903 417238
 
 5. Name: Atip Kajitamkul \
 Product Owner \
-Contact: 
+Contact: +44 7787 751429
 
 6. Name: Kittiphong Thachaphat \
 Lead Demonstrator \
