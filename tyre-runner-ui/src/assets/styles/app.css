@@ -86,7 +86,6 @@
 }
 
 .Label {
-    margin-right: 40%;
     margin-left: 5%;
 }
 
@@ -110,4 +109,7 @@
     font-weight: 400;
     line-height: normal;
     text-decoration-line: underline;
+
+    position: fixed;
+    bottom: 0;
 }

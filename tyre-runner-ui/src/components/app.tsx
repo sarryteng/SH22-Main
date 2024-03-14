@@ -47,7 +47,7 @@ function App() {
       <div className="QuoteText">Check Your Pressure</div>
       <div style={{height:'100px'}}/>
       <BlackBox />
-      <div style={{height:'300px'}}/>
+      <div style={{height:'100px'}}/>
       <Contact />
     </div>
   );
