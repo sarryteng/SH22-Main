@@ -1,3 +1,8 @@
+@font-face {
+  font-family: "Poppins";
+  src: url("../fonts/Poppins-Regular.ttf") format("truetype");
+}
+
 .main {
     display: flex;
     justify-content: center; 
@@ -22,8 +27,16 @@
           
   }
   .loader-container {
-    padding-right: 40%;
+    padding-bottom: 1.5%;
+    padding-right: 35%;
 }
 #logo {
     width: 50%;
+}
+
+@media (max-height: 1200px) {
+  .loader-container{
+    padding-bottom: 1%;
+    padding-right: 45%;
+  }
 }

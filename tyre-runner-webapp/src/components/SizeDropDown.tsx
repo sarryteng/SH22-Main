@@ -33,7 +33,7 @@ function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void
     const fetchData = async () => {
       try {
         // console.log('start requesting....'); 
-        const response = await fetch(`http://127.0.0.1:6767/tyre-data/${pno}`);
+        const response = await fetch(`https://backend-gla-team22.azurewebsites.net/tyre-data/${pno}`);
         const result = await response.json();
         // console.log(result.data);
         // const tyreOptionsWithPressure = result.tyreOptionsWithPressure;
@@ -42,7 +42,7 @@ function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void
         tyreSize.length = 0;
         let currentId = 1;
         tyreOptionsWithPressure.forEach((tyreOption: { markings: string;}) => {
-            const marking = JSON.stringify(tyreOption.markings);
+            const marking = JSON.stringify(tyreOption.markings).replace(/"/g, '');
             console.log("marking is",marking);
             
             const newElement = { id: currentId++, markings:marking };
@@ -77,7 +77,7 @@ function SizeDropDown ({ onSelect }: { onSelect: (selectedValue: string) => void
                 value={value ?? ''}
                 onChange={handleSelectChange}
             >
-                <option value="">Select tyre size</option>
+                <option value="-1" key={-1}>Select tyre size</option>
                 {tyreSize.map((item) => (
                     // <option key={item.id} value={item.id}>
                     //    ratio: {item.ratio} rim:{item.rim} width:{item.width}

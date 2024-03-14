@@ -14,16 +14,17 @@ function BlackBox () {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            let fetchedUrl = await getCarData();
+            let carData = await getCarData();
+            let fetchedUrl=carData.url;
             setQRUrl(fetchedUrl.toString());
-            const url = new URL(fetchedUrl);
-            
-            const urlParams = new URLSearchParams(url.search);
+            // const url = new URL(fetchedUrl);
+            console.log(fetchedUrl);
+            // const urlParams = new URLSearchParams(url.search);
 
-            const licensePlateParam = urlParams.get('licenceplate');
-            const sensorReadingsParam = urlParams.get('sensorreadings');
+            const licensePlateParam = carData.registration_plate;
+            // const sensorReadingsParam = urlParams.get('sensorreadings');
             
-            console.log('Data fetched:', licensePlateParam, sensorReadingsParam);
+            // console.log('Data fetched:', licensePlateParam, sensorReadingsParam);
             setPlate(licensePlateParam);
             
           } catch (error) {
@@ -39,9 +40,9 @@ function BlackBox () {
       <div className="Box">
         <div style={{height:"45px"}}/>
         
-            <div className="TextBox">
-                <span className="TextInBox Label"> No.Plate:  </span>
-                <span className="TextInBox"> {plate} </span>
+            <div className="TextInBox" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+              <span className="Label" style={{ textAlign: "left", marginLeft: "30px" }}>No.Plate:</span>
+              <span className="TextInBox" style={{ textAlign: "right", marginRight: "30px" }}>{plate}</span>
             </div>
             
             <div className="Center">

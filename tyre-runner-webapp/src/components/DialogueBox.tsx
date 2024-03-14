@@ -88,30 +88,21 @@ function Dialog(props: DialogProps) {
               <div className='DetailText' style={{paddingBottom:"10px"}}>pressure</div>
             </div>
             <div style={{display:"flex",justifyContent:"center"}}> 
-              <label style={{margin:"10%",width:"80%",height:"60%",}}>{dialog.tyrename}: <input type='text' defaultValue={dialog.tyrecontent} ref={dialog.ref} style={{width:"50%",outline:"1px solid", borderRadius:"10px"}}  className="dialogInput" autoFocus >
+              <label style={{margin:"10%",width:"80%",height:"60%",fontFamily:"Poppins"}}>{dialog.tyrename}: <input type='text' defaultValue={dialog.tyrecontent} ref={dialog.ref} style={{width:"50%",outline:"1px solid", borderRadius:"10px"}}  className="dialogInput" autoFocus >
                 </input>
               </label> 
             </div>
           </form>
-
+          
           <div className="buttonContainer">
             <button type="button" style={{borderRadius:"30px",boxShadow:"0 2px 4px 0 rgba(0, 0, 0, 0.25)"}} onClick={() => handleButtonClick('cancel')} className="Dialogbutton">Cancel</button>
             <button type="button" style={{borderRadius:"30px",boxShadow:"0 2px 4px 0 rgba(0, 0, 0, 0.25)"}} onClick={() => handleButtonClick('confirm')} className="Dialogbutton">Confirm</button>
           </div>
-          
         </div>
-
       ))}
     </div>
-
-
-
-
-
-
   );
 
 }
-
 
 export default Dialog;
