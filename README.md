@@ -44,12 +44,6 @@ Kiosk requires:
 * Platerecognizer SDK
 * docker
 
-Kiosk also requires `flask`, `flask-cors` and `requests` packages. If needed, run:
-
-```
-pip install flask flask-cors requests
-```
-
 For instructions on how to run the kiosk, [navigate here](https://stgit.dcs.gla.ac.uk/team-project-h/2023/sh22/sh22-main/-/wikis/Documentation/User-Manual/Platerecognizer)
 
 > not sure about links
