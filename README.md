@@ -80,6 +80,6 @@ Contact:
 Lead Demonstrator \
 Contact:
 
-## Team Coach
+**Team Coach**
 Name: Jordan Scott \
 Contact: \
