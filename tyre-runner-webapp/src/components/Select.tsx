@@ -234,7 +234,7 @@ const Select = ({ url }: URLProp) => {
                 >
                   Select your preference
                 </div>
-                <SizeDropDown url={url} onSelect={handleSelect} tyreOptionsWithPressure={[]} />
+                <SizeDropDown url={url} onSelect={handleSelect} />
                 <LoadRadio
                   selectedValue={selectedValue}
                   handleChange={handleChange}
