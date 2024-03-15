@@ -2,7 +2,7 @@ import "../assets/styles/app.css"
 import { useState, useEffect } from 'react';
 import backArrow from '../assets/images/backArrow.svg'
 import CarDetail from "./CarDetail";
-import React from 'react';
+import React from "react";
 import "../assets/styles/modal.css";
 import wheel from '../assets/images/wheel.svg'
 import car from '../assets/images/Car.svg'

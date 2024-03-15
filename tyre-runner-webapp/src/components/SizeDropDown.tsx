@@ -1,16 +1,10 @@
 import "../assets/styles/app.css"
 import { useEffect, useState } from 'react';
 
-type TyreOption = {
-  rim: number;
-  ratio: number;
-  width: number;
-};
-
 type SizeDropDownProps = {
   url: string;
-  onSelect: (selectedValue: string, tyreOption: TyreOption) => void;
-  tyreOptionsWithPressure: TyreOption[];
+  onSelect: (selectedValue: string) => void;
+  // tyreOptionsWithPressure: TyreOption[];
 };
 
 const tyreSize: { id:number; markings: string;}[] = []

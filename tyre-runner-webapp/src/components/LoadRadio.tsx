@@ -1,5 +1,5 @@
 import "../assets/styles/app.css"
-import React, { useEffect, useRef, useState } from 'react';
+import React from "react";
 
 
 interface radioProps {
