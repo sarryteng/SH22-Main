@@ -41,7 +41,6 @@ const Select = ({ url }: URLProp) => {
 
       setpno(pnoParam);
       const readArray = readingParam.split(",");
-      //   console.log(readArray);
       setclt(readArray[0]);
       setcrt(readArray[1]);
       setclb(readArray[2]);
@@ -71,8 +70,6 @@ const Select = ({ url }: URLProp) => {
     const handleResize = () => {
       windowWidth = window.screen.width;
       setIsMobile(windowWidth < 600);
-      // console.log("isMobile",isMobile);
-      // console.log("window width",windowWidth);
     };
 
     window.addEventListener("resize", handleResize);
@@ -83,11 +80,6 @@ const Select = ({ url }: URLProp) => {
   }, [pno]);
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSelectedValue(event.target.value);
-    if (isMobile) {
-      console.log("mobile");
-    } else {
-      console.log("desktop");
-    }
   };
 
   const handleSelect = (value: string) => {
@@ -96,7 +88,6 @@ const Select = ({ url }: URLProp) => {
     if (valueint === -1) {
       setLadenExist(true);
     } else {
-      console.log(dataresult.frontTyres[valueint - 1]);
       setLadenExist(dataresult.frontTyres[valueint - 1].ladenOption);
     }
   };
@@ -125,7 +116,6 @@ const Select = ({ url }: URLProp) => {
   function tyreClick(tyreIndex: number) {
     setDialogOpen(!isDialogOpen);
     setTyreIndex(tyreIndex);
-    console.log("clicked tyre", tyreIndex);
   }
 
   return (

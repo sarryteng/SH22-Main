@@ -36,17 +36,13 @@ const SizeDropDown = ({ url, onSelect}: SizeDropDownProps) => {
         tyreSize.length = 0;
         let currentId = 1;
         tyreOptionsWithPressure.forEach((tyreOption: { markings: string;}) => {
-            const marking = JSON.stringify(tyreOption.markings).replace(/"/g, '');
-            console.log("marking is",marking);
-            
+            const marking = JSON.stringify(tyreOption.markings).replace(/"/g, ''); 
             const newElement = { id: currentId++, markings:marking };
             tyreSize.push(newElement)
           });
-          console.log("tyreSize is",tyreSize);
         setData(result);
       } catch (error) {
-        console.error('request error:', error);
-      }
+        console.error('request error:', error);      }
     };
             
     fetchData();
