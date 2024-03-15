@@ -1,0 +1,31 @@
+[102;92m[[30mSDR[92m][0m Using device 0: Realtek, RTL2838UHIDIR, SN: 00000001, "Generic RTL2832U OEM"
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+time      : 2024-03-15 15:43:15
+model     : Schrader-EG53MA4
+type      : TPMS
+flags     : 4d930056
+ID        : B74C13
+Pressure  : 192.5 kPa
+Temperature: 72.0 F
+Integrity : CHECKSUM
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+time      : 2024-03-15 16:06:05
+model     : Schrader-EG53MA4
+type      : TPMS
+flags     : 4d0300a0
+ID        : 12D0F4
+Pressure  : 215.0 kPa
+Temperature: 74.0 F
+Integrity : CHECKSUM
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+time      : 2024-03-15 16:06:05
+model     : Schrader-EG53MA4
+type      : TPMS
+flags     : 4d0300a0
+ID        : 12D0F4
+Pressure  : 215.0 kPa
+Temperature: 74.0 F
+Integrity : CHECKSUM
