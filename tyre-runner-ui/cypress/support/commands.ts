@@ -1,37 +1,36 @@
-/// <reference types="cypress" />
-// ***********************************************
-// This example commands.ts shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-//
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+import { exec } from 'child_process';
+
+before(async() => {
+    const executeScript = async() => {
+      return new Promise((resolve, reject) => {
+        exec('python your_script.py', (err, stdout, stderr) => {
+          if (err) {
+            console.error(`Error executing script: ${err}`);
+            reject(err);
+            return;
+          }
+          resolve(`Script output: ${stdout}`);
+        });
+      });
+    };
+
+    try {
+      // Wait for the script execution to complete
+      await executeScript();
+      console.log('Pre-test script executed successfully');
+    } catch (err) {
+      console.error('Failed to execute pre-test script:', err);
+      // Stop the Cypress test run if the script execution fails
+      process.exit(1);
+    }
+
+    // Generate the fake data
+    exec('npm fake-data', (err, stdout, stderr) => {
+        if (err) {
+            console.error(`Error generating fake data: ${err}`);
+            process.exit(1);
+        }
+        console.log(`Fake data generated: ${stdout}`);
+    });
+
+});

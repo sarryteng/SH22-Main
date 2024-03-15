@@ -94,7 +94,6 @@ const Select = ({ url }: URLProp) => {
 
   const handleSelectClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
-    console.log(clt, crt, clb, crb);
     if (!selectedValue || !selectedSizeValue) {
       return alert("Please select size and load");
     }
@@ -177,7 +176,7 @@ const Select = ({ url }: URLProp) => {
                 <Dialog isOpen={isDialogOpen} setIsOpen={setDialogOpen} tyreIndex={tyreIndex} setTyreIndex={setTyreIndex} tyre1={clt} tyre2={crt} tyre3={clb} tyre4={crb} setTyre1={setclt} setTyre2={setcrt} setTyre3={setclb} setTyre4={setcrb}/>
                 )}
                  */}
-              <SizeDropDown url={url} onSelect={handleSelect} tyreOptionsWithPressure={[]} />
+              <SizeDropDown url={url} onSelect={handleSelect}/>
               <LoadRadio
                 selectedValue={selectedValue}
                 handleChange={handleChange}
@@ -234,7 +233,7 @@ const Select = ({ url }: URLProp) => {
                 >
                   Select your preference
                 </div>
-                <SizeDropDown url={url} onSelect={handleSelect} tyreOptionsWithPressure={[]} />
+                <SizeDropDown url={url} onSelect={handleSelect} />
                 <LoadRadio
                   selectedValue={selectedValue}
                   handleChange={handleChange}
