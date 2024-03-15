@@ -133,16 +133,7 @@ const Select = ({ url }: URLProp) => {
       {loading ? (
         <>
           <Loading />
-          <div
-            style={{
-              textAlign: "center",
-              fontFamily: "Poppins",
-              fontSize: "24px",
-            }}
-          >
-            If it's loading for more than 2 minutes, <br />
-            please check the link and refresh the page
-          </div>
+
         </>
       ) : (
         <>
