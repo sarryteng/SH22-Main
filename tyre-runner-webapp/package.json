@@ -26,5 +26,9 @@
   "devDependencies": {
     "@types/jest": "^29.5.12",
     "cypress": "^13.6.6"
-  }
+  },
+  "main": "cypress.config.js",
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

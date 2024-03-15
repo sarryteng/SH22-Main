@@ -9,13 +9,10 @@ export default defineConfig({
   redirects: {
     '/': '/url-data',
   },
-  
+
   server: {
     port: 8080,
     host: true,
-    fs: {
-      allow: [".."]
-    }
   },
   output: "server",
   adapter: node({
