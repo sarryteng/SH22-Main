@@ -7,6 +7,7 @@ node_build = <<~YML
         script:
             - cd tyre-runner-webapp
             - npm ci
+            - npm install xvfb
             - npx cypress run
     build:
         stage: build
