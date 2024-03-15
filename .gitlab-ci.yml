@@ -56,8 +56,6 @@ build:
   script:
       - cd tyre-runner-ui
       - npm ci
-      - npm start
-      - npx cypress run &
       - npm run build
 
 
