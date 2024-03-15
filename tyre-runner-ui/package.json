@@ -7,7 +7,9 @@
     "start": "astro dev",
     "build": "astro check && astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "start-backend": "cd ../stub & python server.py",
+    "fake-data-generator": "cd ../stub & python fake_data_generator.py"
   },
   "dependencies": {
     "@astrojs/check": "^0.3.1",
@@ -17,7 +19,10 @@
     "@fontsource/suez-one": "^5.0.17",
     "@types/react": "^18.2.37",
     "@types/react-dom": "^18.2.15",
+    "@zxing/browser": "^0.1.4",
+    "@zxing/library": "^0.20.0",
     "astro": "^4.3.7",
+    "nanostores": "^0.10.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-qr-code": "^2.0.12",
@@ -26,5 +31,8 @@
   "main": "index.js",
   "author": "",
   "license": "ISC",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "cypress": "^13.7.0"
+  }
 }
