@@ -94,7 +94,6 @@ const Select = ({ url }: URLProp) => {
 
   const handleSelectClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
     event.preventDefault();
-    console.log(clt, crt, clb, crb);
     if (!selectedValue || !selectedSizeValue) {
       return alert("Please select size and load");
     }
