@@ -16,7 +16,12 @@ git clone git@stgit.dcs.gla.ac.uk:team-project-h/2023/sh22/sh22-main.git
 ## Web Application
 The web application is designed to be central in nature, where a lot of kiosks direct users to one central site. 
 
-There are two components: frontend and backend
+There are two components: frontend and backend 
+
+Mainly use Astro as a framework and integrated with React
+
+frontend requires
+* npm
 
 ### Backend
 Webapp backend is written in python and uses flask to run. Now, the backend is hosted at https://backend-gla-team22.azurewebsites.net.
