@@ -20,8 +20,6 @@ There are two components: frontend and backend
 
 Mainly use Astro as a framework and integrated with React
 
-frontend requires
-* npm
 
 ### Backend
 Webapp backend is written in python and uses flask to run. Now, the backend is hosted at https://backend-gla-team22.azurewebsites.net.
@@ -38,7 +36,11 @@ For further information about:
 ### Frontend
 Webapp frontend is written using Astro. The website is hosted at https://gla-team22.azurewebsites.net.
 
-> TODO add links to wikis
+Frontend requires `npm` to run.
+
+For further information about:
+* UI and guidance, [visit this page](https://stgit.dcs.gla.ac.uk/team-project-h/2023/sh22/sh22-main/-/wikis/Documentation/User-Manual/Webapp-Frontend)
+* How to setup and configure frontend, [visit this page](https://stgit.dcs.gla.ac.uk/team-project-h/2023/sh22/sh22-main/-/wikis/Documentation/Webapp-Frontend)
 
 ## Kiosk
 Kiosk is designed and tested on a raspberry pi machine. It is intended to be run offline, and distributed to parking spaces.
@@ -80,3 +82,4 @@ Contact:
 **Team Coach** \
 Name: Jordan Scott \
 Contact: \
+
