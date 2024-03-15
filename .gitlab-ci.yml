@@ -2,6 +2,8 @@ stages:
   - setup 
   - triggers
   - test
+  - build
+  - deploy
 
 generate-config:
   stage: setup
@@ -37,4 +39,27 @@ backend-python-unit-test:
         coverage_format: cobertura
         path: CICD/report.xml
     expire_in: 30 days
+
+# front-end-test:
+#   image: cypress/base
+#   script:
+#         - cd tyre-runner-ui
+#         - pip install flask flask_cors
+#         - python ../kiosk-backend/server.py
+#         - npm ci
+#         - npx cypress run &
+#         - npm start
+
+build:
+  stage: build
+  image: node:lts
+  script:
+      - cd tyre-runner-ui
+      - npm ci
+      - npm start
+      - npx cypress run &
+      - npm run build
+
+
+
 
