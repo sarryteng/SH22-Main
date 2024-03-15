@@ -1,15 +1,18 @@
 #!/usr/bin/env ruby
 
 node_build = <<~YML
-    image: node:lts 
-    test:
+    front-end-web-app-test:
+        image: cypress/base
         stage: test
         script:
             - cd tyre-runner-webapp
-            - npm c
-            - npm install xvfb
-            - npx cypress run
-    build:
+            - npm ci
+            - export BACKEND_URL='https://backend-gla-team22.azurewebsites.net/tyre-data'
+            - npm start &
+            - npx cypress run 
+
+    front-end-web-app-build:
+        image: node:lts
         stage: build
         script:
             - cd tyre-runner-webapp
