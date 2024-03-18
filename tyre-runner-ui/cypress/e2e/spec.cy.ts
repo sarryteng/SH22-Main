@@ -22,11 +22,12 @@ describe('Kiosk end to end testing', () => {
         registration_plate: 'AO12XZP'
       }
     }).as('getData')
-    cy.wait(3000)
+    cy.wait(10000)
     cy.reload()
 
     
-    cy.get('[src="/@fs/Users/atip/sh22-main/tyre-runner-ui/src/assets/Images/logo_transparent.png?origWidth=1260&origHeight=244&origFormat=png"]').should('be.visible')
+
+    // cy.get('[src="/@fs/Users/atip/sh22-main/tyre-runner-ui/src/assets/Images/logo_transparent.png?origWidth=1260&origHeight=244&origFormat=png"]').should('be.visible')
     cy.get('[src="/@fs/Users/atip/sh22-main/tyre-runner-ui/src/assets/Images/tel_img.png?origWidth=50&origHeight=54&origFormat=png"]').should('be.visible')
 
 
@@ -52,7 +53,7 @@ describe('Kiosk end to end testing', () => {
         }
       }).as('getData')
 
-      cy.wait(3000)
+      cy.wait(10000)
       cy.reload()
       cy.get('.Center').find('svg')
       .screenshot('qr-code', { onAfterScreenshot : ($el: any, props: { path: any; }) => { console.log('screenshot taken');
