@@ -24,6 +24,8 @@ Mainly use Astro as a framework and integrated with React
 ### Backend
 Webapp backend is written in python and uses flask to run. Now, the backend is hosted at https://backend-gla-team22.azurewebsites.net.
 
+For example, to get data about vehicle with plate `AO12XZP` visit this link: https://backend-gla-team22.azurewebsites.net/tyre-data/AO12XZP
+
 Backend requires:
 * python
 * Tyrerunner APIs
